@@ -104,3 +104,9 @@ dist
 
 # TernJS port file
 .tern-port
+
+bin/
+node_modules/
+error.log
+combined.log
+
