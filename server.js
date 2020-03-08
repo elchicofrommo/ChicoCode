@@ -1,17 +1,36 @@
-const express = require('express')
-const app = express()
-const bodyParser = require('body-parser')
+'use strict';
 
-const cors = require('cors')
+import logger from './utils/Logger'
 
-const mongoose = require('mongoose')
-mongoose.connect(process.env.MLAB_URI || 'mongodb://localhost/exercise-track' )
+logger.info('Starting chico_express ... ')
 
-app.use(cors())
+var express = require('express');
+var mongo = require('mongodb');
+var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
+var cors = require('cors');
 
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json())
+var app = express();
+app.use(express.json()) // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: false })) // for parsing application/x-www-form-urlencoded
 
+
+
+logger.info(`Connecting DB to ${process.env.DATABASE_URI}` )
+mongoose.connect(process.env.DATABASE_URI, { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true 
+}); 
+
+
+function simpleRequestLogger(req, resp, next){
+
+  logger.verbose(`req.method='${req.method}' req.path='${req.path}' req.ip='${req.ip}'`);
+  logger.verbose(`req.body='${JSON.stringify(req.body)}'`);
+  next();
+}
+
+app.use(simpleRequestLogger);
 
 app.use(express.static('public'))
 app.get('/', (req, res) => {
@@ -44,5 +63,5 @@ app.use((err, req, res, next) => {
 })
 
 const listener = app.listen(process.env.PORT || 3000, () => {
-  console.log('Your app is listening on port ' + listener.address().port)
+  logger.info('Your app is listening on port ' + listener.address().port)
 })
