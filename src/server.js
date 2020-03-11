@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false })) // for parsing application/x
 
 
 
-logger.info(`Connecting DB to ${process.env.DATABASE_URI}` )
+logger.info(`Connecting DB to ${process.env.DATABASE_URI} yo` )
 mongoose.connect(process.env.DATABASE_URI, { 
   useNewUrlParser: true, 
   useUnifiedTopology: true 
