@@ -11,7 +11,7 @@
 		"preset": "@shelf/jest-mongodb"
 	},
 	"scripts": {
-		"build": "rimraf bin/ && babel ./ --out-dir bin/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log,./*.test.js,./*.log --source-maps",
+		"build": "rimraf bin/ && babel ./src --out-dir bin/ --copy-files --source-maps",
 		"start": "npm run build && node -r dotenv/config --inspect bin/server",
 		"start_debug": "npm run build && node -r dotenv/config --inspect bin/server",
 		"test": "jest --detectOpenHandles",
