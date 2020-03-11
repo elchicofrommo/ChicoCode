@@ -32,7 +32,10 @@ function simpleRequestLogger(req, resp, next){
 
 app.use(simpleRequestLogger);
 
-app.use(express.static('public'))
+const publicFolder = process.cwd() + '/bin/public';
+logger.info("setting pulbic folder to point to " + publicFolder)
+app.use('/public', express.static(publicFolder));
+
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
 });
