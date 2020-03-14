@@ -1,5 +1,5 @@
-import logger from '../src/utils/Logger'
-import UserModel from '../src/UserModel'
+import logger from '../src/server/utils/Logger'
+import UserModel from '../src/server/UserModel'
 
 const MongodbMemoryServer = require('mongodb-memory-server')
 const mongoServer = new MongodbMemoryServer.MongoMemoryServer()

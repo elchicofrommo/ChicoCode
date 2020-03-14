@@ -1,13 +1,15 @@
 'use strict';
 
-import logger from './utils/Logger'
+import logger from './utils/Logger';
 
 logger.info('Starting chico_express ... ')
 
 var express = require('express');
-var fileRoutes = express.Router();
-var defaultRoutes = express.Router();
+//var fileRoutes = express.Router();
+//var defaultRoutes = express.Router();
 var staticRoutes = express.Router();
+var reactRoutes = express.Router();
+var path = require('path');
 
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
@@ -16,14 +18,14 @@ var fileUpload = require("express-fileupload");
 var cors = require('cors');
 
 var app = express();
-defaultRoutes.use(express.json()) // for parsing application/json
-defaultRoutes.use(bodyParser.urlencoded({ extended: false })) // for parsing application/x-www-form-urlencoded
+//defaultRoutes.use(express.json()) // for parsing application/json
+//defaultRoutes.use(bodyParser.urlencoded({ extended: false })) // for parsing application/x-www-form-urlencoded
 
 
-fileRoutes.use(express.json());
+/*fileRoutes.use(express.json());
 fileRoutes.use(fileUpload({
   limits: { fileSize: 50 * 1024 * 1024 },
-}));
+}));*/
 
 logger.info(`Connecting DB to ${process.env.DATABASE_URI}` )
 mongoose.connect(process.env.DATABASE_URI, { 
@@ -47,17 +49,34 @@ function simpleFileRequestLogger(req, resp, next){
   next();
 }
 
-defaultRoutes.use(simpleRequestLogger);
-fileRoutes.use(simpleFileRequestLogger);
+//defaultRoutes.use(simpleRequestLogger);
+//fileRoutes.use(simpleFileRequestLogger);
+reactRoutes.use(simpleRequestLogger);
+staticRoutes.use(simpleRequestLogger)
 
 const publicFolder = process.cwd() + '/bin/public';
-logger.info("setting pulbic folder to point to " + publicFolder)
-
-staticRoutes.use('/public', express.static(publicFolder));
+logger.verbose("test change")
 staticRoutes.get('/', (req, res) => {
-  res.sendFile(__dirname + '/views/index.html')
+  res.sendFile( path.resolve(__dirname, '../static/index.html'))
 });
 
+staticRoutes.get('/js/*', (req, res) =>{
+  logger.verbose("saw request for js file");
+  res.sendFile( path.resolve(__dirname, '..' + req.path));
+})
+staticRoutes.get('//app/:appName/index.js', (req, res)=>{
+  res.sendFile( path.resolve(__dirname, '..' + req.path));
+})
+
+
+reactRoutes.get('/app/:appName', (req, res)=>{
+  var urlPath = `../app/${req.params.appName}/index.html`;
+  var calculatorPath = path.resolve(__dirname, urlPath);
+  logger.verbose("path to calculator is " + calculatorPath);
+  res.sendFile(calculatorPath)
+})
+
+/*
 fileRoutes.post("/api/fileanalyse", (req, res)=>{
   logger.verbose("inside /api/fileanalyse ");
 
@@ -65,11 +84,12 @@ fileRoutes.post("/api/fileanalyse", (req, res)=>{
     res.send({name: req.files.upfile.name, type: req.files.upfile.type, size: req.files.upfile.size})
   }
 
-});
+}); */
 
 app.use(staticRoutes);
-app.use(defaultRoutes);
-app.use(fileRoutes);
+// app.use(defaultRoutes);
+//app.use(fileRoutes);
+app.use(reactRoutes);
 
 // Not found middleware
 app.use((req, res, next) => {
