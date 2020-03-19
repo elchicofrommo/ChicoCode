@@ -1,15 +1,34 @@
 'use strict';
 
+import path from 'path';
 import logger from './utils/Logger';
+import UserModel from './UserModel';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpack from 'webpack';
+import webpackConfig from '../../webpack.config.js'
 
-logger.info('Starting chico_express ... ')
+const dotenv = require('dotenv');
+const result = dotenv.config();
+if (result.error) {
+  throw result.error;
+}
+const { parsed: envs } = result;
+
+console.log("webpack.config.js envs are " + JSON.stringify(envs))
+
+const nodeEnv = envs.NODE_ENV;
+const isDevelopment = nodeEnv == 'development';
+
+logger.info(`Starting chico_express in ${nodeEnv} mode... `);
+
 
 var express = require('express');
 //var fileRoutes = express.Router();
 //var defaultRoutes = express.Router();
-var staticRoutes = express.Router();
+var defaultRoutes = express.Router();
 var reactRoutes = express.Router();
-var path = require('path');
+
 
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
@@ -26,6 +45,28 @@ var app = express();
 fileRoutes.use(fileUpload({
   limits: { fileSize: 50 * 1024 * 1024 },
 }));*/
+if(isDevelopment){
+  
+
+  //const webpackConfig = require(path.resolve('./webpack.config.js' ))
+  logger.info("configuring with " + JSON.stringify(webpackConfig));
+
+  //import webpackServerConfig from '/webpack.config.server';
+
+  logger.info("starting up a development server, loading webpack details: ");
+  logger.info("webpackConfig: " + JSON.stringify(webpackConfig));
+  webpackConfig.watch = true;
+  //logger.info("webpackServerConfig: " + JSON.stringify(webpackServerConfig));
+  const clientCompiler = webpack(webpackConfig);
+  //const serverCompiler = webpack(webpackServerConfig);
+
+  const clientMiddleware = webpackDevMiddleware(clientCompiler, {writeToDisk: true});
+  const serverMiddleware = webpackHotMiddleware(clientCompiler, {writeToDisk: true});
+
+  app.use(clientMiddleware);
+  app.use(serverMiddleware)
+
+}
 
 logger.info(`Connecting DB to ${process.env.DATABASE_URI}` )
 mongoose.connect(process.env.DATABASE_URI, { 
@@ -52,21 +93,19 @@ function simpleFileRequestLogger(req, resp, next){
 //defaultRoutes.use(simpleRequestLogger);
 //fileRoutes.use(simpleFileRequestLogger);
 reactRoutes.use(simpleRequestLogger);
-staticRoutes.use(simpleRequestLogger)
+defaultRoutes.use(simpleRequestLogger)
 
 const publicFolder = process.cwd() + '/bin/public';
 logger.verbose("test change")
-staticRoutes.get('/', (req, res) => {
+defaultRoutes.get('/', (req, res) => {
   res.sendFile( path.resolve(__dirname, '../static/index.html'))
 });
 
-staticRoutes.get('/js/*', (req, res) =>{
+defaultRoutes.get('/js/*', (req, res) =>{
   logger.verbose("saw request for js file");
   res.sendFile( path.resolve(__dirname, '..' + req.path));
 })
-staticRoutes.get('//app/:appName/index.js', (req, res)=>{
-  res.sendFile( path.resolve(__dirname, '..' + req.path));
-})
+
 
 
 reactRoutes.get('/app/:appName', (req, res)=>{
@@ -75,6 +114,15 @@ reactRoutes.get('/app/:appName', (req, res)=>{
   logger.verbose("path to calculator is " + calculatorPath);
   res.sendFile(calculatorPath)
 })
+reactRoutes.get('/app/:appName/*', (req, res)=>{
+  logger.verbose("request for supporting app files for " + req.params.appName)
+  res.sendFile( path.resolve(__dirname, '..' + req.path));
+})
+reactRoutes.get('/app/*.json', (req, res)=>{
+  logger.verbose("request for hot update " + req.params.appName)
+  res.sendFile( path.resolve(__dirname, '..' + req.path));
+})
+
 
 /*
 fileRoutes.post("/api/fileanalyse", (req, res)=>{
@@ -86,7 +134,7 @@ fileRoutes.post("/api/fileanalyse", (req, res)=>{
 
 }); */
 
-app.use(staticRoutes);
+app.use(defaultRoutes);
 // app.use(defaultRoutes);
 //app.use(fileRoutes);
 app.use(reactRoutes);

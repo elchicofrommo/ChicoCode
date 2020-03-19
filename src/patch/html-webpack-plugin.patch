@@ -1,0 +1,26 @@
+// put this at node_modules/html-webpack-plugin/lib/compiler.js
+
+/**
+ * Returns `true` if the file dependencies of the given childCompiler are outdated.
+ *
+ * @param {WebpackCompilation} mainCompilation
+ * @param {HtmlWebpackChildCompiler} childCompiler
+ * @returns {boolean}
+ */
+function isChildCompilerCacheOutdated (mainCompilation, childCompiler) {
+  // If the compilation was never run there is no invalid cache
+  if (!childCompiler.compilationStartedTimestamp) {
+    return false;
+  }
+  // Check if any dependent file was changed after the last compilation
+  const fileTimestamps = mainCompilation.fileSystemInfo._fileTimestamps;
+  const isCacheOutOfDate = childCompiler.fileDependencies.some((fileDependency) => {
+    const timestamp = fileTimestamps.get(fileDependency).timestamp;
+    // If the timestamp is not known the file is new
+    // If the timestamp is larger then the file has changed
+    // Otherwise the file is still the same
+    return !timestamp || timestamp > childCompiler.compilationStartedTimestamp;
+  });
+  return isCacheOutOfDate;
+}
+
