@@ -1,26 +1,50 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
 
+const dotenv = require('dotenv');
+const result = dotenv.config();
+if (result.error) {
+  throw result.error;
+}
+const { parsed: envs } = result;
+
+console.log("webpack.config.js envs are " + JSON.stringify(envs))
+
+const nodeEnv = envs.NODE_ENV;
+const isProduction = nodeEnv !== 'development';
+
+console.log("setting up env for : " + nodeEnv);
 
 const path = require('path');
 const glob = require('glob');
 const entryArray = glob.sync('src/app/**/index.js');
-const htmlPages = [];
+const plugins = [];
 const entryObject = entryArray.reduce((acc, item) => {
 
-  console.log("item: " + item);
 
-  const name =  item.replace("src/app/", "").replace(".js", "");
+
+  const name =  item.replace("src/", "").replace(".js", "");
+  console.log("adding entry point for " + name)
+
   acc[name] = {};
-  acc[name].import = "./" + item;
-  acc[name].filename = acc[name].import.replace("src", "");
+  acc[name].import = [];
+  if(!isProduction){
+    acc[name].import.push('react-hot-loader/patch');
+    acc[name].import.push('webpack-hot-middleware/client?quiet=true')
+  }
+  acc[name].import.push("./" + item);
+  acc[name].filename = name + ".js";
   acc[name].dependOn = "shared";
 
-  htmlPages.push(new HtmlWebPackPlugin({
+  console.log(JSON.stringify(acc[name]));
+  plugins.push(new HtmlWebPackPlugin({
     template: "./src/template/app-template.html",
     chunks: [name, "shared"],
-    filename: "app/" + name  + ".html"
+    filename:  name  + ".html"
   }))
+
   return acc;
 }, {});
 
@@ -28,57 +52,76 @@ entryObject.shared = {
   import: ["react", "react-dom"],
   filename: 'js/shared.js'
 };
+let loaders = [];
 
-entryObject.index  = {
-  import: "./src/server/server.js",
-  filename: 'server/server.js'
-};
+if (!isProduction) {
+    plugins.push(new webpack.HotModuleReplacementPlugin())
+    plugins.push(new webpack.NoEmitOnErrorsPlugin())
+    loaders.push({loader: 'style-loader'})
+} else{
+        plugins.push(new MiniCssExtractPlugin({
+    	filename: '[name].[hash].css',
+    	chunkFilename: '[name].[hash].css'
+    }))
+    loaders.push({
+      loader: MiniCssExtractPlugin.loader,
+      options: {
+        hmr: !isProduction,
+      },
+    })
+}
+
+loaders.push({loader: 'css-loader'});
+loaders.push({loader: 'sass-loader'});
+
+          
+plugins.push(new CopyPlugin(
+      [
+        {from: 'src/static' , to: 'static'},
+        {from: 'src/style', to: 'style'}
+      ]
+    ));
+
+
+
+
+
 
 console.log("entryObject  is " + JSON.stringify(entryObject));
-console.log("htmlPages is " + JSON.stringify(htmlPages));
+console.log("htmlPages is " + JSON.stringify(plugins));
 module.exports = {
   entry: entryObject,
   output: {
     filename: '[name]',
-    path: path.resolve(__dirname, 'bin')
+    path: path.resolve('bin'),
+    publicPath: '/'
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
+        use: [
+	        {loader: "babel-loader"}
+        ]
+      },
+      {
+        test: /\.s(a|c)ss$/,
+        exclude: /node_modules/,
+        use: loaders
       }
     ]
   },
-
+  watch: false,
+  watchOptions: {
+  	ignored: ['node_modules/*']
+  },
 	resolve: {
-		alias: {
-			"path": "path-browserify",
-			"stream": "stream-browserify" ,
-		 	"os": "os-browserify/browser" ,
-		 	"zlib": "browserify-zlib" ,
-		 	"https": "https-browserify" ,
-		 	"http": "stream-http" ,
-		 	"crypto": "crypto-browserify" ,
-		 	"fs" : false,
-		 	"net": false,
-		 	"module" : false,
-		 	"dgram" : false,
-		 	"tls": false,
-		 	"vm": "vm-browserify" 
-		}
+    alias: {
+      'react-dom': '@hot-loader/react-dom'
+    },
+		extensions: ['.js', '.jsx', '.scss']
 	},
-  plugins: [
-    ...htmlPages,
-    new CopyPlugin(
-      [
-        {from: 'src/static' , to: 'static'},
-        {from: 'src/style', to: 'style'}
-      ]
-    )
-  ],
-  mode: "development"
+  plugins:plugins,
+  mode: nodeEnv
 };

@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 
 import logger from './utils/Logger';
 
+
 var UserSchema =  new Schema ({
 	user_name: String,
 	user_id: Number
