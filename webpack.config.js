@@ -77,7 +77,8 @@ loaders.push({loader: 'sass-loader'});
           
 plugins.push(new CopyPlugin(
       [
-        {from: 'src/static' , to: 'static'}
+        {from: 'src/static' , to: 'static'},
+        {from: 'src/assets', to: 'assets'}
       ]
     ));
 
