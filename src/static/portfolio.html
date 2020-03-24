@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700|Open+Sans|Poiret+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style/portfolio.css"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=3.0, minimum-scale=0.86">
+</head>
+ <body class='themeFour'>
+ 	
+ 	<nav id="navbar">
+ 		<a href="#welcome-section">About</a>
+ 		<a href="#projects" >Projects</a>
+ 		<a href="#contact">Contact</a>
+ 	</nav>
+ 	<main id='main-doc'>
+ 		<div class="hero" id="welcome-section">
+ 			<h1>I am a hero</h1>
+ 			<div>Example of a hero section that takes up the full viewport. </div>
+ 		</div>
+ 		<div class="projects" id="projects">
+			<div class="project-tile">
+				<!--iframe frameborder="0" scrolling="no" sandbox="allow-scripts allow-top-navication-by-user-activation allow-same-origin" src="https://cdpn.io/mariano-hernandez/fullcpgrid/LYEMjwy"></iframe-->
+				<a href="https://codepen.io/mariano-hernandez/pen/LYEMjwy" class="projectLink">Drum Machine</a>
+			</div>
+			<div class="project-tile">
+				<!--iframe frameborder="0" scrolling="no" sandbox="allow-scripts allow-top-navication-by-user-activation allow-same-origin" src="https://cdpn.io/mariano-hernandez/fullcpgrid/zYxmXOY"></iframe-->
+				<a href="https://codepen.io/mariano-hernandez/pen/zYxmXOY" class="projectLink">Markdown Editor</a>
+			</div class="project-tile">
+			<div>
+				<!--iframe frameborder="0" scrolling="no" sandbox="allow-top-navication-by-user-activation allow-same-origin" src="https://cdpn.io/mariano-hernandez/fullcpgrid/LYVNbNP"></iframe-->
+				<a href="https://codepen.io/mariano-hernandez/details/LYVNbNP" class="projectLink">Survey Form</a>
+			</div>
+
+ 		</div>
+ 		<div class="hero" id="contact">
+ 			Here's some contact info
+ 		</div>
+ 	</main>
+ </body>
+ </html>
+<script>
+	window.onload = () => {
+
+		window.scrollTo(4,1);
+
+	}
+
+	function navigateTo(id){
+
+		
+		event.preventDefault();
+		var element = document.getElementById(id);
+		console.log("navigate to event offset is " + element.offsetTop);
+		element.scrollIntoView();
+
+		return false;
+	}
+
+</script>
+ <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>

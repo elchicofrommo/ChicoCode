@@ -1,0 +1,196 @@
+
+body,
+html {
+
+  margin: 0px;
+  height: 100%;
+
+  font-family: 'Poiret One', sans-serif;
+  
+  overflow: hidden;
+}
+
+nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 10;
+	height: 50px;
+	background-color: var(--shade3);
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: bold;
+	color: white;
+}
+
+nav > a {
+	height: 80px;
+	font-size: 2em;
+	display: flex;
+	align-items: center;
+	padding-left: 20px;
+	padding-right: 20px;
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+}
+
+nav > a:hover {
+	background-color: rgba(255, 255, 255, .2);
+}
+
+main {
+	height: calc(100% - 50px);
+	margin-top: 50px;
+	overflow-x: auto;
+	scroll-behavior: smooth;
+}
+
+.hero{
+	background-color: var(--shade2);
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	font-size: 2em;
+}
+.hero > h1 {
+	font-size: 5em;
+
+ 	margin: 0;
+}
+
+.hero > div {
+
+	
+}
+.projects {
+	width: 100%;
+	height: auto;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding-top: 15px;
+	justify-content: space-around;
+	background-color: var(--shade3);
+}
+
+.project-tile {
+	background-color: var(--shade1); 
+	display: flex;
+	flex-direction: column;
+
+	margin-bottom: 15px;
+	width: 25vw;
+	height: 50vw;
+}
+
+.project-tile > h2 {
+	text-align: center;
+}
+
+.projectLink {
+	display:block;
+	text-align: center;
+	text-decoration: none;
+	padding-bottom: 5px;
+	font-size: 16pt;
+	font-weight: bold;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.projectLink:hover{
+
+}
+
+.ReactApp-logo {
+  height: 30vmin;
+  pointer-events: none;
+
+}
+
+.Gears-logo {
+	height: 20vmin;
+
+	fill: yellow;
+}
+
+#boltandgear {
+	fill: green;
+	stroke: yellow;
+}
+
+
+.Devices-logo {
+	height: 25vmin;
+
+}
+
+
+.Devices-logo:hover .screen1{
+	fill: green;
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .ReactApp-logo {
+    animation: logo-spin infinite 20s linear;
+  }
+
+  .gear {
+  	animation: logo-spin infinite 20s linear;
+  }
+
+  .bolt {
+  	animation: logo-spin infinite 20s linear;
+  }
+  .Gears-logo{
+  	animation: logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+
+.themeOne {
+    --shade1: #f4f1af;
+    --shade2: #e7e283;
+    --shade3: #dbd55b;
+    --shade4: #dedede;
+    --textShade: #385a6e;
+}
+
+.themeFour {
+  --shade1: #e6e6e6;
+  --shade2: #dedede;
+  --shade3: #d1d1d1;
+  --shade4: #c7c7c7;
+   --grey1: #dedede;
+}
+
+.themeFive {
+  --shade1: #c3cacf;
+  --shade2: #9ab1c2;
+  --shade3: #759bb6;
+  --shade4: #5385a9;
+   --background1: #dedede;
+   --background2: #f4f1af;
+}
+
+.testId {
+	background-color: blue;
+}

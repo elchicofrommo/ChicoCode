@@ -1,0 +1,241 @@
+
+@import url('https://fonts.googleapis.com/css?family=Quicksand:500|Sarpanch:700|Kaushan+Script|Source+Code+Pro:600|Abril+Fatface|Audiowide|Comfortaa:700|Kelly+Slab&display=swap');
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins/_breakpoints";
+@import 'bootstrap';
+
+body,
+html {
+  height: 101%;
+  margin: 0px;
+  font-family: "Raleway", sans-serif;
+  font-size: 5vw;
+  touch-action: manipulation;
+  overflow: hidden;
+  @extends .themeThree;
+
+
+}
+.themeOne {
+    --shade1: #f4f1af;
+    --shade2: #e7e283;
+    --shade3: #dbd55b;
+    --shade4: #dedede;
+}
+
+.themeTwo {
+    --shade1: #aadff6;
+    --shade2: #7ec9e9;
+    --shade3: #57b5dd;
+    --shade4: #32a1d0;
+    --grey1: #dedede;
+}
+
+.themeThree {
+  --shade1: #c3cacf;
+  --shade2: #9ab1c2;
+  --shade3: #e88f00;
+  --shade3-font: #120b00;
+  --shade4: #5385a9;
+   --grey1: #dedede;
+  --background: #121212;
+  --foreground: #d4bfa6;
+}
+
+.themeFour {
+  --shade1: #e6e6e6;
+  --shade2: #dedede;
+  --shade3: #d1d1d1;
+  --shade4: #c7c7c7;
+   --grey1: #dedede;
+}
+
+.themeFive {
+  --shade1: #466b8c;
+  --shade2: #8c5f46;
+  --shade3: #8c8346;
+  --shade4: #79468c;
+   --grey1: #dedede;
+ }
+@mixin border-radius($a, $b, $c, $d) {
+    -webkit-border-radius: $a $b $c $d;
+    -moz-border-radius: $a $b $c $d;
+    -ms-border-radius: $a $b $c $d;
+    border-radius: $a $b $c $d;
+}
+@mixin height-calc($percentage, $value) {
+    height: -moz-calc(#{$percentage} - #{$value});
+    /* WebKit */
+    height: -webkit-calc(#{$percentage} - #{$value});
+    /* Opera */
+    height: -o-calc(#{$percentage} - #{$value});
+    /* Standard */
+    height: calc(#{$percentage} - #{$value});
+}
+.outerDiv {
+    height: 100%;
+    width: 100%;
+    background-color: var(--background);
+    overflow: hidden;
+    transition: all .3s ease-in-out;
+
+
+}
+.innerDiv {
+    background: var(--background);
+    height: 100%;
+    margin-top: 0px;
+}
+
+.header {
+
+
+  padding-top: 7px;
+  background-color: var(--shade3);
+
+  transition: all .3s ease-in-out;
+}
+
+.mytitle {
+  padding-left: 3pt;
+  font-size: 60px;
+  font-family: 'Kaushan Script', cursive;
+  color: var(--shade3-font);
+}
+
+
+
+
+
+.lengthButton {
+  border: 0px;
+  background: none;
+  font-size: 10vw;
+  color: var(--shade3);
+}
+
+.clockButton {
+  border: 0px;
+  border-radius: 50%;
+  background: var(--shade3);
+  font-size: 20vw;
+  width: 32vw;
+  height: 32vw;
+  color: var(--background);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.fa-play {
+  margin-left: 3vw;
+}
+
+.button {
+
+
+  padding: 0;
+  padding-top: auto;
+}
+
+
+.button:focus {
+  outline: none;
+}
+
+.button:hover{
+  cursor: default; 
+  filter:brightness(1.25);
+}
+
+.lengthContainer {
+  text-transform: capitalize;
+}
+
+.textField {
+
+
+  text-align: right;
+
+  font-size: 5em;
+
+  font-family: 'Sarpanch', sans-serif;
+  color: var(--shade3);
+  filter: hue-rotate(280deg);
+
+}
+
+.lengthField {
+  font-size: 20vw;
+  line-height: 14vw;
+
+}
+
+.decrementButton {
+  margin-right: -10px;
+}
+
+.label {
+  color: var(--foreground);
+}
+
+.clockField {
+
+}
+
+@media (min-width: 576px){
+  .mytitle{
+    font-size: 30px;
+  }
+
+  .textField {
+    font-size: 50px;
+    text-align: center;
+  }
+
+  .clockButton {
+    font-size: .8em;
+    padding: .3em;
+    width: auto;
+    height: auto;
+  }
+  .clockField{
+    font-size: 2em;
+    line-height: .7em;
+  }
+  .fa-play {
+    margin-left: 5px;
+  }
+  .fa-redo {
+    margin-right: 5px;
+    margin-top: 2px;
+  }
+
+  .label {
+    font-size: .4em;
+  }
+
+  .lengthContainer {
+
+  }
+  .lengthButton {
+    font-size: 1em;
+  }
+
+  .lengthField {
+    line-height: .7em;
+  }
+
+}
+
+
+.surveyBody{
+  background-color: green;
+}
+
+
+
+
+

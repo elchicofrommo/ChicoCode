@@ -7,6 +7,12 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpack from 'webpack';
 import webpackConfig from '../../webpack.config.js'
+import styleConfig from '../../webpack.config.style.js'
+
+//import React from 'react';
+//import { renderToString } from 'react-dom/server';
+//const TestApp = require( '../test/testrun.js')
+
 
 const dotenv = require('dotenv');
 const result = dotenv.config();
@@ -48,17 +54,11 @@ fileRoutes.use(fileUpload({
 if(isDevelopment){
   
 
-  //const webpackConfig = require(path.resolve('./webpack.config.js' ))
-  logger.info("configuring with " + JSON.stringify(webpackConfig));
-
-  //import webpackServerConfig from '/webpack.config.server';
-
   logger.info("starting up a development server, loading webpack details: ");
-  logger.info("webpackConfig: " + JSON.stringify(webpackConfig));
+
   webpackConfig.watch = true;
-  //logger.info("webpackServerConfig: " + JSON.stringify(webpackServerConfig));
-  const clientCompiler = webpack(webpackConfig);
-  //const serverCompiler = webpack(webpackServerConfig);
+  const clientCompiler = webpack([webpackConfig,styleConfig]);
+
 
   const clientMiddleware = webpackDevMiddleware(clientCompiler, {writeToDisk: true});
   const serverMiddleware = webpackHotMiddleware(clientCompiler, {writeToDisk: true});
@@ -67,6 +67,8 @@ if(isDevelopment){
   app.use(serverMiddleware)
 
 }
+
+
 
 logger.info(`Connecting DB to ${process.env.DATABASE_URI}` )
 mongoose.connect(process.env.DATABASE_URI, { 
@@ -106,6 +108,27 @@ defaultRoutes.get('/js/*', (req, res) =>{
   res.sendFile( path.resolve(__dirname, '..' + req.path));
 })
 
+defaultRoutes.get('/view/*.html', (req, res) => {
+  let myPath = req.path.replace("view", "static");
+  res.sendFile(path.resolve(__dirname, '..' + myPath))
+})
+
+defaultRoutes.get('/assets/*', (req, res)=> {
+  logger.verbose("saw request for asset file");
+  res.sendFile( path.resolve(__dirname, '..' + req.path))
+})
+
+defaultRoutes.get('/style/*', (req, res)=> {
+  logger.verbose("saw request for style sheet");
+  res.sendFile( path.resolve(__dirname, '..' + req.path))
+})
+
+/*defaultRoutes.get('/testApp', (req, res) => {
+  logger.verbose("saw request for test app");
+  const appString = renderToString(<TestApp />);
+  logger.verbose("the rendered string is : " + appString);
+  res.send(appString);
+})*/
 
 
 reactRoutes.get('/app/:appName', (req, res)=>{

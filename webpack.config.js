@@ -60,8 +60,8 @@ if (!isProduction) {
     loaders.push({loader: 'style-loader'})
 } else{
         plugins.push(new MiniCssExtractPlugin({
-    	filename: '[name].[hash].css',
-    	chunkFilename: '[name].[hash].css'
+      filename: '[name].[hash].css',
+      chunkFilename: '[name].[hash].css'
     }))
     loaders.push({
       loader: MiniCssExtractPlugin.loader,
@@ -77,15 +77,9 @@ loaders.push({loader: 'sass-loader'});
           
 plugins.push(new CopyPlugin(
       [
-        {from: 'src/static' , to: 'static'},
-        {from: 'src/style', to: 'style'}
+        {from: 'src/static' , to: 'static'}
       ]
     ));
-
-
-
-
-
 
 console.log("entryObject  is " + JSON.stringify(entryObject));
 console.log("htmlPages is " + JSON.stringify(plugins));
@@ -102,7 +96,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: [
-	        {loader: "babel-loader"}
+          {loader: "babel-loader"}
         ]
       },
       {
@@ -114,14 +108,15 @@ module.exports = {
   },
   watch: false,
   watchOptions: {
-  	ignored: ['node_modules/*']
+    ignored: ['node_modules/*']
   },
-	resolve: {
+  resolve: {
     alias: {
       'react-dom': '@hot-loader/react-dom'
     },
-		extensions: ['.js', '.jsx', '.scss']
-	},
+    extensions: ['.js', '.jsx', '.scss']
+  },
   plugins:plugins,
   mode: nodeEnv
 };
+
