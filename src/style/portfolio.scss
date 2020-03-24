@@ -17,11 +17,11 @@ nav {
 	width: 100%;
 	z-index: 10;
 	height: 50px;
-	background-color: var(--shade3);
+	background-color: var(--shade2);
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
-	font-family: 'Open Sans', sans-serif;
+
 	font-weight: bold;
 	color: white;
 }
@@ -39,7 +39,7 @@ nav > a {
 }
 
 nav > a:hover {
-	background-color: rgba(255, 255, 255, .2);
+	color: rgba(255, 255, 255, .2);
 }
 
 main {
@@ -90,8 +90,14 @@ main {
 	height: 50vw;
 }
 
+
+
 .project-tile > h2 {
 	text-align: center;
+}
+.project-tile >.tileBody {
+	font-family: 'Open Sans', sans-serif;
+	padding: 0px 5px 10px 10px;
 }
 
 .projectLink {
@@ -174,7 +180,7 @@ main {
     --textShade: #385a6e;
 }
 
-.themeFour {
+.themeOne {
   --shade1: #e6e6e6;
   --shade2: #dedede;
   --shade3: #d1d1d1;
@@ -182,7 +188,7 @@ main {
    --grey1: #dedede;
 }
 
-.themeFive {
+.themeOne {
   --shade1: #c3cacf;
   --shade2: #9ab1c2;
   --shade3: #759bb6;
