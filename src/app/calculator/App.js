@@ -4,7 +4,7 @@ import {render} from 'react-dom';
 
 import styles from './style';
 
-//import 'bootstrap/dist/css/npm '
+
 console.log("lll");
 
 import {Provider, connect} from 'react-redux';

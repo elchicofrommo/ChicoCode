@@ -1,3 +1,14 @@
+.ReactApp-logo {
+  height: 20vmin;
+  pointer-events: none;
+  border: 1px solid black;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ReactApp-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
 
 * {
   box-sizing: border-box;

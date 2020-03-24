@@ -1,0 +1,120 @@
+body,
+html {
+	height: 100%;
+  margin: 0px;
+
+  font-family: "Raleway", sans-serif;
+  touch-action: manipulation;
+  
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+
+.backgroundImage {
+
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -2;
+	background-image: url('https://wallpaperaccess.com//full/846241.jpg');
+}
+.backgroundOverlay {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	background-color: rgba(100, 100, 0 , .3);
+	z-index: -1;
+}
+.outerDiv {
+	padding-bottom: 20px;
+}
+
+#title {
+  font-family: 'Poiret One', cursive;
+}
+
+.innerDiv > div{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.innerDiv {
+
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.header {
+	color: white;
+}
+
+.formContainer {
+  background:rgba(255,255,255,0.8);
+  font-size: 1.5em;
+  color: var(--textShade);
+}
+.checkboxContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+}
+.checkboxContainer > div {
+	display: flex;
+	align-items: center;
+
+}
+form {
+
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+form > div > label{
+
+  flex: 1 0 auto;
+}
+form > div > input {
+
+  flex: 1 0 auto;
+  font-size: 1em;
+  border-radius: 5px;
+
+}
+form > div > select {
+	font-size: 1em;
+}
+@media (min-width: 576px){
+
+	.innerDiv{
+		padding-left: 10%;
+		padding-right: 10%;
+	}
+  .formContainer{
+
+  }
+  
+
+
+}
+.themeOne {
+    --shade1: #f4f1af;
+    --shade2: #e7e283;
+    --shade3: #dbd55b;
+    --shade4: #dedede;
+    --textShade: #385a6e;
+}
+
