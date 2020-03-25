@@ -74,13 +74,7 @@ if (!isProduction) {
 loaders.push({loader: 'css-loader'});
 loaders.push({loader: 'sass-loader'});
 
-          
-plugins.push(new CopyPlugin(
-      [
-        {from: 'src/static' , to: 'static'},
-        {from: 'src/assets', to: 'assets'}
-      ]
-    ));
+
 
 console.log("entryObject  is " + JSON.stringify(entryObject));
 console.log("htmlPages is " + JSON.stringify(plugins));

@@ -14,10 +14,9 @@ const nodeEnv = envs.NODE_ENV;
 const isProduction = nodeEnv !== 'development';
 
 console.log("setting up env for : " + nodeEnv);
-
 const MyPlugin = {};
 MyPlugin.apply = (compiler)=>{
-	compiler.hooks.emit.tapAsync('MyPlugin', (compilation, callback) => {
+  compiler.hooks.emit.tapAsync('MyPlugin', (compilation, callback) => {
       // Explore each chunk (build output):
       compilation.chunks.forEach(chunk => {
         // Explore each module within the chunk (built inputs):
@@ -38,6 +37,7 @@ MyPlugin.apply = (compiler)=>{
       callback();
     });
 }
+
 
 module.exports = {
   name: "styles",
@@ -71,16 +71,25 @@ module.exports = {
         test: /\.s?(a|c)ss$/,
         exclude: /node_modules/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              hmr: !isProduction,
-            },
-          },
-          {loader: 'css-loader'},
-          {loader: 'sass-loader'}
+        'file-loader?name=[folder]/[name].css', 
+          'extract-loader', 
+          'css-loader', 
+          'sass-loader'
         ]
       },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        loader: 'file-loader',
+        options:{
+          name: '[folder]/[name].[ext]'
+        }
+      },
+      {
+        test: /\.html$/,
+        use: [
+          'file-loader?name=[folder]/[name].[ext]', 'extract-loader', 'html-loader'
+        ]
+      }
 
     ]
   },
@@ -94,8 +103,6 @@ module.exports = {
     },
     extensions: ['.js', '.jsx', '.scss']
   },
-  plugins:[
-    new MiniCssExtractPlugin({splitChunks: true, filename: 'style/[name].css'})
-  ],
+
   mode: nodeEnv
 }

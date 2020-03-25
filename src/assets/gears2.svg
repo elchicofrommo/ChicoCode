@@ -4,18 +4,20 @@
 
 <svg version="1.0" id="boltandgear" xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="1200px" height="1200px" viewBox="0 0 1200 1200" >
+	 width="1200px" height="1200px" viewBox="150 150 900 900" >
 
 	 <style>
 	 	.gear {
-	fill:yellow;
-	stroke: blue;
-}
+	fill: #464655;
+	stroke: #000;}
 .circle {
-	fill: blue;
+	fill: #f4f1af;
+	fill-opacity: .9;
+	stroke: #000
 }
 .bolt {
-	fill: purple;
+	fill: #464655;
+	stroke: #000
 }
 	 </style>
 	<path class="gear"  d="M966.466,689.829l12.106-99.707l-81.035-10.776l-5.007-40.677l73.489-29.083l-35.628-93.957l-74.346,27.183

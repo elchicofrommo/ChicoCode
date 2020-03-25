@@ -5,7 +5,6 @@ import {render} from 'react-dom';
 import styles from './style';
 
 
-console.log("lll");
 
 import {Provider, connect} from 'react-redux';
 import {createStore} from 'redux';
