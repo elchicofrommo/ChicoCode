@@ -3,49 +3,80 @@
 
 <head>
 
+
 <link rel="stylesheet" href="/style/portfolio.css"/>
 
-<meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=3.0, minimum-scale=0.86">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
  <body class='themeOne'>
    
    <nav id="navbar">
-      <a href="#welcome-section">About</a>
+      <a href="#welcome">About</a>
       <a href="#projects" >Projects</a>
       <a href="#contact">Contact</a>
    </nav>
    <main id='main-doc'>
-      <div class="hero" id="welcome-section">
-         <h1>I am a hero</h1>
-         <div>Example of a hero section that takes up the full viewport. </div>
+      <div class="hero" id="welcome">
+         <div id="welcomeSection">
+            <h1>The Byte and The Boss</h1>
+            <h3>A Site by Mariano Hernandez</h3>
+            <div>Thank you for visiting my personal space in this digital ocean. I'd like to share little of my experience on topics of engineering, design, and leadership from the last 17 years. I will also be writing about my journy as I investigate new languages and technologies. I invite you to explore these pages and hope you will learn something new for yourself. 
+            </div>
+         </div>
       </div>
+      
       <div class="projects" id="projects">
-         <div class="project-tile">
-            <h2>React Apps</h2>
-            <img src="/assets/react-logo.svg" class="project-logo" id="ReactApp-logo" alt="logo" />
-           <div class="tileBody"> Here are a collection React Apps generated as part of a certification I got in Front End Technologies. </div>
-         </div>
-         <div class="project-tile">
-            <h2>Responsive Design</h2>
-            <img src="/assets/devices.svg" class="project-logo" id="Devices-logo" alt="logo" />
-            <div class="tileBody">Within these pages are the final projects for Responsive Web Design certification. I worked from the principal of Mobile first design with increasing capabilities as breakpoints increased. </div>
-         </div>
-         <div class="project-tile">
-            <h2>API Development</h2>
-            <img src="/assets/gears2.svg" class="project-logo" id="Gears-logo" alt="logo" />
-            <div class="tileBody">A collection of APIS covering multi-part forms, storage and retrieval into datastore and file uploads. These api end points were the ending projects for the Microservice and API certification. </div>
-         </div>
+         <h1>Recent Certifications</h1>
+         <div id="projectsSection">
 
-
+            <a href="">
+               <div class="project-tile">
+                  <h2>Front End Libraries</h2>
+                  <img src="/assets/react-logo.svg" class="project-logo" id="ReactApp-logo" alt="logo" />
+                 <div class="tileBody">Here are a collection React Apps generated as part of this certification. Coursework covered SASS, jQuery, Bootstrap, React and Redux. Though not covered in the course, I included work in Higher Order Components into project deliverables. </div>
+               </div>
+            </a>
+            <a href="">
+               <div class="project-tile">
+                  <h2>Responsive Design</h2>
+                  <img src="/assets/devices.svg" class="project-logo" id="Devices-logo" alt="logo" />
+                  <div class="tileBody">Working from Mobile first design principles I built these these final projects with increasing capabilities as breakpoints increased. Coursework covered Core CSS, HTML/HTML5, Flex Box, Flex Grid, Media Breakpoints. </div>
+               </div>
+            </a>
+            <a href="">
+               <div class="project-tile">
+                  <h2>Microservice API</h2>
+                  <img src="/assets/gears2.svg" class="project-logo" id="Gears-logo" alt="logo" />
+                  <div class="tileBody">A collection of APIS covering multi-part forms, storage and retrieval into datastore and file uploads. The coursework covered NodeJS, Express and MongoDB. Though not covered in the course, I expanded my scope to include Asyncrhonus Javascript, Test Automation with Jest, and Developer Tooling by exploring Webpack to create custom application setup with envrionment specific build targets.</div>
+               </div>
+            </a>
+         </div>
       </div>
       <div class="hero" id="contact">
-         <i class="fab fa-linkedin"></i>
-         <i class="fab fa-twitter-square"></i>
-         <i class="fab fa-github-square"></i>
-         <i class="fas fa-envelope-square"></i>
+         <div id="contactSection">
+            <h1>Contact</h1>
+            <h2 style="margin-top: 0px">Mariano Hernandez</h2>
+            <div id="contactLinks">
+               <a href="https://www.linkedin.com/in/mariohernandez1/">  
+                  <i class="fab fa-linkedin"></i></a>
+               <a href="https://twitter.com/ByteAndTheBoss"> 
+                  <i class="fab fa-twitter-square"></i></a>
+               <a href="https://github.com/elchicofrommo"> 
+                  <i class="fab fa-github-square"></i></a>
+               <a href="mailto:"> 
+                  <i class="fas fa-envelope-square"></i></a>
+            </div>
+            <div id="contactText">
+               <div>Source code for this site and all projects metioned within are available Github. Please do go over and check out my code. Reach out for any questions or suggestions.</div>
+            </div>
+
+         </div>
+
       </div>
-      <div id="hotreload"></div>
+
    </main>
    <script src="/style/styles.js"></script>
+  
+    </script>
  </body>
  </html>

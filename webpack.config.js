@@ -59,7 +59,7 @@ if (!isProduction) {
     plugins.push(new webpack.NoEmitOnErrorsPlugin())
     loaders.push({loader: 'style-loader'})
 } else{
-        plugins.push(new MiniCssExtractPlugin({
+    plugins.push(new MiniCssExtractPlugin({
       filename: '[name].[hash].css',
       chunkFilename: '[name].[hash].css'
     }))

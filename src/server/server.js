@@ -103,6 +103,10 @@ defaultRoutes.get('/', (req, res) => {
   res.sendFile( path.resolve(__dirname, '../static/index.html'))
 });
 
+defaultRoutes.get('/view/:pageName', (req, res)=>{
+  res.sendFile(path.resolve(__dirname, '../static/' + req.params.pageName + ".html"))
+})
+
 defaultRoutes.get('/js/*', (req, res) =>{
   logger.verbose("saw request for js file");
   res.sendFile( path.resolve(__dirname, '..' + req.path));

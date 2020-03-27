@@ -3,12 +3,10 @@
 body,
 html {
 
-  margin: 0px;
+margin: 0px;
+  font-family: 'Open Sans', sans-serif;
+ overflow-x: hidden;
   height: 100%;
-
-  font-family: 'Poiret One', sans-serif;
-  
-  overflow: hidden;
 }
 
 nav {
@@ -20,7 +18,7 @@ nav {
 	height: 50px;
 	background-color: var(--shade4);
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
 	align-items: center;
 
 	font-weight: bold;
@@ -28,8 +26,7 @@ nav {
 }
 
 nav > a {
-	height: 80px;
-	font-size: 2rem;
+	font-size: 1.5rem;
 	display: flex;
 	align-items: center;
 	padding-left: 20px;
@@ -37,58 +34,76 @@ nav > a {
 	text-decoration: none;
 	color: white;
 	font-weight: bold;
+	font-family: 'Poiret One', sans-serif;
 }
 
-nav > a:hover {
-	color: rgba(255, 255, 255, .2);
-}
+
 
 main {
-	height: calc(100% - 50px);
-	margin-top: 50px;
-	overflow-x: auto;
-	scroll-behavior: smooth;
+	height: 100%;
 }
 
-.hero{
+
+
+.hero, .projects{
 	background-color: var(--shade2);
 	display: flex;
 	flex-direction: column;
-	width: 100%;
-	height: 100%;
 	justify-content: center;
-	align-items: center;
-	font-size: 2rem;
-}
-.hero > h1 {
-	font-size: 5rem;
-
- 	margin: 0;
+	font-size: 1.5rem;
 }
 
-.hero > div {
-
-	
-}
 .projects {
-	width: 100%;
-	height: auto;
+	background-color: var(--shade3);
+}
+.hero{ 
+	height: 100%;
+}
+
+
+ h1, h2{
+	font-size: 3.2rem;
+	text-align: center;
+	font-family: 'Poiret One', sans-serif;
+} 
+
+h2{
+	font-size: 2.8rem;
+}
+
+h3{
+	text-align: center;
+}
+ 
+
+#welcomeSection {
+	font-size: .7em;
+	text-align: justify;
+	padding: 10px 20px 10px 20px;
+
+}
+
+#projectsSection{
+	padding: 10px 20px 10px 20px;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	padding-top: 15px;
-	justify-content: space-around;
-	background-color: var(--shade3);
+}
+
+#projectsSection > a {
+	text-decoration: none;
+	color: inherit;
+
 }
 
 .project-tile {
 	background-color: var(--shade1); 
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	font-size: 1.5rem;
 	margin-bottom: 15px;
-	width: 90%;
-	height: 100%;
+	text-decoration: none;
+
 }
 
 
@@ -135,11 +150,56 @@ main {
 }
 
 
+#contactSection{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: strech;
+	padding: 10px 20px 10px 20px;
+	height: 100%;
 
-.Devices-logo:hover .screen1{
-	fill: green;
 }
 
+#contactLinks {
+	display: flex;
+	justify-content: center; 
+
+}
+#contactLinks > a {
+	color: var(--shade4);
+}
+
+#contactLinks > a > i {
+	font-size: 4.6rem;
+}
+
+#contactText {
+	text-align: justify;
+	font-size: 1rem;
+	font-family: 'Open Sans', sans-serif;
+}
+
+#contactText > div {
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+#contactLinks >a {
+	margin-right: 2.5px;
+	margin-left: 2.5px;
+}
+
+@media (hover: hover) {
+	nav > a:hover {
+		color: rgba(255, 255, 255, .2);
+	}
+
+	#contactLinks > a:hover {
+		color: rgba(255, 255, 255, .8);
+	}
+
+}
 
 @media (prefers-reduced-motion: no-preference) {
   #ReactApp-logo {
@@ -167,50 +227,55 @@ main {
   }
 }
 
+@media (min-width: 576px){
 
-#contactLinks {
-	width: 80%;
-	display: flex;
-	justify-content: space-between; 
+	nav {
+
+		justify-content: flex-end;
+
+	}
+
+	#contactText 
+	{
+		padding-left: 15%;
+		padding-right: 15%;
+	}
 
 }
-#contactLinks > a {
-	color: var(--shade4);
+
+@media (min-width: 822px){
+	.project-tile {
+		width: 100%;
+		height: 100%;
+	}
+	.project-logo {
+
+		height: 10rem;
+	}
+	.project-tile > h2 {
+		height: 5rem;
+	}
+	#projectsSection {
+
+		flex-direction: row;
+		justify-content: space-between;
+	}
+	#projectsSection > a {
+		display: inline;
+		width: 100%;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+	#Gears-logo {
+
+		margin-top: -30px;
+	}
 }
 
-#contactLinks > a > i {
-	font-size: 6rem;
-}
-
-#contactText {
-	text-align: justify;
-	width: 80%;
-	font-size: 1rem;
-	font-family: 'Open Sans', sans-serif;
-}
-
-#contactText > div {
-	padding-left: 5px;
-	padding-right: 5px
-}
-#contactLinks > a:hover {
-	color: rgba(255, 255, 255, .8);
-}
-
-.themeOne {
-    --shade1: #f4f1af;
-    --shade2: #e7e283;
-    --shade3: #dbd55b;
-    --shade4: #dedede;
-    --textShade: #385a6e;
-}
-
-.themeOne {
-  --shade1: #e6e6e6;
-  --shade2: #dedede;
-  --shade3: #d1d1d1;
-  --shade4: #c7c7c7;
-   --grey1: #dedede;
+@media (min-width: 1000px){
+	.project-tile > h2 {
+		height: 2.5rem;
+	}
 }
 
 .themeOne {
@@ -220,8 +285,4 @@ main {
   --shade4: #5385a9;
    --background1: #dedede;
    --background2: #f4f1af;
-}
-
-.testId {
-	background-color: blue;
 }
