@@ -1,104 +1,93 @@
+@import url("https://fonts.googleapis.com/css?family=Poiret+One&display=swap|Open+Sans");
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css');
+
 body,
 html {
 
   margin: 0px;
   height: 100%;
-  font-family: "Raleway", sans-serif;
+
   touch-action: manipulation;
-  
+
   font-family: 'Open Sans', sans-serif;
   overflow: hidden;
 }
 
 
-.backgroundImage {
-
-	height: 100%;
-	width: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: -3;
-
-}
-.backgroundOverlay {
-	height: 100%;
-	width: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
-
-	
-	z-index: -2;
-}
-
 nav {
 	position: fixed;
 	top: 0;
-	left: 0;
-	right: 0;
+	left: -222px;
+	width: 240px;
 	display: flex;
-	flex-direction: column;
-
-
+	justify-content: flex-end;
 	z-index: 10;
+	
+	color: var(--text_nav);
+	height: 100%;
+	line-height: 3em;
+	overflow: hidden;
+	transition: left .4s ease-in-out;
+}
 
-
-	background-color: white;
-
-	color: var(--shade1);
-
+.navlinks {
+	background-color: var(--shade1);
+	padding-right: 5px;
+	padding-left: 5px;
+	font-weight: bold;
+	font-size: 16px;
+	width: 100%;
+}
+.navdrawer {
+	width: 20px;
+	margin-top: 5px;
+	line-height: 0px;
+	height: fit-content;
+	padding: 0px;
+	text-align: center;
+	border-top-right-radius: 10px 25px ;
+	border-bottom-right-radius: 10px 25px;
+	background-color: var(--shade1);
+}
+.navdrawer > i{
+	font-size: 35px;
+	padding-left: 3px;
+	transition: transform .7s ease-in-out;
 }
 
 header {
 	font-size: 30px;
 }
-nav >  header {
 
-	padding-left: 45px;
-}
-
-nav > div {
-	overflow-x: scroll;
-	height: 100px;
-
-	border-radius: 10px;
-	padding-left: 15px;
-	padding-right: 15px;
-	margin-right: 2px;
-	margin-left: 2px;
-	font-size: 18pt;
-
-	box-shadow: inset 0 0 5px rgba(0, 0, 0, .8);
-	line-height: 2.1em
-}
-nav > div > a{
-	color: var(--shade1);
+.navlinks > a{
+	color: var(--text_nav);
 	text-decoration: none;
 }
 
-nav > div > a:hover {
+.navlinks >  a:hover {
 	color: rgba(255, 255, 255, .3);
 }
+
 .nav-space {
 	height: 2px;
 	width: 100%;
+
 	align-self: center;
-	background-color: var(--shade1);
+	background-color: var(--text_nav);
 	
 }
 
 .outerDiv {
-	height: calc(99% - 150px);
-	margin: 150px 5px 2px 5px ;
+	height: 100%;
+	margin: 0px;
 	overflow-x: scroll;
 	padding-left: .5em;
 	padding-right: .5em;
-	background-color: var(--background1);
+	background-color: var(--shade2);
 }
 
 .outerDiv header {
-	color: var(--shade2);
+	color: var(--text_h2);
 
 }
 
@@ -130,47 +119,35 @@ nav > div > a:hover {
 
 	.outerDiv {
 		height: 100%;
-		margin: 2px 5px 2px 300px;
+		margin: 0px 0px 0px 290px;
 	}
 
 	nav{
-		right: auto;
-		width: 290px;
-		height: 100%;
-		padding-left: 5px;
+
 	}
 	nav > header {
-		padding-left: 5px;
-		margin-top: 33px;
 	}
 	nav > div {
-		height: auto;
-		font-size: 20px;
-		box-shadow: none;
+
 	}
 
 
 
 }
 .themeOne {
-    --shade1: #f4f1af;
-    --shade2: #e7e283;
-    --shade3: #dbd55b;
-    --shade4: #dedede;
-    --textShade: #385a6e;
-}
-
-.themeFour {
-  --shade1: #e6e6e6;
-  --shade2: #dedede;
-  --shade3: #d1d1d1;
-  --shade4: #c7c7c7;
-   --grey1: #dedede;
+ 
+  
+  --shade3: #759bb6;
+  --shade4: #5385a9;
+   --background1: #dedede;
+   --background2: #f4f1af;
 }
 
 .themeFive {
-	  --shade1: #466b8c;
-  --shade2: #8c5f46;
+	  --text_nav: #466b8c;
+  --text_h2: #8c5f46;
+   --shade1: #c3cacf;
+   --shade2: #9ab1c2;
   --shade3: #8c8346;
   --shade4: #79468c;
    --background1: #dedede;
