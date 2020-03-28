@@ -52,7 +52,7 @@ nav {
 .navdrawer > i{
 	font-size: 35px;
 	padding-left: 3px;
-	transition: transform .7s ease-in-out;
+	transition: transform .6s ease-in-out;
 }
 
 header {
@@ -86,9 +86,11 @@ header {
 	background-color: var(--shade2);
 }
 
-.outerDiv header {
+h1 {
 	color: var(--text_h2);
-
+	font-size: 45px;
+	text-align: center;
+	font-family: 'Poiret One', sans-serif;
 }
 
 .outerDiv p {

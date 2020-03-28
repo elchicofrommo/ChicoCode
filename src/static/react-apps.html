@@ -9,28 +9,32 @@
     </head>
     <body class="themeFive">
         <nav id="navbar">
+
             <div class="navlinks">
-                <a class="nav-link" href="#Random_Quote_Machine">
+	            <h2>
+	             	Projects
+	            </h2>
+                <a class="nav-link" href="#Random_Quote_Machine" onclick="closeDrawer()">
                     Random Quote Machine
                 </a>
                 <div class="nav-space">
                 </div>
-                <a class="nav-link" href="#Markdown_Editor">
+                <a class="nav-link" href="#Markdown_Editor" onclick="closeDrawer()">
                     Markdown Editor
                 </a>
                 <div class="nav-space">
                 </div>
-                <a class="nav-link" href="#Drum_Machine">
+                <a class="nav-link" href="#Drum_Machine" onclick="closeDrawer()">
                     Drum Machine
                 </a>
                 <div class="nav-space">
                 </div>
-                <a class="nav-link" href="#Pomodoro_Clock">
+                <a class="nav-link" href="#Pomodoro_Clock" onclick="closeDrawer()">
                     Pomodoro Clock
                 </a>
                 <div class="nav-space">
                 </div>
-                <a class="nav-link" href="#Calculator">
+                <a class="nav-link" href="#Calculator" onclick="closeDrawer()">
                     Calculator
                 </a>
             </div>
@@ -52,7 +56,14 @@
             		}
             	}
 
+            	/**
+            	* allowed a drawer to be passed in to accomidate click events. 
+            	* save a look up the drawer if the event already has it. 
+            	*/
             	function openDrawer(drawer){
+
+            		if(!drawer)
+            			drawer = document.getElementById('navdrawer');
 
             		let navbar = document.getElementById('navbar')
             		let button = document.getElementById('drawer-button')
@@ -64,10 +75,16 @@
             		drawer.setAttribute('state', 'open')
             	}
 
+            	/**
+            	* allowed a drawer to be passed in to accomidate click events. 
+            	* save a look up the drawer if the event already has it. 
+            	*/
             	function closeDrawer(drawer){
             		let navdrawer = document.getElementById('navdrawer')
             		let navbar = document.getElementById('navbar')
             		let button = document.getElementById('drawer-button')
+					if(!drawer)
+            			drawer = document.getElementById('navdrawer');
 
             		console.log("close: navbar width is : " + navbar.offsetWidth);
             		console.log("close: dawer width is : " + navdrawer.offsetWidth);
@@ -77,11 +94,9 @@
             	}
             </script>
         </nav>
-        <main class="outerDiv " id="main-doc">
+        <main class="outerDiv " id="main-doc" onclick="closeDrawer()">
             <h1>
-                <header>
-                    FCC Project Documentation
-                </header>
+            	Front End Libraries
             </h1>
             <section class="main-section" id="Random_Quote_Machine">
                 <header>
