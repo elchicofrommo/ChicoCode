@@ -7,7 +7,7 @@
             </meta>
         </link>
     </head>
-    <body class="themeFive">
+    <body class="themeFive" >
         <nav id="navbar">
 
             <div class="navlinks">
@@ -38,14 +38,14 @@
                     Calculator
                 </a>
             </div>
-            <div class="navdrawer" id="navdrawer">
+            <div class="navdrawer" id="navdrawer" >
             	 <i class="fas fa-caret-right" id="drawer-button" state="closed" onclick="drawerClick(event);"></i>
             </div>
             <script>
 
             	function drawerClick (event){
             		let state = event.target.getAttribute("state")
-            		console.log("drawerClick targetState is " + state);
+
             		if(state=='open'){
             			closeDrawer(event.target)
             			
@@ -68,7 +68,6 @@
             		let navbar = document.getElementById('navbar')
             		let button = document.getElementById('drawer-button')
 
-            		console.log("open: navbar width is : " + navbar.offsetWidth);
 
             		navbar.style.left =  "0px";
             		button.style.transform = "rotate(180deg)"
@@ -80,28 +79,60 @@
             	* save a look up the drawer if the event already has it. 
             	*/
             	function closeDrawer(drawer){
-            		let navdrawer = document.getElementById('navdrawer')
+
             		let navbar = document.getElementById('navbar')
             		let button = document.getElementById('drawer-button')
 					if(!drawer)
             			drawer = document.getElementById('navdrawer');
 
-            		console.log("close: navbar width is : " + navbar.offsetWidth);
-            		console.log("close: dawer width is : " + navdrawer.offsetWidth);
+            		// if the drawer is hidden then screen is big and 
+            		// drawer functionality should be off
+            		if(drawer.offsetParent===null)
+            			return
+
             		navbar.style.left = -(navbar.offsetWidth - navdrawer.offsetWidth) + "px";
             		button.style.transform = "rotate(0deg)";
             		drawer.setAttribute('state', 'close')
             	}
+
+            	window.onresize = function resetStyle(event){
+
+            		let navbar = document.getElementById('navbar')
+            		navbar.style = undefined;
+            	}
+
             </script>
         </nav>
         <main class="outerDiv " id="main-doc" onclick="closeDrawer()">
+
             <h1>
             	Front End Libraries
             </h1>
+            <section class="main-section" id="General">
+            	<p>
+            		The following are details outlying the final projects for the Front End Libraries <a href="https://www.freecodecamp.org/certification/fcc4893b047-b5d0-472e-b76e-3805d9ed0aba/front-end-libraries">certification</a> from <a href="http://www.freecodecamp.org">FreeCodeCamp.org</a>
+				</p>
+				<p>
+            		The specific libraries covered in the course work includ Bootstrap, jQuery, SASS, React and Redux. The code for all projects metioned here are available within the <a href="https://github.com/elchicofrommo/ChicoCode">Github</a> repository containing this site, or avaiable individually as Pens (see links below).
+				</p>
+				<p>
+            		Please consider contirbuting to <a href="http://www.freecodecamp.org">FreeCodeCamp.org</a> so it may continue to provide free access to educational material for software development. I really believe in their mission. What's more, they are a 501 3c so your donation is tax deductable.
+            	</p>
+            </section>
+            <div class="nav-space">
             <section class="main-section" id="Random_Quote_Machine">
                 <header>
                     Random Quote Machine
                 </header>
+                <ul class="reactProjectList">
+
+					<li>
+                		<a href="/app/quotes">Locally</a>
+                	</li>
+                	<li>
+                		<a href="https://codepen.io/mariano-hernandez/pen/VwYEKry" target="_blank">Code Pen</a>
+                	</li>
+                </ul>
                 <p>
                     This was the first project for the Front End Libraries certification. The work is pretty simple. I only had to find an API that was accessable over CORS. I elected not to use Redux for any state management.
                 </p>
@@ -138,10 +169,12 @@
                     </li>
                 </ul>
             </section>
+            <div class="nav-space">
             <section class="main-section" id="Markdown_Editor">
                 <header>
                     Markdown Editor
                 </header>
+
                 <p>
                     This was my second project along the road to Front End Library certification. My understanding of React was expanded greatly in this project and it's where I built my first reusable component with my Windowing capabilities.
                 </p>
@@ -185,6 +218,7 @@
 
 </code></pre>
             </section>
+            <div class="nav-space">
             <section class="main-section" id="Drum_Machine">
                 <header>
                     Drum Machine
@@ -204,6 +238,7 @@
                     </li>
                 </ul>
             </section>
+            <div class="nav-space">
             <section class="main-section" id="Pomodoro_Clock">
                 <header>
                     Pomodoro Clock
@@ -249,6 +284,7 @@ const SessionIncrementButton = connect(
                     </li>
                 </ul>
             </section>
+            <div class="nav-space">
             <section class="main-section" id="Calculator">
                 <header>
                     Calculator

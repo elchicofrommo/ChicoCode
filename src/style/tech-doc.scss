@@ -17,8 +17,8 @@ html {
 nav {
 	position: fixed;
 	top: 0;
-	left: -222px;
-	width: 240px;
+	left: -225px;
+	width: 250px;
 	display: flex;
 	justify-content: flex-end;
 	z-index: 10;
@@ -39,7 +39,7 @@ nav {
 	width: 100%;
 }
 .navdrawer {
-	width: 20px;
+	width: 30px;
 	margin-top: 5px;
 	line-height: 0px;
 	height: fit-content;
@@ -57,6 +57,7 @@ nav {
 
 header {
 	font-size: 30px;
+	text-align: right;
 }
 
 .navlinks > a{
@@ -84,6 +85,15 @@ header {
 	padding-left: .5em;
 	padding-right: .5em;
 	background-color: var(--shade2);
+}
+
+.outerDiv a {
+	color: black;
+}
+
+.outerDiv a:hover {
+	color: var(    --text_nav);
+	text-decoration: none;
 }
 
 h1 {
@@ -115,7 +125,7 @@ h1 {
 
 	.outerDiv {
 		height: 100%;
-		margin: 0px 0px 0px 240px;
+		margin: 0px 0px 0px 250px;
 	}
 
 	.navdrawer {
@@ -131,14 +141,6 @@ h1 {
 
 	}
 
-}
-.themeOne {
- 
-  
-  --shade3: #759bb6;
-  --shade4: #5385a9;
-   --background1: #dedede;
-   --background2: #f4f1af;
 }
 
 .themeFive {
