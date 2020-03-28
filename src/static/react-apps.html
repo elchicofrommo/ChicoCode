@@ -1,44 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700|Open+Sans|Poiret+One&display=swap" rel="stylesheet">
+            <link href="/style/tech-doc.css" rel="stylesheet"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            </meta>
+        </link>
+    </head>
+    <body class="themeFive">
+        <nav id="navbar">
+            <div class="navlinks">
+                <a class="nav-link" href="#Random_Quote_Machine">
+                    Random Quote Machine
+                </a>
+                <div class="nav-space">
+                </div>
+                <a class="nav-link" href="#Markdown_Editor">
+                    Markdown Editor
+                </a>
+                <div class="nav-space">
+                </div>
+                <a class="nav-link" href="#Drum_Machine">
+                    Drum Machine
+                </a>
+                <div class="nav-space">
+                </div>
+                <a class="nav-link" href="#Pomodoro_Clock">
+                    Pomodoro Clock
+                </a>
+                <div class="nav-space">
+                </div>
+                <a class="nav-link" href="#Calculator">
+                    Calculator
+                </a>
+            </div>
+            <div class="navdrawer" id="navdrawer">
+            	 <i class="fas fa-caret-right" id="drawer-button" state="closed" onclick="drawerClick(event);"></i>
+            </div>
+            <script>
 
-<head>
-<link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700|Open+Sans|Poiret+One&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style/tech-doc.css"/>
+            	function drawerClick (event){
+            		let state = event.target.getAttribute("state")
+            		console.log("drawerClick targetState is " + state);
+            		if(state=='open'){
+            			closeDrawer(event.target)
+            			
+            		}
+            		else{
+            			openDrawer(event.target)
+            			
+            		}
+            	}
 
+            	function openDrawer(drawer){
 
-<meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=3.0, minimum-scale=0.86">
-</head>
- <body class='themeFive'>
+            		let navbar = document.getElementById('navbar')
+            		let button = document.getElementById('drawer-button')
 
-<div class="backgroundImage"></div>
-<div class="backgroundOverlay"></div>
+            		console.log("open: navbar width is : " + navbar.offsetWidth);
 
-  <nav id="navbar">
+            		navbar.style.left =  "0px";
+            		button.style.transform = "rotate(180deg)"
+            		drawer.setAttribute('state', 'open')
+            	}
 
-  	<header>FCC Project Documentation</header>
+            	function closeDrawer(drawer){
+            		let navdrawer = document.getElementById('navdrawer')
+            		let navbar = document.getElementById('navbar')
+            		let button = document.getElementById('drawer-button')
 
-  	<div>
-	  	<a href="#Random_Quote_Machine" class="nav-link">Random Quote Machine</a>
-	  	<div class="nav-space"></div>
-	  	<a href="#Markdown_Editor" class="nav-link">Markdown Editor</a>
-	  	<div class="nav-space"></div>
-	  	<a href="#Drum_Machine" class="nav-link">Drum Machine</a>
-	  	<div class="nav-space"></div>
-	  	<a href="#Pomodoro_Clock" class="nav-link">Pomodoro Clock</a>
-	  	<div class="nav-space"></div>
-	  	<a href="#Calculator" class="nav-link">Calculator</a>
-	</div>
-  </nav>
-
-
-<main class="outerDiv "  id="main-doc">
-
-		<section class="main-section" id="Random_Quote_Machine">
-			<header>Random Quote Machine</header>
-			<p>This was the first project for the Front End Libraries certification. The work is pretty simple. I only had to find an API that was accessable over CORS. I elected not to use Redux for any state management. </p>
-			<p>As first projects go, the experience was good. I had a bit of work figuring out how to use jQuery to do an async api call. I never did get into promises, which is work for future projects. I also began to stratch the surface with Bootstrap though not to any significant degree. </p>
-			<p>What follows is the first Mixin I wrote. It's very basic and I find that I don't use it anymore, probably because I've not had any problems with border raidus across browsers yet. </p>
-			<pre><code>
+            		console.log("close: navbar width is : " + navbar.offsetWidth);
+            		console.log("close: dawer width is : " + navdrawer.offsetWidth);
+            		navbar.style.left = -(navbar.offsetWidth - navdrawer.offsetWidth) + "px";
+            		button.style.transform = "rotate(0deg)";
+            		drawer.setAttribute('state', 'close')
+            	}
+            </script>
+        </nav>
+        <main class="outerDiv " id="main-doc">
+            <h1>
+                <header>
+                    FCC Project Documentation
+                </header>
+            </h1>
+            <section class="main-section" id="Random_Quote_Machine">
+                <header>
+                    Random Quote Machine
+                </header>
+                <p>
+                    This was the first project for the Front End Libraries certification. The work is pretty simple. I only had to find an API that was accessable over CORS. I elected not to use Redux for any state management.
+                </p>
+                <p>
+                    As first projects go, the experience was good. I had a bit of work figuring out how to use jQuery to do an async api call. I never did get into promises, which is work for future projects. I also began to stratch the surface with Bootstrap though not to any significant degree.
+                </p>
+                <p>
+                    What follows is the first Mixin I wrote. It's very basic and I find that I don't use it anymore, probably because I've not had any problems with border raidus across browsers yet.
+                </p>
+                <pre><code>
 @mixin border-radius($x){ 
   -webkit-border-radius: $x;
   -moz-border-radius: $x;
@@ -47,20 +105,38 @@
 }
 
 </code></pre>
-  			<p>The technology list employed in this project includes:</p>
-			<ul>
-				<li>HTML5</li>
-				<li>CSS and SCSS</li>
-				<li>ES6</li>
-				<li>React</li>
-			</ul>
-		</section>
-		<section class="main-section" id="Markdown_Editor">
-			<header>Markdown Editor</header>
-			<p>This was my second project along the road to Front End Library certification. My understanding of React was expanded greatly in this project and it's where I built my first reusable component with my Windowing capabilities. </p>
-			<p>Initially I just used the React state management for most of the interactivity, but re-engineered the project to use Redux after the Drum Machine project. </p>	
-			<p>The most interesting parts of the project actually came during the re-engineering effort. It was during this period that I extracted out the expand/shrink fucntions out of CSS and moved it into the Redux state machine cycle. I had the idea that I could dispatch an event on one window that all windows would observe, then pass a state object that either expands the window or hides the window (when maximizing), or puts all the windows back to the orignial state. </p>
-			<pre><code>WindowComponent = connect(
+                <p>
+                    The technology list employed in this project includes:
+                </p>
+                <ul>
+                    <li>
+                        HTML5
+                    </li>
+                    <li>
+                        CSS and SCSS
+                    </li>
+                    <li>
+                        ES6
+                    </li>
+                    <li>
+                        React
+                    </li>
+                </ul>
+            </section>
+            <section class="main-section" id="Markdown_Editor">
+                <header>
+                    Markdown Editor
+                </header>
+                <p>
+                    This was my second project along the road to Front End Library certification. My understanding of React was expanded greatly in this project and it's where I built my first reusable component with my Windowing capabilities.
+                </p>
+                <p>
+                    Initially I just used the React state management for most of the interactivity, but re-engineered the project to use Redux after the Drum Machine project.
+                </p>
+                <p>
+                    The most interesting parts of the project actually came during the re-engineering effort. It was during this period that I extracted out the expand/shrink fucntions out of CSS and moved it into the Redux state machine cycle. I had the idea that I could dispatch an event on one window that all windows would observe, then pass a state object that either expands the window or hides the window (when maximizing), or puts all the windows back to the orignial state.
+                </p>
+                <pre><code>WindowComponent = connect(
   function mapStateToProps(state, ownProps){
 
     let fullSize = state.windows[ownProps.id].fullSize;
@@ -93,28 +169,46 @@
 )(WindowComponent)
 
 </code></pre>
-		</section>
-		<section class="main-section" id="Drum_Machine">
-			<header>Drum Machine</header>
-			<p>paragraph 1</p>
-			<p>paragraph 2</p>
-			<code>code section</code>
-			<ul><li>list element</li></ul>
-		</section>
-		<section class="main-section" id="Pomodoro_Clock">
-			<header>Pomodoro Clock</header>
-			<p>At this point I still hadn't implented any state managment with Redux. I struggled to understand the API and the information within the course work was so bare bones that it really just pointed in a direction and expected me to go and do further research. </p>
-			<p>I set about to pick up the pieces I had been ignoring in the previsous projects. It was in this phase when the API finally clicked for me. I think it finally clicked for me when I was reading on Higher Order Compoents (HOC) as it relates to currying and all of a sudden the React.Component.connect method made sense to me. It was the result of this that I was able to use the connect method to create HOCs that I could configure through the state object. Below is an example of one such HOC. </p>
-			<pre><code>
+            </section>
+            <section class="main-section" id="Drum_Machine">
+                <header>
+                    Drum Machine
+                </header>
+                <p>
+                    paragraph 1
+                </p>
+                <p>
+                    paragraph 2
+                </p>
+                <code>
+                    code section
+                </code>
+                <ul>
+                    <li>
+                        list element
+                    </li>
+                </ul>
+            </section>
+            <section class="main-section" id="Pomodoro_Clock">
+                <header>
+                    Pomodoro Clock
+                </header>
+                <p>
+                    At this point I still hadn't implented any state managment with Redux. I struggled to understand the API and the information within the course work was so bare bones that it really just pointed in a direction and expected me to go and do further research.
+                </p>
+                <p>
+                    I set about to pick up the pieces I had been ignoring in the previsous projects. It was in this phase when the API finally clicked for me. I think it finally clicked for me when I was reading on Higher Order Compoents (HOC) as it relates to currying and all of a sudden the React.Component.connect method made sense to me. It was the result of this that I was able to use the connect method to create HOCs that I could configure through the state object. Below is an example of one such HOC.
+                </p>
+                <pre><code>
 const TimingButton = (props)=>{
   let className = "fa-"+props.label+"-circle"
   return(
-    &lt;button className="button lengthButton " 
+    <button className="button lengthButton " 
       id={props.name} 
       disabled={props.timing} 
-      onClick={props.action}&gt;
-      &lt;i className={"fas " + className}&gt;&lt;/i&gt;
-    &lt;/button&gt;
+      onClick={props.action}>
+      <i className={"fas " + className}></i>
+    </button>
   )}; 
 
 const SessionDecrementButton = connect(
@@ -128,29 +222,49 @@ const SessionIncrementButton = connect(
 )(TimingButton)
 
 </code></pre>
-			<p>As you can see the TimingButton is wrapped by the HOC generated by the connect function which ties a specific dispatch to the clicking of the button. </p>
-			<p>as well as optimizing the my Component connections to Redux to minimize component updates.  </p>
-			
-			<ul><li>list element</li></ul>
-		</section>
-		<section class="main-section" id="Calculator">
-			<header>Calculator</header>
-			<p>paragraph 1</p>
-			<p>paragraph 2</p>
-			<code>code section</code>
-			<ul><li>list element</li></ul>
-		</section>
-
-</main>
-</body>
-<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
-<script>
-	window.onload = () => {
+                <p>
+                    As you can see the TimingButton is wrapped by the HOC generated by the connect function which ties a specific dispatch to the clicking of the button.
+                </p>
+                <p>
+                    as well as optimizing the my Component connections to Redux to minimize component updates.
+                </p>
+                <ul>
+                    <li>
+                        list element
+                    </li>
+                </ul>
+            </section>
+            <section class="main-section" id="Calculator">
+                <header>
+                    Calculator
+                </header>
+                <p>
+                    paragraph 1
+                </p>
+                <p>
+                    paragraph 2
+                </p>
+                <code>
+                    code section
+                </code>
+                <ul>
+                    <li>
+                        list element
+                    </li>
+                </ul>
+            </section>
+        </main>
+    </body>
+    <script>
+        window.onload = () => {
 		document.getElementById("main-doc").scrollTo(1,1);
 	}
-</script>
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js">
+        </script>
+        <script>
+            hljs.initHighlightingOnLoad();
+        </script>
+    </link>
 </html>
