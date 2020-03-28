@@ -110,30 +110,26 @@ h1 {
 }
 
 
-.formContainer {
-  background:rgba(255,255,255,0.8);
-  font-size: 1.5em;
-  color: var(--textShade);
-}
-
 
 @media (min-width: 818px){
 
 	.outerDiv {
 		height: 100%;
-		margin: 0px 0px 0px 290px;
+		margin: 0px 0px 0px 240px;
+	}
+
+	.navdrawer {
+		display: none;
 	}
 
 	nav{
-
+		left: 0px;
 	}
 	nav > header {
 	}
 	nav > div {
 
 	}
-
-
 
 }
 .themeOne {
