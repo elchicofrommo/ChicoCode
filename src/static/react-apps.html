@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="tech-doc">
     <head>
-        <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700|Open+Sans|Poiret+One&display=swap" rel="stylesheet">
+
+
             <link href="/style/tech-doc.css" rel="stylesheet"/>
+            
             <meta name="viewport" content="width=device-width, initial-scale=1">
             </meta>
         </link>
     </head>
-    <body class="themeFive" >
+    <body class="themeFive " >
         <nav id="navbar">
 
             <div class="navlinks">
@@ -113,64 +115,50 @@
             		The following are details outlying the final projects for the Front End Libraries <a href="https://www.freecodecamp.org/certification/fcc4893b047-b5d0-472e-b76e-3805d9ed0aba/front-end-libraries">certification</a> from <a href="http://www.freecodecamp.org">FreeCodeCamp.org</a>
 				</p>
 				<p>
-            		The specific libraries covered in the course work includ Bootstrap, jQuery, SASS, React and Redux. The code for all projects metioned here are available within the <a href="https://github.com/elchicofrommo/ChicoCode">Github</a> repository containing this site, or avaiable individually as Pens (see links below).
+            		The specific libraries covered in the course work includ Bootstrap, jQuery, SASS, React and Redux. Original projects are available at Code Pens also include the certification tests used to validate each project. Modified versions of each project exist within this space and are viewbale at <a href="https://github.com/elchicofrommo/ChicoCode">Github</a>. 
 				</p>
 				<p>
             		Please consider contirbuting to <a href="http://www.freecodecamp.org">FreeCodeCamp.org</a> so it may continue to provide free access to educational material for software development. I really believe in their mission. What's more, they are a 501 3c so your donation is tax deductable.
             	</p>
             </section>
-            <div class="nav-space">
+            
             <section class="main-section" id="Random_Quote_Machine">
+            	<div class="nav-space"> </div>
                 <header>
                     Random Quote Machine
                 </header>
+
+                <div class="appContainer">
+                	<a href="/app/quotes" target="_blank" class>
+                		<i class="fas fa-external-link-alt"></i></a>
+                	<div id="quoteContainer" >
+                	
+                	</div>
+                </div>
+                <p>
+                    This was the first project for the Front End Libraries certification. The work is pretty simple. I elected not to use Redux for any state management. The most difficult part was recalling how to use jQuery to make async API calls. I did not use any promises or async/awaits in this project (that came later). I also began to stratch the surface with Bootstrap though not to any significant degree.
+                </p>
+                <p>
+                	Because of the simplicity of the project I spent more time in styling and discovering different ways to manage that styling. In my original project I used react state to update the style elements individually to change the theme color. In later projects I adopted a different approach of using CSS variables and classes to represent theme settings and use the React state to change to different theme classes in the parent container. This has the benefit of not having to modify style in multiple locations. 
+
+                </p>
+
+                Resources:
                 <ul class="reactProjectList">
 
 					<li>
-                		<a href="/app/quotes">Locally</a>
+                		<a href="https://www.freecodecamp.org/learn/front-end-libraries/front-end-libraries-projects/build-a-random-quote-machine">Project Requirements</a>
                 	</li>
                 	<li>
                 		<a href="https://codepen.io/mariano-hernandez/pen/VwYEKry" target="_blank">Code Pen</a>
                 	</li>
-                </ul>
-                <p>
-                    This was the first project for the Front End Libraries certification. The work is pretty simple. I only had to find an API that was accessable over CORS. I elected not to use Redux for any state management.
-                </p>
-                <p>
-                    As first projects go, the experience was good. I had a bit of work figuring out how to use jQuery to do an async api call. I never did get into promises, which is work for future projects. I also began to stratch the surface with Bootstrap though not to any significant degree.
-                </p>
-                <p>
-                    What follows is the first Mixin I wrote. It's very basic and I find that I don't use it anymore, probably because I've not had any problems with border raidus across browsers yet.
-                </p>
-                <pre><code>
-@mixin border-radius($x){ 
-  -webkit-border-radius: $x;
-  -moz-border-radius: $x;
-  -ms-border-radius: $x;
-  border-radius: $x;
-}
+                </ul>                
+                
 
-</code></pre>
-                <p>
-                    The technology list employed in this project includes:
-                </p>
-                <ul>
-                    <li>
-                        HTML5
-                    </li>
-                    <li>
-                        CSS and SCSS
-                    </li>
-                    <li>
-                        ES6
-                    </li>
-                    <li>
-                        React
-                    </li>
-                </ul>
             </section>
-            <div class="nav-space">
+            
             <section class="main-section" id="Markdown_Editor">
+            	<div class="nav-space"></div>
                 <header>
                     Markdown Editor
                 </header>
@@ -218,8 +206,9 @@
 
 </code></pre>
             </section>
-            <div class="nav-space">
+            
             <section class="main-section" id="Drum_Machine">
+            	<div class="nav-space"></div>
                 <header>
                     Drum Machine
                 </header>
@@ -238,8 +227,9 @@
                     </li>
                 </ul>
             </section>
-            <div class="nav-space">
+
             <section class="main-section" id="Pomodoro_Clock">
+            	<div class="nav-space"></div>
                 <header>
                     Pomodoro Clock
                 </header>
@@ -284,8 +274,9 @@ const SessionIncrementButton = connect(
                     </li>
                 </ul>
             </section>
-            <div class="nav-space">
+
             <section class="main-section" id="Calculator">
+            	<div class="nav-space"></div>
                 <header>
                     Calculator
                 </header>
@@ -306,11 +297,11 @@ const SessionIncrementButton = connect(
             </section>
         </main>
     </body>
-    <script>
-        window.onload = () => {
-		document.getElementById("main-doc").scrollTo(1,1);
-	}
+
+    <script src="/app/quotes/index.js" id="quoteScript" targetId="quoteContainer" fullScreen="false">
+    	
     </script>
+    <script src="/js/shared.js" data-target-id="myDiv"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js">
         </script>

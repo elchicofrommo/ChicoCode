@@ -1,10 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css?family=Quicksand:500|Sarpanch:700|Kaushan+Script|Source+Code+Pro:600|Abril+Fatface|Audiowide|Comfortaa:700|Kelly+Slab&display=swap');
-@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
-@import "node_modules/bootstrap/scss/functions";
-@import "node_modules/bootstrap/scss/variables";
-@import "node_modules/bootstrap/scss/mixins/_breakpoints";
-@import 'bootstrap';
+@import 'bootstrap/scss/bootstrap-grid';
 
 body,
 html {

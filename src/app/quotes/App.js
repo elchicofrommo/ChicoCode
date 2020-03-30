@@ -1,28 +1,27 @@
 
 import React from 'react';
-
 import {render} from 'react-dom';
-import styles from './style';
+import {style} from './style.scss';
 
 var $ = require("jquery");
 
 
 const myVar = <div>Mario</div>
-      
-const colors =[
-  "#f4f1af", "#cfafff", "#aadff6", "#d6f3a1"
+const themes = [
+  "themeOne", "themeTwo", "themeThree", "themeFour"
 ]
- 
+
 class App extends React.Component {
   constructor(props){
     super(props)
     let rand = Math.floor(Math.random() * 100) % 4 
-    console.log(rand)
+    console.log("app constuctor: " + rand + " fullscreen: " + props.fullScreen);
     
     this.state = {
-      color: colors[rand],
+      theme: themes[rand],
       author: "Mario Hernandez",
-      text: "Welcome to my Random Quote Machine!"
+      text: "Welcome to my Random Quote Machine!",
+      fullScreen: props.fullScreen ? "fullScreen" : ""
     } 
     this.tweet = this.tweet.bind(this)
     this.getNewQuote = this.getNewQuote.bind(this)
@@ -54,29 +53,32 @@ class App extends React.Component {
     this.setState({
       text: response.quoteText,
       author: response.quoteAuthor,
-      color: colors[rand]
+      theme: themes[rand],
+      fullScreen: this.state.fullScreen
     })
 
   }
   render(){
+
+    console.log("rendering: a object is : " + JSON.stringify(style));
     let myName = "my name is mario"
     return(
 
-        <div className="outerDiv d-flex justify-content-center align-items-center" style={{background: this.state.color}}>
-          <div className="innerDiv" style={{ color: this.state.color}} id="quote-box">
-              <div id="text" >
-                <i className="fas fa-quote-right"></i>
+        <div className={style + " outerDiv " + this.state.theme + " " + this.state.fullScreen} >
+          <div className={style + " innerDiv" } style={{ color: this.state.color}} id="quote-box">
+              <div id="text" className={style}>
+                <i className={style + " fas fa-quote-right" }></i>
                 {this.state.text} 
               </div>
-              <div id="author">{this.state.author}</div>
-              <div className="row">
-                <div className="col-md-7 col-xs-12 " >
-                  <a href='twitter.com/intent/tweet' id="tweet-quote" onClick={this.tweet} style={{color: this.state.color}}>
-                    <i className="fab fa-twitter-square fa-3x"  ></i>
+              <div id="author" className={style}>{this.state.author}</div>
+              <div id="buttonRow" className={style}>
+                <div  >
+                  <a href='twitter.com/intent/tweet' id="tweet-quote" className={style} onClick={this.tweet} >
+                    <i className={style +  " fab fa-twitter-square fa-3x"}  ></i>
                   </a>
                 </div>
-                <div className="col-md-5 col-xs-12">
-                  <button id="new-quote" className="btn btn-default quoteButton" style={{background: this.state.color}} onClick={this.getNewQuote}>New Quote</button>
+                <div >
+                  <button id="new-quote" className={"quoteButton " + style}  onClick={this.getNewQuote}>New Quote</button>
                 </div>
               </div>
           </div>
@@ -86,9 +88,9 @@ class App extends React.Component {
 }
 
 // End App component
-App.id = "drums";
+App.id = "quotes";
 
-const AppWrapper = ()=><App />;
+const AppWrapper = (props)=><App {...props}/>;
 
 export default AppWrapper;
 

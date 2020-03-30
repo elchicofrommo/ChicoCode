@@ -52,7 +52,15 @@ module.exports = {
         use: [
         'file-loader?name=[folder]/[name].css', 
           'extract-loader', 
-          'css-loader', 
+          {
+            loader: 'css-loader',
+            options: {
+              modules:{
+                localIdentName: '[name]'
+              }
+            }
+          },
+          'namespace-css-module-loader',
           'sass-loader'
         ]
       },

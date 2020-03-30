@@ -1,18 +1,22 @@
-@import url("https://fonts.googleapis.com/css?family=Poiret+One&display=swap|Open+Sans");
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Poiret+One&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css');
 
-body,
-html {
+global(html) {
 
   margin: 0px;
   height: 100%;
-
   touch-action: manipulation;
 
-  font-family: 'Open Sans', sans-serif;
-  overflow: hidden;
+
 }
 
+body {
+
+  margin: 0px;
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+}
 
 nav {
 	position: fixed;
@@ -56,8 +60,8 @@ nav {
 }
 
 header {
-	font-size: 30px;
-	text-align: right;
+	font-size: 27px;
+	text-align: center;
 }
 
 .navlinks > a{
@@ -91,10 +95,7 @@ header {
 	color: black;
 }
 
-.outerDiv a:hover {
-	color: var(    --text_nav);
-	text-decoration: none;
-}
+
 
 h1 {
 	color: var(--text_h2);
@@ -104,7 +105,7 @@ h1 {
 }
 
 .outerDiv p {
-	font-size: 20px;
+	
 }
 
 .outerDiv code {
@@ -119,7 +120,49 @@ h1 {
 
 }
 
+.reactProjectList{
+	list-style-type: none;
+	margin: 0px;
+	padding: 8px;
+}
 
+.main-section {
+
+	display: flex;
+	flex-direction: column;
+
+}
+.appContainer {
+	display: flex;
+	width: auto;
+	align-items: flex-end;
+	flex-direction: column;
+	align-self: center;
+	background-color: var(--text_nav);
+
+	padding: 0px 3px 3px 3px;
+	border-radius: 4px;
+}
+
+.appContainer > a {
+	color: white;
+}
+
+.appContainer > a:focus {
+	color: white;
+}
+
+
+@media (hover: hover) {
+	.appContainer > a:hover {
+		color: rgba(255, 255, 255, .2);
+	}
+
+	.outerDiv a:hover {
+		color: var(    --text_nav);
+		text-decoration: none;
+	}
+}
 
 @media (min-width: 818px){
 
@@ -135,10 +178,8 @@ h1 {
 	nav{
 		left: 0px;
 	}
-	nav > header {
-	}
-	nav > div {
-
+	header {
+		font-size: 30px;
 	}
 
 }
