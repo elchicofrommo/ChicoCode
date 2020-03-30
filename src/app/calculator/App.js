@@ -1,8 +1,8 @@
 
 import React from 'react';
-import {render} from 'react-dom';
 
-import styles from './style';
+import {render} from 'react-dom';
+import {style} from './style.scss';
 
 
 
@@ -290,7 +290,7 @@ App = connect(
 
 App.id = "calculator";
 
-const AppWrapper = ()=> <Provider store={store}><App /></Provider>;
+const AppWrapper = ()=> <Provider store={store} className={style}><App /></Provider>;
 
 //const AppWrapper = () => <div> super cow </div>;
 export default AppWrapper;

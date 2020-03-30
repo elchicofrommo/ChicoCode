@@ -1,5 +1,15 @@
-body,
-html {
+:global(html) {
+	height: 100%;
+  margin: 0px;
+
+  font-family: "Raleway", sans-serif;
+  touch-action: manipulation;
+  
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+body {
 	height: 100%;
   margin: 0px;
 

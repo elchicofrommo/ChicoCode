@@ -1,7 +1,15 @@
 @import url("https://fonts.googleapis.com/css?family=Poiret+One&display=swap|Open+Sans");
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css');
-body,
-html {
+:global(html) {
+
+margin: 0px;
+  font-family: 'Open Sans', sans-serif;
+  overflow-x: hidden;
+  height: 100%;
+  line-height: 1.5em;
+}
+
+body {
 
 margin: 0px;
   font-family: 'Open Sans', sans-serif;

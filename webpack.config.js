@@ -57,6 +57,18 @@ let loaders = [];
 if (!isProduction) {
     plugins.push(new webpack.HotModuleReplacementPlugin())
     plugins.push(new webpack.NoEmitOnErrorsPlugin())
+    
+    /*plugins.push(new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[name].css'
+    }))
+    loaders.push({
+      loader: MiniCssExtractPlugin.loader,
+      options: {
+        hmr: !isProduction,
+      },
+    })
+    */
     loaders.push({loader: 'style-loader'})
 } else{
     plugins.push(new MiniCssExtractPlugin({
@@ -71,10 +83,11 @@ if (!isProduction) {
     })
 }
 
-loaders.push({loader: 'css-loader'});
+loaders.push({loader: 'css-loader?modules=true'});
+loaders.push({loader: 'namespace-css-module-loader?combine=true'})
 loaders.push({loader: 'sass-loader'});
 
-
+            
 
 console.log("entryObject  is " + JSON.stringify(entryObject));
 console.log("htmlPages is " + JSON.stringify(plugins));
@@ -100,6 +113,9 @@ module.exports = {
         use: loaders
       }
     ]
+  },
+  externals: {
+    bootstrap: 'bootstrap'
   },
   watch: false,
   watchOptions: {
