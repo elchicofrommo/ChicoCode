@@ -1,4 +1,4 @@
-@import 'bootstrap/scss/bootstrap-grid';
+
 
 @import url('https://fonts.googleapis.com/css?family=Quicksand:500|Kaushan+Script|Source+Code+Pro:600|Abril+Fatface|Audiowide|Comfortaa:700|Kelly+Slab&display=swap');
 
@@ -16,11 +16,20 @@ $yellow3: #dbd55b;
 $yellow4: #cec637;
 
 
-body, html {
-    height: 100%;
-    margin: 0px;
-    font-family: "Raleway", sans-serif;
+:global(html){
 
+    margin: 0px;
+}
+
+:global(body) {
+  margin: 0px;
+  font-family: 'Raleway', sans-serif;
+
+}
+
+.fullScreen {
+  height: 100vh;
+  padding: 0px;
 }
 
 .yellowMode {
@@ -36,11 +45,11 @@ body, html {
     --shade3: #57b5dd;
     --shade4: #32a1d0;
 }
-@mixin border-radius($x) {
-    -webkit-border-radius: $x;
-    -moz-border-radius: $x;
-    -ms-border-radius: $x;
-    border-radius: $x;
+@mixin border-radius($a, $b, $c, $d) {
+    -webkit-border-radius: $a $b $c $d;
+    -moz-border-radius: $a $b $c $d;
+    -ms-border-radius: $a $b $c $d;
+    border-radius: $a $b $c $d;
 }
 @mixin height-calc($percentage, $value) {
     height: -moz-calc(#{$percentage} - #{$value});
@@ -56,41 +65,31 @@ body, html {
 :export { gogreen: $gogreen;  darkerBlue: $darkerBlue; babyBlue: $babyBlue; yellow: $yellow;}
 
 .outerDiv {
-    @extend .d-flex;
-    @extend .justify-content-center;
-    @extend .align-items-center;
-    height: 100%;
-    width: 100%;
+
     background-color: var(--shade1);
     transition: all .3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .innerDiv {
-    background: white;
-    padding: 0px;
-    overflow: hidden;
-    position: relative;
-    min-width: 200px;
-    min-height: 200px;
-    @include border-radius(7px)
+
+   	display: flex;
+   	flex-direction: column;
+   	width: 260px;
 }
 
 .header {
-
-	@extend .d-flex;
-	@extend .justify-content-end;
-	@extend .align-items-center;
-	padding-right: 5px;
-	padding-top: 3px;
-	position: relative;
-	top: 0;
-	left: 0;
-	width: 100%;
+	@include border-radius(7px, 7px, 0px, 0px)
+	display: flex;
+	justify-content: space-between;
 	background-color: var(--shade4);
 	transition: all .3s ease-in-out;
+	padding-right: 5px;
 }
 
 .title {
-	width: 100%;
+
 	padding-left: 10px;
 	font-size: 1.7em;
 	font-family: 'Kaushan Script', cursive;
@@ -98,27 +97,42 @@ body, html {
 }
 
 .padContainer {
-
+	background-color: white;
 	
 }
 
 .detailContainer {
 	
-
+	background-color: white;
+	padding-bottom: 5px;
+	@include border-radius(0px, 0px, 7px, 7px)
 }
 
 .padRow {
-	@extend .row;
+
 	margin-left: 0px;
 	margin-right: 0px;
 
 }
 
-.centerInDiv {
-	@extend .d-flex;
-	@extend .justify-content-center;
-	@extend .align-items-center;
+.detailContainer .label {
+	width: 4.2rem;
+	padding-right: .1em;
+	text-align: right;
 }
+
+.detailContainer .content {
+	width: 100%;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+._row {
+	display: flex;
+	padding-top: 5px;
+	padding-left: 5px;
+	align-items: center;
+} 
 
 .drum-pad {
 	min-width: 3em;
@@ -126,7 +140,7 @@ body, html {
 	color: grey;
 	margin: 7px;
 	background-color: var(--shade2);
-	@include border-radius(15px);
+	@include border-radius(15px, 15px, 15px, 15px);
 	font-family: 'Anton', sans-serif;
 	font: 1.5em bold;
 	transition: all 0.3s ease-in-out;
@@ -154,8 +168,9 @@ body, html {
 
 .toggleContainer {
 
-	height: 25px;
-	margin-bottom: 2px;
+	display: flex;
+	align-items: center;
+	height: 100%;
 
 }
 .toggle {
@@ -167,13 +182,16 @@ body, html {
 .toggleBackground {
 	width: 40px;
 	height: 25px;
-	background-color:  var(--bg-leftpos, $disabled);
+	background-color:  $gogreen;
 	position: relative;
-	@include border-radius(3px)
-	transition: background-color 0.1s ease-in-out, box-shadow .1s ease-in-out;
-	box-shadow: inset 0px 0px 2px 2px rgba(0, 0, 0, 0.1);
-	margin-bottom: 0px;
-
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	@include border-radius(3px, 3px, 3px, 3px)
+	font-family: 'Quicksand', sans-serif;
+	font-weight: bold;
+	font-size: 8pt;
+	color: white;
 }
 /** slider left position */
 .toggleBackground::after {
@@ -185,39 +203,18 @@ body, html {
 	height: 23px;
 	background-color: var(--slider-leftpos, #fff);
 	box-shadow: inset 0px 0px 3px 3px rgba(0, 0, 0, 0.1);
-	@include border-radius(3px);
+	@include border-radius(3px, 3px, 3px, 3px);
 
 	transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, ;
 }
 
 .leftText {
-	position: absolute;
-	width: 21px;
-	top: 5px;
-	left:  3px;
-	display: inherit;
-	font-size: 8pt;
-	font-weight: bold;
-	color: white;
-	font-family: 'Quicksand', sans-serif;
+	padding-left: 4px;
 	visibility: hidden;
-	text-align: center;
-	overflow: hidden;
 }
 .rightText {
-	position: absolute;
-	width: 21px;
-	top: 5px;
-	left: 16px;
-	display: inherit;
-	font-size: 8pt;
-	font-weight: bold;
-	color: white;
-	font-family: 'Quicksand', sans-serif;
+	padding-right: 4px;
 	visibility: visible;
-	text-align: center;
-	overflow: hidden;
-
 }
 
 .toggle:checked + .toggleBackground::after {
@@ -242,7 +239,7 @@ body, html {
 
 .slider {
   -webkit-appearance: none;  /* Override default CSS styles */
-  width: 100%; /* Full-width */
+  width: 99%; /* Full-width */
   height: 5px; /* Specified height */
   background: #d3d3d3; /* Grey background */
   outline: none; /* Remove outline */
@@ -254,7 +251,7 @@ body, html {
   width: 15px; /* Set a specific slider handle width */
   height: 15px; /* Slider handle height */
   background: var(--shade2);
-  @include border-radius(7px);
+  @include border-radius(7px, 7px, 7px, 7px);
   border: 1px solid var(--shade3);
 
 }
@@ -263,23 +260,20 @@ body, html {
   width: 15px; /* Set a specific slider handle width */
   height: 15px; /* Slider handle height */
   background: var(--shade2);
-  @include border-radius(7px);
+  @include border-radius(7px, 7px, 7px, 7px);
   border: 1px solid var(--shade3);
 }
 
 
-.testClass {
-	background-color: $gogreen;
-}
-
 .sampleText {
 	box-shadow: inset 0px 0px 3px 3px rgba(0, 0, 0, 0.1);
-	width: 100%;
-	height: 1.7em;
-	@include border-radius(3px);
 
-  	margin-top:0%;
-  	padding-left: 8px;
+	height: 1.7em;
+	@include border-radius(3px, 3px, 3px, 3px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
   	content: "";
   	transition: all .3s ease-in-out;
 }

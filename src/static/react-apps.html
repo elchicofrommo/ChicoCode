@@ -115,10 +115,13 @@
             		The following are details outlying the final projects for the Front End Libraries <a href="https://www.freecodecamp.org/certification/fcc4893b047-b5d0-472e-b76e-3805d9ed0aba/front-end-libraries">certification</a> from <a href="http://www.freecodecamp.org">FreeCodeCamp.org</a>
 				</p>
 				<p>
-            		The specific libraries covered in the course work includ Bootstrap, jQuery, SASS, React and Redux. Original projects are available at Code Pens also include the certification tests used to validate each project. Modified versions of each project exist within this space and are viewbale at <a href="https://github.com/elchicofrommo/ChicoCode">Github</a>. 
+            		The specific libraries covered in the course work include Bootstrap, jQuery, SASS, React and Redux. Original projects are available as Pens on <a href="http://www.codepen.com">CodePen.com</a> and include the certification tests used to validate each project. Modified versions of each project exist within this space and are viewable at <a href="https://github.com/elchicofrommo/ChicoCode">Github</a>. 
 				</p>
 				<p>
-            		Please consider contirbuting to <a href="http://www.freecodecamp.org">FreeCodeCamp.org</a> so it may continue to provide free access to educational material for software development. I really believe in their mission. What's more, they are a 501 3c so your donation is tax deductable.
+					This course pushed students to use Bootstrap for layout and responsive design. I made the effort to use Bootstrap in the originals, as you can view from the linked Pens. However, I found that CSS FlexBox much intuitive and easier to use. So as I adapted the apps so they could included on this page I refactored away from bootstrap to plain FlexBox.
+				</p>
+				<p>
+            		Please consider contributing to <a href="http://www.freecodecamp.org">FreeCodeCamp.org</a> so it may continue to provide free access to educational material for software development. I really believe in their mission. What's more, they are a 501 3c so your donation is tax deductible.
             	</p>
             </section>
             
@@ -136,7 +139,10 @@
                 	</div>
                 </div>
                 <p>
-                    This was the first project for the Front End Libraries certification. The work is pretty simple. I elected not to use Redux for any state management. The most difficult part was recalling how to use jQuery to make async API calls. I did not use any promises or async/awaits in this project (that came later). I also began to stratch the surface with Bootstrap though not to any significant degree.
+                	The objective for this project was to build an app that could retrieve quotes from a remote API and display it in an App. In so doing using the React state management to update the text and author. The project also provided a user with a single button to retrieve new quotes.
+                </p>
+                <p>
+                    This was the first project for the Front End Libraries certification. The work is pretty simple. I elected not to use Redux for any state management. The most difficult part was recalling how to use jQuery to make async API calls. I did not use any promises or async/awaits in this project (that came later). I also began to scratch the surface with Bootstrap though not to any significant degree.
                 </p>
                 <p>
                 	Because of the simplicity of the project I spent more time in styling and discovering different ways to manage that styling. In my original project I used react state to update the style elements individually to change the theme color. In later projects I adopted a different approach of using CSS variables and classes to represent theme settings and use the React state to change to different theme classes in the parent container. This has the benefit of not having to modify style in multiple locations. 
@@ -170,13 +176,13 @@
                 	</div>
                 </div>
                 <p>
-                    This was my second project along the road to the Front End Library certification. My understanding of React had expanded greatly through this project and it's where I built my first reusable component with my Windowing capabilities. For best viewing launch in a new window. 
+                	The Markdown Editor is an app that allows a user to enter markdown text in an editor window and see the HTML rendered results in a preview window. My understanding of React had expanded greatly through this project. Some concepts that I drilled into were controlled components and creating reusable components (see my Windowing capability).
                 </p>
                 <p>
-                    Initially I just used the React state management for most of the interactivity, but re-engineered the project to use Redux after the Drum Machine project.
+                	Probably the most challenging aspect of this project was designing it for both Mobile and Desktop. I think editors in general are not a good use case for apps on mobile devices because of the limited working area. I think I made a good compromise in design for smaller viewports. A future redesign might move to a tabbed to facilitate easy switch between edit mode and preview mode. 
                 </p>
                 <p>
-                    The most interesting parts of the project actually came during the re-engineering effort. It was during this period that I extracted out the expand/shrink fucntions out of CSS and moved it into the Redux state machine cycle. I had the idea that I could dispatch an event on one window that all windows would observe, then pass a state object that either expands the window or hides the window (when maximizing), or puts all the windows back to the orignial state.
+                   Initially I just used the React state management for most of the interactivity, and later refactored the project to use Redux. It was during this period that I extracted out the expand/shrink functions out of CSS and moved it into the Redux state machine cycle. I had the idea that I could dispatch an event on one window that all windows would observe, then pass a state object that either expands the window or hides the window (when maximizing), or puts all the windows back to the original state.
                 </p>
                 <pre><code>WindowComponent = connect(
   function mapStateToProps(state, ownProps){
@@ -211,6 +217,7 @@
 )(WindowComponent)
 
 </code></pre>
+
                 Resources:
                 <ul class="reactProjectList">
 
@@ -228,20 +235,33 @@
                 <header>
                     Drum Machine
                 </header>
+                <div class="appContainer">
+                	<a href="/app/drums" target="_blank" class>
+                		<i class="fas fa-external-link-alt"></i></a>
+                	<div id="drumContainer" >
+                	
+                	</div>
+                </div>
                 <p>
-                    paragraph 1
+                	This is a fun app that lets a user pretend to be a sound engineer. The idea is to provide a set of 9 sounds tied to buttons that a user can press to play the noise. Some of the requirements for completion include using the audio html tag and its functions. I went beyond the minimum requirements for the project and built in two sound banks that could be switched back and forth. I also did some fun design work implementing my own toggles.
                 </p>
                 <p>
-                    paragraph 2
+                    When I first started working on this assignment I still hadn't implemented any state management with Redux. One of the criticisms I have of the course work for this certification is that though it covers Bootstrap, React, Redux, and SCSS, the test cases never validated that these technologies were actually in use in the assessment of the projects. It was a simple matter to write simple React apps, manage state with React state and props. It was at this point that I committed to implementing Redux in the rest of the projects and to back track and implement it in previous projects to help cement anything I learned.
                 </p>
-                <code>
-                    code section
-                </code>
-                <ul>
-                    <li>
-                        list element
-                    </li>
-                </ul>
+                <p>
+                	Initially I struggled to understand the API based just on the information within the course. For instance, the course work mentions the two functions mapStateToProperties, and mapDispatchToProperties in relationship to connect but never covered why one would write those, or why one not write those. It wasn't until my final project and hours of reading that I learned that mapStateToProperties has a direct affect in rendering cycles within react and that to reduce render cycles one should only return the absolute minimum amount of data for each function AND that I should check for no change state and return the original objects and not copies of the objects.
+                </p>
+
+                Resources:
+                <ul class="reactProjectList">
+
+					<li>
+                		<a href="https://www.freecodecamp.org/learn/front-end-libraries/front-end-libraries-projects/build-a-drum-machine">Project Requirements</a>
+                	</li>
+                	<li>
+                		<a href="https://codepen.io/mariano-hernandez/pen/LYEMjwy" target="_blank">Code Pen</a>
+                	</li>
+                </ul>  
             </section>
 
             <section class="main-section" id="Pomodoro_Clock">
@@ -250,21 +270,21 @@
                     Pomodoro Clock
                 </header>
                 <p>
-                    At this point I still hadn't implented any state managment with Redux. I struggled to understand the API and the information within the course work was so bare bones that it really just pointed in a direction and expected me to go and do further research.
+
                 </p>
                 <p>
-                    I set about to pick up the pieces I had been ignoring in the previsous projects. It was in this phase when the API finally clicked for me. I think it finally clicked for me when I was reading on Higher Order Compoents (HOC) as it relates to currying and all of a sudden the React.Component.connect method made sense to me. It was the result of this that I was able to use the connect method to create HOCs that I could configure through the state object. Below is an example of one such HOC.
+                    I set about to pick up the pieces I had been ignoring in the previous projects. It was in this phase when the API finally clicked for me. I think it finally clicked for me when I was reading on Higher Order Components (HOC) as it relates to currying and all of a sudden the React.Component.connect method made sense. It was the result of this that I was able to use the connect method to create HOCs that I could configure through the state object. Below is an example of one such HOC.
                 </p>
                 <pre><code>
 const TimingButton = (props)=>{
   let className = "fa-"+props.label+"-circle"
   return(
-    <button className="button lengthButton " 
+    &GT;button className="button lengthButton " 
       id={props.name} 
       disabled={props.timing} 
       onClick={props.action}>
-      <i className={"fas " + className}></i>
-    </button>
+      &GT;i className={"fas " + className}>&GT;/i>
+    &GT;/button>
   )}; 
 
 const SessionDecrementButton = connect(
@@ -284,11 +304,16 @@ const SessionIncrementButton = connect(
                 <p>
                     as well as optimizing the my Component connections to Redux to minimize component updates.
                 </p>
-                <ul>
-                    <li>
-                        list element
-                    </li>
-                </ul>
+                Resources:
+                <ul class="reactProjectList">
+
+					<li>
+                		<a href="https://www.freecodecamp.org/learn/front-end-libraries/front-end-libraries-projects/build-a-javascript-calculator">Project Requirements</a>
+                	</li>
+                	<li>
+                		<a href="https://codepen.io/mariano-hernandez/pen/jOPEMjo" target="_blank">Code Pen</a>
+                	</li>
+                </ul>  
             </section>
 
             <section class="main-section" id="Calculator">
@@ -310,6 +335,16 @@ const SessionIncrementButton = connect(
                         list element
                     </li>
                 </ul>
+                Resources:
+                <ul class="reactProjectList">
+
+					<li>
+                		<a href="https://www.freecodecamp.org/learn/front-end-libraries/front-end-libraries-projects/build-a-pomodoro-clock">Project Requirements</a>
+                	</li>
+                	<li>
+                		<a href="https://codepen.io/mariano-hernandez/pen/dyoPjQb" target="_blank">Code Pen</a>
+                	</li>
+                </ul>  
             </section>
         </main>
     </body>

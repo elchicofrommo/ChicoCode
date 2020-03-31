@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
-import styles from './style.scss';
+import {style} from './style';
 
 
 import {Provider, connect} from 'react-redux';
@@ -58,7 +58,7 @@ const store = createStore(messageReducer);
 
 const DrumPad = (props) => {
 	return (
-		<button className="drum-pad" 
+		<button className={style + " drum-pad"} 
 			id={props.id} 
 			key={props.id}
 			disabled={props.disabled}
@@ -69,7 +69,7 @@ const DrumPad = (props) => {
 				sound.play();
 				props.callback(props.id);
 			})}>
-			<audio className="clip" src={props.clip} id={props.letter}></audio> {props.letter} 
+			<audio className={style + " clip"} src={props.clip} id={props.letter}></audio> {props.letter} 
 		</button>
 	)
 }
@@ -149,11 +149,11 @@ class DrumPads extends React.Component {
 					disabled={!this.props.power}
 					volume={this.props.volume}/>);
 			}
-			rowArray.push(<div className="padRow"  key={'row' + i}>{padArray}</div>);
+			rowArray.push(<div className={style + " padRow"}  key={'row' + i}>{padArray}</div>);
 		}
 		
 
-		return <div className="padContainer ">{rowArray}</div>;
+		return <div className={style + " padContainer "}>{rowArray}</div>;
 	}
 	componentDidMount() {
     	document.addEventListener('keydown', this.handleKeyPress);
@@ -188,30 +188,32 @@ DrumPads = connect(
 /////// End Drum Machine Component
 
 //// START slider component
+
+//// START slider component
 class ToggleComponent extends React.Component{
 	constructor(props){
 		super(props);
-		let style = {};
+		let toggleStyle = {};
 
 		if(props.backgroundWhenOn){
-			style["--bg-rightpos"] = props.backgroundWhenOn;
+			toggleStyle["--bg-rightpos"] = props.backgroundWhenOn;
 		}
 		if(props.backgroundWhenOff){
-			style["--bg-leftpos"] = props.backgroundWhenOff;
+			toggleStyle["--bg-leftpos"] = props.backgroundWhenOff;
 		}
 
-		console.log("sliders are: " + JSON.stringify(style))
+		console.log("sliders are: " + JSON.stringify(toggleStyle))
 
 		let text = [];
 		if(props.leftText){
-			text.push(<span className="leftText" key={this.props.id + "leftText"}>{props.leftText}</span>);
+			text.push(<span className={style + " leftText"} key={this.props.id + "leftText"}>{props.leftText}</span>);
 		}
 		if(props.rightText){
-			text.push(<span className="rightText" key={this.props.id + "rightText"}>{props.rightText}</span>)
+			text.push(<span className={style + " rightText"} key={this.props.id + "rightText"}>{props.rightText}</span>)
 		}
 		this.state = {
 			checked: props.checked,
-			style: style,
+			toggleStyle: toggleStyle,
 			text: text
 		}
 
@@ -228,10 +230,10 @@ class ToggleComponent extends React.Component{
 	render(){
 
 		return(
-			<div className="toggleContainer">
+			<div className={style + " toggleContainer"}>
 				
-				<input type="checkbox" className="toggle" id={this.props.id}  onChange={this.handleClick} checked={this.state.checked}></input>
-				<label className="toggleBackground" style={this.state.style}  htmlFor={this.props.id} > 
+				<input type="checkbox" className={style + " toggle"} id={this.props.id}  onChange={this.handleClick} checked={this.state.checked}></input>
+				<label className={style + " toggleBackground"} style={this.state.toggleStyle}  htmlFor={this.props.id} > 
 					{this.state.text}
 				</label>
 				
@@ -239,6 +241,7 @@ class ToggleComponent extends React.Component{
 		)
 	}
 }
+
 //// END slider component
 ////// DrumDetails component
 class DrumDetails extends React.Component {
@@ -259,10 +262,10 @@ class DrumDetails extends React.Component {
 
 		return(
 
-			<div id="details" className="detailContainer container">
- 				<div className="row" >
- 					<div className="col-4 d-flex justify-content-end align-items-center">Bank</div>
-					<div id="bankContainer" className="col-8 d-flex justify-content-left align-items-center" style={{paddingLeft: '0px'}}>
+			<div id="details" className={style + " detailContainer"}>
+ 				<div className={style + " _row" } >
+ 					<div className={style +" label"}>Bank</div>
+					<div className={style +" content"} style={{paddingLeft: '0px'}}>
 
 							<ToggleComponent id="bank" checked={true}  
 							clickCallback={this.clickCallback} 
@@ -270,17 +273,17 @@ class DrumDetails extends React.Component {
 
 					</div>
 				</div>
-				<div className="row">
-				 	<div className="col-4 d-flex justify-content-end align-items-center">Clip</div>
-				 	<div className="col-8" style={{paddingLeft: 0}} >
-				 		<div id="sample" className="sampleText" >{this.props.sample}</div>
+				<div className={style + " _row" }>
+				 	<div className={style +" label"}>Clip</div>
+				 	<div className={style + " content"} >
+				 		<div id="sample" className={style + " sampleText" }>{this.props.sample}</div>
 				 	</div>
 					
     			</div>
-    			<div className="row">
-    				<div className="col-4 d-flex justify-content-end align-items-center">Volume</div>
-    				<div className="col-8" style={{paddingLeft: '0px'}}>
-						<input type="range" className="slider" value={this.props.volume} min="0" max="100" id="customRange1" onChange={this.props.changeVolume} />
+    			<div className={style + " _row" }>
+    				<div className={style +" label"}>Volume</div>
+    				<div className={style + " content"} >
+						<input type="range" className={style + " slider"} value={this.props.volume} min="0" max="100" id="customRange1" onChange={this.props.changeVolume} />
 
     				</div>
     			</div>
@@ -313,7 +316,7 @@ class App extends React.Component{
   constructor(props){
     super(props)
     this.state ={
-      
+      fullScreen: props.fullScreen ? "fullScreen" : ""
     }
     this.inputHandler = this.inputHandler.bind(this)
 
@@ -331,14 +334,14 @@ class App extends React.Component{
   render(){
   	let theme = this.props.bank?"yellowMode":"blueMode";
     return (
-        <div className={"outerDiv " + theme} id="drum-machine">         
-        	<div className="innerDiv"  id="display">
-        		<div className="header">
-        			<div className="title">Awesome Drums</div>
-        			<div id="powerContainer">
+        <div className={style + " outerDiv " + theme + " " + this.state.fullScreen} id="drum-machine">         
+        	<div className={style + " innerDiv"}  id="display">
+        		<div className={style + " header"}>
+        			<div className={style + " title"}>Awesome Drums</div>
+        			<div id="powerContainer" className={style }>
 
 						<ToggleComponent id="power" checked={true}  
-							backgroundWhenOn={styles.gogreen}  
+							backgroundWhenOn={style.gogreen}  
 							clickCallback={this.props.togglePower} 
 							leftText="On" rightText="Off"/>
 					</div>
@@ -377,6 +380,6 @@ App = connect(
 // End App component
 App.id = "drums";
 
-const AppWrapper = ()=><Provider store={store}><App /></Provider>;
+const AppWrapper = (props)=><Provider store={store}><App {...props}/></Provider>;
 
 export default AppWrapper;
