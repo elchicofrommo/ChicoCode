@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
 import App from './App';
-let script = document.getElementById("drumScript");
+let script = document.getElementById("drumsScript");
 let targetId = "container";
 let fullScreen = true;
 
