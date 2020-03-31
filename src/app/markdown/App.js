@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
-import './style.scss';
+import {style} from './style.scss';
 
 import {Provider, connect} from 'react-redux';
 import {createStore} from 'redux';
@@ -52,9 +52,7 @@ And here. | Okay. | I think we get it.
 1. Use just 1s if you want! 
 1. But the list goes on...
 - Even if you use dashes or asterisks.
-* And last but not least, let's not forget embedded images:
-
-![React Logo w/ Text](https://goo.gl/Umyytc)`;
+* And last but not least, let's not forget embedded images:`;
 
 
 
@@ -66,7 +64,7 @@ const defaultState = {
   windows: {
     fullSize: false,
     editor: {width: 7, fullSize: false, innerText: innerText},
-    preview: {width: 5, fullSize: false, innerText: marked(innerText)}
+    preview: {width: 5, fullSize: false, innerText: marked(innerText)},
   }
 }
 
@@ -113,10 +111,10 @@ const store = createStore(messageReducer)
 /** SEtting up the WindowComponent**/
 const WindowHeader = (props) => {
   return(
-       <div className="windowHeader" >
-          <div className="leftWindowHeader">{props.name} {props.testProp}</div>
-          <div className="rightWindowHeader"> 
-            <a href="#" style={{color:"black"}} onClick={props.sizeCallback}>{!props.fullScreen?<MaximizeIcon />:<MinimizeIcon />}</a>
+       <div className={style + " windowHeader" }>
+          <div className={style }>{props.name} {props.testProp}</div>
+          <div className={style }> 
+            <a href="#" className={style} style={{color:"black"}} onClick={props.sizeCallback}>{!props.fullScreen?<MaximizeIcon />:<MinimizeIcon />}</a>
           </div>
        </div>
   )
@@ -133,9 +131,11 @@ const EditorTextArea = connect(
 
  // console.log("in editor text area render")
   return (
-    <textarea id="editor" onChange={props.update} value={props.text}  className="windowDisplay">
+    <div className={style + " windowDisplay"}>
+      <textarea id="editor" onChange={props.update} value={props.text}  className={style }>
 
-    </textarea>
+      </textarea>
+    </div>
   )
 });
 
@@ -150,7 +150,9 @@ const PreviewArea = connect(
   }
   //
   return (
-    <div id="preview" dangerouslySetInnerHTML={rawMarkup} className="windowDisplay">
+    <div className={style + " windowDisplay"}>
+      <div id="preview" dangerouslySetInnerHTML={rawMarkup} className={style }>
+      </div>
     </div>
   )
 });
@@ -188,11 +190,10 @@ class WindowComponent extends React.Component{
   render(){
     //console.log("in windowCompoent render")
      return(
-       <div className={this.props.styleClass} >
-          <div className="windowFrame">
+       <div className={this.props.styleClass +" "+style} >
+
             <WindowHeader name={this.props.name} sizeCallback={this.sizeCallback} fullScreen={this.state.fullScreen} testProp={this.props.testProp}/>
             {this.props.display}
-          </div>
 
        </div>
      )
@@ -206,10 +207,10 @@ WindowComponent = connect(
 
     let styleClass = ""
     if(!state.windows.fullSize){
-      styleClass = "window col-md-" + state.windows[ownProps.id].width
+      styleClass = "window " 
     }else{
       if(fullSize){
-        styleClass = "window col-md-12"
+        styleClass = "window "
       }else{
         styleClass = "window windowHide"
       }
@@ -236,7 +237,7 @@ class App extends React.Component{
   constructor(props){
     super(props)
     this.state ={
-      
+      fullScreen: props.fullScreen ? "fullScreen" : ""
     }
     this.editorRef = React.createRef();
     this.previewRef = React.createRef();
@@ -249,8 +250,8 @@ class App extends React.Component{
 
     //console.log("render for app")
     return (
-        <div className="outerDiv ">         
-        <div className="row" style={{height: "100%", margin: 0}}>
+        <div className={style + " outerDiv " + this.state.fullScreen}>         
+          <div className={style + " innerDiv "} >
             <WindowComponent screen={this.props.editor} name="Editor" id='editor' ref={this.editorRef} display={<EditorTextArea />} />
             <WindowComponent screen={this.props.preview} name="Preview" id='preview' ref={this.previewRef} display={<PreviewArea />} />
           </div>
@@ -281,7 +282,7 @@ App = connect(
 
 App.id = 'markdown';
 
-const AppWrapper = ()=><Provider store={store}><App /></Provider>;
+const AppWrapper = (props)=><Provider store={store}><App {...props}/></Provider>;
       
 export default AppWrapper;
  
