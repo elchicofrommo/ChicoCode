@@ -243,7 +243,7 @@
                 	</div>
                 </div>
                 <p>
-                	This is a fun app that lets a user pretend to be a sound engineer. The idea is to provide a set of 9 sounds tied to buttons that a user can press to play the noise. Some of the requirements for completion include using the audio html tag and its functions. I went beyond the minimum requirements for the project and built in two sound banks that could be switched back and forth. I also did some fun design work implementing my own toggles.
+                	This is a fun app that lets a user play a sound engineer. The idea is to provide a set of 9 sounds tied to buttons that a user can press to play the noise. Some of the requirements for completion include using the audio html tag and its functions. I went beyond the minimum requirements for the project and built in two sound banks that could be switched back and forth. I also did some fun design work implementing my own toggles.
                 </p>
                 <p>
                     When I first started working on this assignment I still hadn't implemented any state management with Redux. One of the criticisms I have of the course work for this certification is that though it covers Bootstrap, React, Redux, and SCSS, the test cases never validated that these technologies were actually in use in the assessment of the projects. It was a simple matter to write simple React apps, manage state with React state and props. It was at this point that I committed to implementing Redux in the rest of the projects and to back track and implement it in previous projects to help cement anything I learned.
@@ -269,9 +269,13 @@
                 <header>
                     Pomodoro Clock
                 </header>
-                <p>
-
-                </p>
+                 <div class="appContainer">
+                	<a href="/app/clock" target="_blank" class>
+                		<i class="fas fa-external-link-alt"></i></a>
+                	<div id="clockContainer" >
+                	
+                	</div>
+                </div>
                 <p>
                     I set about to pick up the pieces I had been ignoring in the previous projects. It was in this phase when the API finally clicked for me. I think it finally clicked for me when I was reading on Higher Order Components (HOC) as it relates to currying and all of a sudden the React.Component.connect method made sense. It was the result of this that I was able to use the connect method to create HOCs that I could configure through the state object. Below is an example of one such HOC.
                 </p>
@@ -352,6 +356,7 @@ const SessionIncrementButton = connect(
     <script src="/app/quotes/index.js" id="quoteScript" targetId="quoteContainer" fullScreen="false"></script>
     <script src="/app/markdown/index.js" id="markdownScript" targetId="markdownContainer" fullScreen="false"></script>
     <script src="/app/drums/index.js" id="drumsScript" targetId="drumsContainer" fullScreen="false"></script>
+    <script src="/app/clock/index.js" id="clockScript" targetId="clockContainer" fullScreen="false"></script>
     <script src="/js/shared.js" data-target-id="myDiv"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js">
