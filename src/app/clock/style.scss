@@ -1,19 +1,26 @@
 
 @import url('https://fonts.googleapis.com/css?family=Quicksand:500|Sarpanch:700|Kaushan+Script|Source+Code+Pro:600|Abril+Fatface|Audiowide|Comfortaa:700|Kelly+Slab&display=swap');
-@import 'bootstrap/scss/bootstrap-grid';
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css');
 
-body,
-html {
-  height: 101%;
+:global(html){
+
+    margin: 0px;
+}
+
+:global(body) {
   margin: 0px;
-  font-family: "Raleway", sans-serif;
-  font-size: 5vw;
-  touch-action: manipulation;
-  overflow: hidden;
-  @extends .themeThree;
-
+  font-family: 'Raleway', sans-serif;
 
 }
+
+.fullScreen {
+  height: 100vh;
+  padding: 0px;
+  background-color: var(--background);
+  margin-bottom: 0px;
+  overflow: hidden;
+}
+
 .themeOne {
     --shade1: #f4f1af;
     --shade2: #e7e283;
@@ -71,54 +78,95 @@ html {
     height: calc(#{$percentage} - #{$value});
 }
 .outerDiv {
-    height: 100%;
-    width: 100%;
-    background-color: var(--background);
-    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
     transition: all .3s ease-in-out;
-
-
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
+
+
 .innerDiv {
     background: var(--background);
-    height: 100%;
-    margin-top: 0px;
 }
 
 .header {
-
-
-  padding-top: 7px;
   background-color: var(--shade3);
-
+  text-align: center;
   transition: all .3s ease-in-out;
 }
 
-.mytitle {
-  padding-left: 3pt;
-  font-size: 60px;
+.title {
+  font-size: 35px;
   font-family: 'Kaushan Script', cursive;
   color: var(--shade3-font);
 }
 
+.clockBody {
+  display: flex;
+  flex-wrap: wrap;
+}
 
+.clockBody .label {
+  flex: 1 1 100%;
+  text-align: center;
+  padding-top: 5px;
+}
+.clockBody .clockCount {
+  flex: 1 1 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clockBody .buttonContainer {
+  flex: 1 1 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#startContainer {
+  justify-content: flex-start;
+}
+
+#reset {
+  margin-right: 7px;
+}
+#start_stop {
+  margin-left: 7px;
+}
+#resetContainer{
+  justify-content: flex-end;
+
+}
+
+.label {
+  color: var(--foreground);
+  font-size: 1.3em;
+
+}
 
 
 
 .lengthButton {
   border: 0px;
   background: none;
-  font-size: 10vw;
+  font-size: 40px;
   color: var(--shade3);
+  padding: 0px;
 }
 
 .clockButton {
   border: 0px;
   border-radius: 50%;
   background: var(--shade3);
-  font-size: 20vw;
-  width: 32vw;
-  height: 32vw;
+  font-size: 3.5em;
+  padding: 0px;
+  height: 1.6em;
+  width: 1.6em;
   color: var(--background);
   display: flex;
   justify-content: center;
@@ -126,14 +174,12 @@ html {
 }
 
 .fa-play {
-  margin-left: 3vw;
+  margin-left: .2em;
 }
 
 .button {
 
 
-  padding: 0;
-  padding-top: auto;
 }
 
 
@@ -148,88 +194,91 @@ html {
 
 .lengthContainer {
   text-transform: capitalize;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  padding-top: 20px;
+}
+
+.lengthContainer .label {
+  flex: 1 1 100%;
+  text-align: center;
+}
+
+.lengthContainer .lengthField {
+  font-size: 5em;
+
 }
 
 .textField {
-
-
   text-align: right;
-
   font-size: 5em;
-
   font-family: 'Sarpanch', sans-serif;
   color: var(--shade3);
   filter: hue-rotate(280deg);
+  line-height: .81em;
+  padding-bottom: 7px;
 
 }
 
-.lengthField {
-  font-size: 20vw;
-  line-height: 14vw;
 
-}
 
 .decrementButton {
-  margin-right: -10px;
-}
-
-.label {
-  color: var(--foreground);
-}
-
-.clockField {
 
 }
+
+
 
 @media (min-width: 576px){
-  .mytitle{
-    font-size: 30px;
+  .clockBody .clockCount {
+    flex: 1 1 20%;
+    order: 2;
   }
 
-  .textField {
-    font-size: 50px;
-    text-align: center;
+  .clockBody .buttonContainer {
+    flex: 1 1 20%;
+  }  
+
+  #resetContainer {
+    order: 1;
+  }
+  #startContainer {
+    order: 3;
+  }
+  .clockBody{
+    border-left: 1px solid var(--shade3);
+    border-right: 1px solid var(--shade3);
+  }
+  .lengthBody{
+    border-left: 1px solid var(--shade3);
+    border-right: 1px solid var(--shade3);
+    border-bottom: 1px solid var(--shade3);
+  }
+  .innerDiv{
+    font-size: 18px;
+    max-width: 550px;
+  }
+  .lengthBody{
+    display: flex;
+    justify-content: center;
   }
 
   .clockButton {
-    font-size: .8em;
-    padding: .3em;
-    width: auto;
-    height: auto;
-  }
-  .clockField{
-    font-size: 2em;
-    line-height: .7em;
-  }
-  .fa-play {
-    margin-left: 5px;
-  }
-  .fa-redo {
-    margin-right: 5px;
-    margin-top: 2px;
-  }
 
-  .label {
-    font-size: .4em;
-  }
+    font-size: 2.7em;
 
-  .lengthContainer {
+    height: 1.6em;
+    width: 1.6em;
 
   }
-  .lengthButton {
-    font-size: 1em;
-  }
 
-  .lengthField {
-    line-height: .7em;
+  .outerDiv {
+    align-items: center;
   }
 
 }
 
-
-.surveyBody{
-  background-color: green;
-}
 
 
 

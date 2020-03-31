@@ -3,14 +3,27 @@ import {render} from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
 import App from './App';
+let script = document.getElementById("drumsScript");
+let targetId = "container";
+let fullScreen = true;
+
+if(script){
+	let temp = script.getAttribute("targetId");
+	if(temp){
+		targetId = temp;
+	}
+
+  if(script.getAttribute("fullScreen") === "false")
+    fullScreen = false;
+}
 
 // End App component
 const renderApp = ()=> {
   render(
     <AppContainer>
-      <App />
+      <App fullScreen={fullScreen} />
     </AppContainer>
-  , document.getElementById('container'));
+  , document.getElementById(targetId));
 };
 
 renderApp();
@@ -20,5 +33,3 @@ if(module.hot){
    renderApp()
   })
 }
-
-

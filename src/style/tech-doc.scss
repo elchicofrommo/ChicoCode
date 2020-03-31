@@ -142,7 +142,7 @@ h1 {
 
 	padding: 0px 3px 3px 3px;
 	border-radius: 4px;
-	max-height: 600px;
+	max-height: 700px;
 	overflow: scroll;
 }
 
@@ -183,7 +183,8 @@ h1 {
 	}
 
 	.appContainer{
-		width: 80%;
+		 max-width: 80%;
+		 width: auto;
 	}
 	nav{
 		left: 0px;

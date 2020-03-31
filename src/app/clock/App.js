@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-import styles from './style';
+import {style} from './style';
 
 import {Provider, connect} from 'react-redux';
 import {createStore} from 'redux';
@@ -95,8 +95,8 @@ const store = createStore(messageReducer);
 /////// setup for Header 
 const Header = (props) =>{
   return(
-      <div className="header">
-          <div className="title">{props.title}</div>
+      <div className={[style, "header"].join(" ")}>
+          <div className={[style, "title"].join(" ")}>{props.title}</div>
       </div>
   )
 }
@@ -105,11 +105,11 @@ const Header = (props) =>{
 
   const TimingButton = (props)=>{
     let className = "fa-"+props.label+"-circle"
-    return(<button className="button lengthButton " 
+    return(<button className={[style, "button lengthButton"].join(" ")} 
       id={props.name} 
       disabled={props.timing} 
       onClick={props.action}>
-        <i className={"fas " + className}></i>
+        <i className={[style, "fas", className].join(" ")}></i>
       </button>)}; 
 
 
@@ -137,24 +137,13 @@ const Header = (props) =>{
 
    //   console.log("in render for " + props.name);
       return(
-        <div className="lengthContainer col-sm-5">
-
-          <div className="row justify-content-center">
-
-            <div className="col-auto decrementButton align-self-center" >
+        <div className={[style, "lengthContainer"].join(" ")}>
+          <div id={props.name +"-label"} className={[style, " label"].join(" ")}>{props.name} Length</div>
               {props.decrement}
-            </div>
-            <div className="col-4 col-sm-5 justify-content-center ">
-              <div id={props.name +"-label"} className="col d-flex justify-content-center label">{props.name} Length</div>
-              <div className="textField lengthField " id={props.name +'-length'}>
-                {props.length}
-                </div>
-            </div>
-            <div className="col-auto incrementButton align-self-center">
+            <div className={[style, "textField lengthField "].join(" ")} id={props.name +'-length'}>
+              {props.length}
+              </div>
               {props.increment}
-            </div>
-
-          </div>
         </div>
       )
     }
@@ -236,7 +225,7 @@ class ClockComponent extends React.Component {
       minutes = ("00" + minutes).slice (-2);
       seconds = ("00" + seconds).slice (-2);
     return(
-      <div className="textField d-flex justify-content-center clockField" id='time-left'> {minutes + ":" + seconds} </div>
+      <div className={[style, "textField clockField"].join(" ")} id='time-left'> {minutes + ":" + seconds} </div>
     )
   }
 }
@@ -267,7 +256,7 @@ class App extends React.Component{
   constructor(props){
     super(props)
     this.state ={
-      
+      fullScreen: props.fullScreen ? "fullScreen" : ""
     }
     this.reset = this.reset.bind(this);
     this.triggerTimer = this.triggerTimer.bind(this);
@@ -287,41 +276,37 @@ class App extends React.Component{
 
     let title = this.props.clockState == SESSION ? "Session": "Break";
     return (
-        <div className="outerDiv themeThree container-fluid " style={{backgroundColor: "green"}}>         
+        <div className={[style, this.state.fullScreen, "outerDiv themeThree"].join(" ")} >         
 
-          <div className="innerDiv row " >
+          <div className={[style, "innerDiv"].join(" ")} >
 
             <Header title="Pomodoro Clock" />
 
-            <div className="col col-sm-12" >
-              <div className="row justify-content-sm-center align-items-sm-end">
-                <div className="col-12 col-sm-4 order-sm-2 align-items-end" >
+            <div className={[style, "clockBody"].join(" ")} >
 
-                    <div id="timer-label" className="d-flex justify-content-center label">{title}</div>
-
+                <div id="timer-label" className={[style, " label"].join(" ")}>{title}</div>
+                <div className={[style, "clockCount"].join(" ")}>
                       <ClockComponent ref="clockRef"/>
-                      <audio preload="auto" id="beep" src="https://goo.gl/65cBl1" style={{width: "100%"}}></audio>
+                      <audio className={style} preload="auto" id="beep" src="https://goo.gl/65cBl1" style={{width: "100%"}}></audio>
                 </div>   
-                <div className="col-6 col-sm-auto order-sm-1 align-self-sm-end d-flex justify-content-end">
-                  <button className="button clockButton" id="reset" onClick={this.reset}>
-                    <i className="fas fa-redo " ></i>
+                <div className={[style, "buttonContainer"].join(" ")} id="resetContainer">
+                  <button className={[style, "button clockButton"].join(" ")} id="reset" onClick={this.reset}>
+                    <i className={[style, "fas fa-redo "].join(" ")} ></i>
                   </button>
                 </div>
 
 
-                <div className="col-6 col-sm-auto order-sm-3 align-self-sm-end d-flex justify-content-start">
-                  <button className="button clockButton" id="start_stop" onClick={this.triggerTimer}>
-                    <i className="fas fa-play " ></i>
+                <div className={[style, "buttonContainer"].join(" ")} id="startContainer">
+                  <button className={[style, "button clockButton"].join(" ")} id="start_stop" onClick={this.triggerTimer}>
+                    <i className={[style, "fas fa-play "].join(" ")} ></i>
                   </button>
                 </div>
-              </div>
+
             </div>
 
-            <div className="col col-sm-12 ">
-              <div className="row justify-content-center">
-                <SessionLengthContainer name="session" decrement={<SessionDecrementButton name="session-decrement"/>} increment={<SessionIncrementButton name="session-increment"/>}/>
-                <BreakLengthContainer name="break" decrement={<BreakDecrementButton name="break-decrement"/>} increment={<BreakIncrementButton name="break-increment"/>}/>
-              </div>
+            <div className={[style, "lengthBody"].join(" ")}>
+              <SessionLengthContainer name="session" decrement={<SessionDecrementButton name="session-decrement"/>} increment={<SessionIncrementButton name="session-increment"/>}/>
+              <BreakLengthContainer name="break" decrement={<BreakDecrementButton name="break-decrement"/>} increment={<BreakIncrementButton name="break-increment"/>}/>
             </div>
 
           </div>
@@ -346,7 +331,7 @@ App = connect(
 
 App.id = "clock";
 
-const AppWrapper = ()=> <Provider store={store}><App /></Provider>;
+const AppWrapper = (props)=><Provider store={store}><App {...props}/></Provider>;
 
 //const AppWrapper = () => <div> super cow </div>;
 export default AppWrapper;
