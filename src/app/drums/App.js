@@ -50,7 +50,7 @@ const messageReducer = (state=defaultState, action) => {
 		default: 
 		break;
 	}
-	console.log("messageReducer final state: " + JSON.stringify(holder))
+	//console.log("messageReducer final state: " + JSON.stringify(holder))
 	return holder;
 }
 
@@ -127,7 +127,7 @@ class DrumPads extends React.Component {
 	}
 
 	playCallback(id){
-		console.log("DrumPad callback  " + id);
+		//console.log("DrumPad callback  " + id);
 		this.props.playClip(id);
 	}
 
@@ -173,7 +173,7 @@ class DrumPads extends React.Component {
 
 DrumPads = connect(
 	function mapPropsToState(state, ownProps){
-		console.log("calling map props in the drum pads connect");
+		//console.log("calling map props in the drum pads connect");
 		return state;
 	},
 	function mapDispatchToState(dispatch, ownProps){
@@ -202,7 +202,7 @@ class ToggleComponent extends React.Component{
 			toggleStyle["--bg-leftpos"] = props.backgroundWhenOff;
 		}
 
-		console.log("sliders are: " + JSON.stringify(toggleStyle))
+		//console.log("sliders are: " + JSON.stringify(toggleStyle))
 
 		let text = [];
 		if(props.leftText){
@@ -252,7 +252,7 @@ class DrumDetails extends React.Component {
 	}
 
 	clickCallback(event) {
-		console.log('in click callback');
+		//console.log('in click callback');
 		this.props.changeBank();
 	}
 
@@ -303,7 +303,7 @@ DrumDetails = connect(
 				dispatch({type: BANK});
 			},
 			changeVolume: (event) => {
-				console.log("got change volume event: " + event.target.value)
+			//	console.log("got change volume event: " + event.target.value)
 				dispatch({type: VOLUME, volume: event.target.value});
 			}
 		}
@@ -318,19 +318,9 @@ class App extends React.Component{
     this.state ={
       fullScreen: props.fullScreen ? "fullScreen" : ""
     }
-    this.inputHandler = this.inputHandler.bind(this)
-
-  }
-  
-  inputHandler(event){
-    console.log("observed change in parent input handler. " )
-
+	console.log("Constructed Drum Maghine created by Mariano Hernandez 2020. Enjoy")
   }
 
-  componentDidMount(prevProp, prevState){
-    console.log("componentDidMount")
-
-  }
   render(){
   	let theme = this.props.bank?"yellowMode":"blueMode";
     return (
@@ -359,11 +349,7 @@ class App extends React.Component{
 
 App = connect(
 	function mapStateToProps(state, ownProps){
-		console.log("observed mapStateToProps, state is " + JSON.stringify(state));
-
-
 		return state;
-
 	}, 
 	function mapDispatchToProps(dispatch){
 		return {

@@ -241,7 +241,7 @@ class App extends React.Component{
     }
     this.editorRef = React.createRef();
     this.previewRef = React.createRef();
-
+    console.log("Constructed Pomodoro Clock created by Mariano Hernandez 2020. Enjoy")
   }
   
 
