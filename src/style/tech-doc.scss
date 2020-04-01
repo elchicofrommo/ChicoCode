@@ -146,6 +146,7 @@ h1 {
 	overflow: scroll;
 }
 
+
 .appContainer > a {
 	color: white;
 }
@@ -159,10 +160,18 @@ h1 {
 	width: 100%;
 }
 
+.citation {
+	background-color: rgba(255, 255, 255, .2);
+	font-family: courier;
+	margin: 0px 20px;
+	padding: 10px 20px ;
+	font-size: .9em;
+}
+
 
 @media (hover: hover) {
 	.appContainer > a:hover {
-		color: rgba(255, 255, 255, .2);
+		color: rgba(255, 255, 255, .3);
 	}
 
 	.outerDiv a:hover {

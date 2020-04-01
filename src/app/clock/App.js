@@ -261,6 +261,8 @@ class App extends React.Component{
     this.reset = this.reset.bind(this);
     this.triggerTimer = this.triggerTimer.bind(this);
     this.clockRef = React.createRef();
+
+    console.log("Constructed Pomodoro Clock created by Mariano Hernandez 2020. Enjoy")
   }
 
   reset(){

@@ -53,7 +53,7 @@ const messageReducer = (state=defaultState, action) => {
     case EQUALS:
       if(myState.lastAction != ""){
         let toEval = myState.register + myState.lastAction + myState.input;
-        console.log("going to evaluate the following: " + toEval);
+      //  console.log("going to evaluate the following: " + toEval);
         myState.input = eval(toEval);
         myState.register = "0";
         myState.lastAction = "";
@@ -66,7 +66,7 @@ const messageReducer = (state=defaultState, action) => {
         }else{
           myState.lastAction = action.operation;
         }
-        console.log("still deciding what action to take:  " + myState.lastAction);
+      //  console.log("still deciding what action to take:  " + myState.lastAction);
         break;
       }
       if(myState.register == "0"){
@@ -75,7 +75,7 @@ const messageReducer = (state=defaultState, action) => {
         myState.input = "0";
       }else{
         let toEval = myState.register + myState.lastAction + myState.input;
-        console.log("going to evaluate the following: " + toEval);
+       // console.log("going to evaluate the following: " + toEval);
         myState.register = eval(toEval);
         myState.lastAction = action.operation;
         myState.input = "0";
@@ -103,9 +103,6 @@ const Header = (props) =>{
 }
 
 /////// end setup for header
-const tempFunction = (event) => {
-  console.log("keypressed " + event.target.id);
-}
 const keys = [
 
   {symbol: 'AC', id: 'clear', eventKey: 'Backspace',  type: CLEAR, width: 2}, 
@@ -162,7 +159,7 @@ class KeyPad extends React.Component {
     }else {
       this.props.clear();
     }
-    console.log('saw button click, heres the values ' + JSON.stringify(key));
+    //console.log('saw button click, heres the values ' + JSON.stringify(key));
   }
 
   render(){
@@ -175,7 +172,6 @@ class KeyPad extends React.Component {
 
       for(let j=0;j <4 && i*4 + j < keys.length;j++){
         let key = keys[(i*4)+j];
-
         let width = key.width ? "doubleButton" : "";
 
         if(key.type ==  "HOLDER")
@@ -237,42 +233,24 @@ class App extends React.Component{
     this.state ={
       fullScreen: props.fullScreen ? "fullScreen" : ""
     }
-    this.inputHandler = this.inputHandler.bind(this)
-
-  }
-  
-  inputHandler(event){
-    console.log("observed change in parent input handler. " )
-
+    console.log("Constructed Calculator created by Mariano Hernandez 2020. Enjoy")
   }
 
-  componentDidMount(prevProp, prevState){
-    console.log("componentDidMount")
-
-  }
   render(){
 
 
     return (
         <div className={[style, themes[this.props.theme], this.state.fullScreen, "outerDiv"].join(" ")}  >         
           <div className={[style, "innerDiv"].join(" ")} >
-
             <Header title="Calculator" />
-
             <div className={[style, ""].join(" ")}>
-
                 <div className={[style, "textField"].join(" ")}>{this.props.register}</div>
-
             </div>
             <div className={[style, ""].join(" ")}>
-
                 <div className={[style, "textField"].join(" ")} id="display">{this.props.input}</div>
-
             </div>
-
             <KeyPad />
           </div>
-    
         </div>
     )
   }

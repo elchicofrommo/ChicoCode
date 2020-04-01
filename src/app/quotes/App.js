@@ -15,7 +15,7 @@ class App extends React.Component {
   constructor(props){
     super(props)
     let rand = Math.floor(Math.random() * 100) % 4 
-    console.log("app constuctor: " + rand + " fullscreen: " + props.fullScreen);
+    console.log("Constructed Pomodoro Clock created by Mariano Hernandez 2020. Enjoy")
     
     this.state = {
       theme: themes[rand],
@@ -39,16 +39,16 @@ class App extends React.Component {
         url: "https://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=?",
         dataType: "jsonp",
         success: function(response){
-          console.log(JSON.stringify(response))
+         // console.log(JSON.stringify(response))
           this.setQuoteState(response)
         }.bind(this),
         error(error){
-          console.log("failed the response " + JSON.stringify(error))
+        //  console.log("failed the response " + JSON.stringify(error))
         }
       });   
   } 
   setQuoteState(response){
-    console.log("set quote state")
+    //console.log("set quote state")
     let rand = Math.floor(Math.random() * 100) % 4 
     this.setState({
       text: response.quoteText,
@@ -60,7 +60,7 @@ class App extends React.Component {
   }
   render(){
 
-    console.log("rendering: a object is : " + JSON.stringify(style));
+    //console.log("rendering: a object is : " + JSON.stringify(style));
     let myName = "my name is mario"
     return(
 
