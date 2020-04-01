@@ -96,8 +96,8 @@ const store = createStore(messageReducer);
 /////// setup for Header 
 const Header = (props) =>{
   return(
-      <div className="header">
-          <div className="title">{props.title}</div>
+      <div className={[style, "header"].join(" ")}>
+          <div className={[style, "title"].join(" ")}>{props.title}</div>
       </div>
   )
 }
@@ -176,13 +176,13 @@ class KeyPad extends React.Component {
       for(let j=0;j <4 && i*4 + j < keys.length;j++){
         let key = keys[(i*4)+j];
 
-        let col = key.width ? "-" + key.width*3: "-3";
+        let width = key.width ? "doubleButton" : "";
 
         if(key.type ==  "HOLDER")
           continue;
 
         buttons.push(
-          <button className={"button col" + col + " " + BUTTON_CLASSES[key.type]}  
+          <button className={[style, width, BUTTON_CLASSES[key.type], "button"].join(" ")  }  
             id={key.id} 
             eventkey={key.eventKey} 
             onClick={this.handleButton}
@@ -194,13 +194,13 @@ class KeyPad extends React.Component {
       }
 
       rows.push(
-        <div className="row">{buttons}</div>
+        <div className={[style, "keyRow"].join(" ")}>{buttons}</div>
       );
 
     }
     return(
 
-      <div className="keyPad container">
+      <div className={[style, "keyPad"].join(" ")}>
         {rows}
       </div>
 
@@ -235,7 +235,7 @@ class App extends React.Component{
   constructor(props){
     super(props)
     this.state ={
-      
+      fullScreen: props.fullScreen ? "fullScreen" : ""
     }
     this.inputHandler = this.inputHandler.bind(this)
 
@@ -254,16 +254,20 @@ class App extends React.Component{
 
 
     return (
-        <div className={"outerDiv " + themes[this.props.theme]} >         
-          <div className="innerDiv" >
+        <div className={[style, themes[this.props.theme], this.state.fullScreen, "outerDiv"].join(" ")}  >         
+          <div className={[style, "innerDiv"].join(" ")} >
 
             <Header title="Calculator" />
 
-            <div className="row">
-              <div className="col"><div className="textField">{this.props.register}</div></div>
+            <div className={[style, ""].join(" ")}>
+
+                <div className={[style, "textField"].join(" ")}>{this.props.register}</div>
+
             </div>
-            <div className="row">
-              <div className="col"><div className="textField" id="display">{this.props.input}</div></div>
+            <div className={[style, ""].join(" ")}>
+
+                <div className={[style, "textField"].join(" ")} id="display">{this.props.input}</div>
+
             </div>
 
             <KeyPad />
@@ -290,7 +294,7 @@ App = connect(
 
 App.id = "calculator";
 
-const AppWrapper = ()=> <Provider store={store} className={style}><App /></Provider>;
+const AppWrapper = (props)=> <Provider store={store} className={style}><App {...props} /></Provider>;
 
 //const AppWrapper = () => <div> super cow </div>;
 export default AppWrapper;
