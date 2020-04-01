@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
 import App from './App';
-let script = document.getElementById("drumsScript");
+let script = document.getElementById("calculatorScript");
 let targetId = "container";
 let fullScreen = true;
 
@@ -17,8 +17,12 @@ if(script){
     fullScreen = false;
 }
 
+
+
 // End App component
 const renderApp = ()=> {
+
+  
   render(
     <AppContainer>
       <App fullScreen={fullScreen} />
