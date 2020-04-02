@@ -13,30 +13,34 @@
         <nav id="navbar">
 
             <div class="navlinks">
-	            <h2>
-	             	Projects
-	            </h2>
-                <a class="nav-link" href="#Random_Quote_Machine" onclick="closeDrawer()">
+
+                <a class="nav-link" href="/" onclick="closeDrawer()">
+                    Home
+                </a>
+
+                <div class="nav-space">
+                </div>
+                <a class="nav-link" target="Random_Quote_Machine" onclick="pageNavigation(event)">
                     Random Quote Machine
                 </a>
                 <div class="nav-space">
                 </div>
-                <a class="nav-link" href="#Markdown_Editor" onclick="closeDrawer()">
+                <a class="nav-link" target="Markdown_Editor" onclick="pageNavigation(event)">
                     Markdown Editor
                 </a>
                 <div class="nav-space">
                 </div>
-                <a class="nav-link" href="#Drum_Machine" onclick="closeDrawer()">
+                <a class="nav-link" target="Drum_Machine" onclick="pageNavigation(event)">
                     Drum Machine
                 </a>
                 <div class="nav-space">
                 </div>
-                <a class="nav-link" href="#Pomodoro_Clock" onclick="closeDrawer()">
+                <a class="nav-link" target="Pomodoro_Clock" onclick="pageNavigation(event)">
                     Pomodoro Clock
                 </a>
                 <div class="nav-space">
                 </div>
-                <a class="nav-link" href="#Calculator" onclick="closeDrawer()">
+                <a class="nav-link" target="Calculator" onclick="pageNavigation(event)">
                     Calculator
                 </a>
             </div>
@@ -45,6 +49,14 @@
             </div>
             <script>
 
+                function pageNavigation(event){
+                    event.preventDefault();
+                    let target = event.target.getAttribute("target");
+
+                    document.getElementById(target).scrollIntoView();
+                    closeDrawer();
+                    return false;
+                }
             	function drawerClick (event){
             		let state = event.target.getAttribute("state")
 
@@ -364,7 +376,7 @@ const SessionIncrementButton = connect(
     <script src="/app/drums/index.js" id="drumsScript" targetId="drumsContainer" fullScreen="false"></script>
 
     <script src="/app/clock/index.js" id="clockScript" targetId="clockContainer" fullScreen="false"></script>
-    
+
     <script src="/app/calculator/index.js" id="calculatorScript" targetId="calculatorContainer" fullScreen="false"></script>
     <script src="/js/shared.js" data-target-id="myDiv"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css" rel="stylesheet">

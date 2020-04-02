@@ -1,280 +1,276 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="tech-doc">
     <head>
-        <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700|Open+Sans|Poiret+One&display=swap" rel="stylesheet">
+
             <link href="/style/tech-doc.css" rel="stylesheet"/>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             </meta>
         </link>
     </head>
-    <body class="themeFive">
+    <body class="themeFive " >
         <nav id="navbar">
 
             <div class="navlinks">
-	            <h2>
-	             	Projects
-	            </h2>
-                <a class="nav-link" href="#Random_Quote_Machine" onclick="closeDrawer()">
-                    Random Quote Machine
+                <a class="nav-link" href="/" onclick="closeDrawer()">
+                    Home
                 </a>
                 <div class="nav-space">
                 </div>
-                <a class="nav-link" href="#Markdown_Editor" onclick="closeDrawer()">
-                    Markdown Editor
+                    <a class="nav-link" href="#Tribute_Page" onclick="closeDrawer()">
+                    Tribute Page
                 </a>
                 <div class="nav-space">
                 </div>
-                <a class="nav-link" href="#Drum_Machine" onclick="closeDrawer()">
-                    Drum Machine
+                <a class="nav-link" href="#Survey_Form" onclick="closeDrawer()">
+                    Survey Form
                 </a>
                 <div class="nav-space">
                 </div>
-                <a class="nav-link" href="#Pomodoro_Clock" onclick="closeDrawer()">
-                    Pomodoro Clock
+                <a class="nav-link" href="#Product_Page" onclick="closeDrawer()">
+                    Product Landing
                 </a>
                 <div class="nav-space">
                 </div>
-                <a class="nav-link" href="#Calculator" onclick="closeDrawer()">
-                    Calculator
+                <a class="nav-link" href="#Technial Documentation" onclick="closeDrawer()">
+                    Technical Documentation
+                </a>
+                <div class="nav-space">
+                </div>
+                <a class="nav-link" href="#Portfolio" onclick="closeDrawer()">
+                    Portfolio
                 </a>
             </div>
-            <div class="navdrawer" id="navdrawer">
-            	 <i class="fas fa-caret-right" id="drawer-button" state="closed" onclick="drawerClick(event);"></i>
+            <div class="navdrawer" id="navdrawer" >
+                 <i class="fas fa-caret-right" id="drawer-button" state="closed" onclick="drawerClick(event);"></i>
             </div>
             <script>
 
-            	function drawerClick (event){
-            		let state = event.target.getAttribute("state")
-            		console.log("drawerClick targetState is " + state);
-            		if(state=='open'){
-            			closeDrawer(event.target)
-            			
-            		}
-            		else{
-            			openDrawer(event.target)
-            			
-            		}
-            	}
+                function drawerClick (event){
+                    let state = event.target.getAttribute("state")
 
-            	/**
-            	* allowed a drawer to be passed in to accomidate click events. 
-            	* save a look up the drawer if the event already has it. 
-            	*/
-            	function openDrawer(drawer){
+                    if(state=='open'){
+                        closeDrawer(event.target)
+                        
+                    }
+                    else{
+                        openDrawer(event.target)
+                        
+                    }
+                }
 
-            		if(!drawer)
-            			drawer = document.getElementById('navdrawer');
+                /**
+                * allowed a drawer to be passed in to accomidate click events. 
+                * save a look up the drawer if the event already has it. 
+                */
+                function openDrawer(drawer){
 
-            		let navbar = document.getElementById('navbar')
-            		let button = document.getElementById('drawer-button')
+                    if(!drawer)
+                        drawer = document.getElementById('navdrawer');
 
-            		console.log("open: navbar width is : " + navbar.offsetWidth);
+                    let navbar = document.getElementById('navbar')
+                    let button = document.getElementById('drawer-button')
 
-            		navbar.style.left =  "0px";
-            		button.style.transform = "rotate(180deg)"
-            		drawer.setAttribute('state', 'open')
-            	}
 
-            	/**
-            	* allowed a drawer to be passed in to accomidate click events. 
-            	* save a look up the drawer if the event already has it. 
-            	*/
-            	function closeDrawer(drawer){
-            		let navdrawer = document.getElementById('navdrawer')
-            		let navbar = document.getElementById('navbar')
-            		let button = document.getElementById('drawer-button')
-					if(!drawer)
-            			drawer = document.getElementById('navdrawer');
+                    navbar.style.left =  "0px";
+                    button.style.transform = "rotate(180deg)"
+                    drawer.setAttribute('state', 'open')
+                }
 
-            		console.log("close: navbar width is : " + navbar.offsetWidth);
-            		console.log("close: dawer width is : " + navdrawer.offsetWidth);
-            		navbar.style.left = -(navbar.offsetWidth - navdrawer.offsetWidth) + "px";
-            		button.style.transform = "rotate(0deg)";
-            		drawer.setAttribute('state', 'close')
-            	}
+                /**
+                * allowed a drawer to be passed in to accomidate click events. 
+                * save a look up the drawer if the event already has it. 
+                */
+                function closeDrawer(drawer){
+
+                    let navbar = document.getElementById('navbar')
+                    let button = document.getElementById('drawer-button')
+                    if(!drawer)
+                        drawer = document.getElementById('navdrawer');
+
+                    // if the drawer is hidden then screen is big and 
+                    // drawer functionality should be off
+                    if(drawer.offsetParent===null)
+                        return
+
+                    navbar.style.left = -(navbar.offsetWidth - navdrawer.offsetWidth) + "px";
+                    button.style.transform = "rotate(0deg)";
+                    drawer.setAttribute('state', 'close')
+                }
+
+                window.onresize = function resetStyle(event){
+
+                    let navbar = document.getElementById('navbar')
+                    navbar.style = undefined;
+                }
+
             </script>
         </nav>
         <main class="outerDiv " id="main-doc" onclick="closeDrawer()">
+
             <h1>
-            	Responsive Design
+                Responsive Web Design
             </h1>
-            <section class="main-section" id="Random_Quote_Machine">
+            <section class="main-section" id="General">
+                <p>
+                    The following are details outlying the final projects for the Front End Libraries <a href="https://www.freecodecamp.org/certification/fcc4893b047-b5d0-472e-b76e-3805d9ed0aba/front-end-libraries">certification</a> from <a href="http://www.freecodecamp.org">FreeCodeCamp.org</a>
+                </p>
+                <p>
+                    The specific libraries covered in the course work include HTML/HTML5, CSS, Applied Visual Design, Accessibility, a few Web Design Principles and Flexbox/Grid. Original projects are available as Pens on <a href="http://www.codepen.com">CodePen.com</a> and include the certification tests used to validate each project. 
+                </p>
+                <p>
+                    In terms of doing Responsive Mobile First design, I learned the most out of these projects, though not strictly as a result of the coursework's certification process. Because of the nature of Free Code Camp I found its possible to game some of the certifications tests. However, this course has particularly weak testing abilities and each project can be passed with little to no real work being done. I would caution any hiring manager's to be skeptical of anyone presenting this certification and ask to see specific work examples.
+                </p>
+                <p> 
+                    As a final note I chose to go back and obtain this certification in the interest of completion. As such many of the projects I completed simply to satisfy the test cases and not to create the best representation of each project. This is particularly noticeable in the Tribute page and the Product Landing page. That said, I more than made up for that by focusing my work in the Portfolio page which serves as the basis of the home page for this site, and the Technical Documentation which serves as the basis for this page and the Front End certification pages on this site.
+                </p>
+                <p>
+                    As a final note I chose to go back and obtain this certificaion in the interest of completion. As such many of the projects I completed simply to satisfy the test cases and not to create the best representation of each project. This is particularly noticable in the Tribute page and the Product Landing page. That said, I more than made up for that by focusing my work in the Portfolio page which serves as the basis of the home page for this site, and the Technial Documentation which serves as the basis for this page and the Front End certification pages on this site. 
+                </p>
+                <p>
+                    Please consider contributing to <a href="http://www.freecodecamp.org">FreeCodeCamp.org</a> so it may continue to provide free access to educational material for software development. I really believe in their mission. What's more, they are a 501 3c so your donation is tax deductible.
+                </p>
+            </section>
+            
+            <section class="main-section" id="Tribute_Page">
+                <div class="nav-space"> </div>
                 <header>
-                    Random Quote Machine
+                    Tribute Page
                 </header>
+                <div class="appContainer static">
+                    <a href="/view/tribute" target="_blank" class>
+                    <i class="fas fa-external-link-alt"></i></a>
+                    <div>
+                        <iframe src="/view/tribute" class="staticViewport"></iframe>
+                    </div>
+                </div>
                 <p>
-                    This was the first project for the Front End Libraries certification. The work is pretty simple. I only had to find an API that was accessable over CORS. I elected not to use Redux for any state management.
+                    The objective with this project was to create a page with external links and a dynamic sizing image. As you can see I put in the bare amount of work necessary to satisfy the test cases. 
+
+                </p>
+                <ul class="reactProjectList">
+
+                    <li>
+                        <a href="https://www.freecodecamp.org/learn/responsive-web-design/responsive-web-design-projects/build-a-tribute-page">Project Requirements</a>
+                    </li>
+                    <li>
+                        <a href="https://codepen.io/mariano-hernandez/pen/GRJpzMy" target="_blank">Code Pen</a>
+                    </li>
+                </ul>   
+
+
+            </section>
+   
+            <section class="main-section" id="Survey_Form">
+                <div class="nav-space"></div>
+                <header>
+                    Survey Form
+                </header>
+                <div class="appContainer static">
+                    <a href="/view/survey" target="_blank" class>
+                    <i class="fas fa-external-link-alt"></i></a>
+                    <div>
+                        <iframe src="/view/survey" class="staticViewport"></iframe>
+                    </div>
+                </div>
+                <ul class="reactProjectList">
+
+                    <li>
+                        <a href="https://www.freecodecamp.org/learn/responsive-web-design/responsive-web-design-projects/build-a-survey-form">Project Requirements</a>
+                    </li>
+                    <li>
+                        <a href="https://codepen.io/mariano-hernandez/pen/LYVNbNP" target="_blank">Code Pen</a>
+                    </li>
+
+                </ul>  
+                <p>
+                    This project is a simple form just with the objective of styling most of the standard form components. It doesn't do anything. I spent most of my time on this one tyring to figure out how to put a background image and an overlay on top of it while still allowing the primary form to be slightly opaque to view the image through the background. 
+                </p>
+            </section>
+            <section class="main-section" id="Product_Page">
+                <div class="nav-space"></div>
+                <header>
+                    Product Landing
+                </header>
+
+                <div class="appContainer static">
+                    <a href="/view/furniture" target="_blank" class>
+                    <i class="fas fa-external-link-alt"></i></a>
+                    <div>
+                        <iframe src="/view/furniture" class="staticViewport"></iframe>
+                    </div>
+                </div>                
+                <ul class="reactProjectList">
+
+                    <li>
+                        <a href="https://www.freecodecamp.org/learn/responsive-web-design/responsive-web-design-projects/build-a-product-landing-page">Project Requirements</a>
+                    </li>
+                    <li>
+                        <a href="https://codepen.io/mariano-hernandez/pen/OJVRpYJ" target="_blank">Code Pen</a>
+                    </li>
+                </ul> 
+                <p>
+                    The objective for this project was to create a page with an embedded Youtube video that sized itself to the window view. I added some extra features around a header and menu that is layed out for Mobile devices then expands to accomidate larger views. 
+                </p>
+ 
+            </section>
+  
+            <section class="main-section" id="Technial_Documentation">
+                <div class="nav-space"></div>
+                <header>
+                    Technical Documentation
+                </header>
+ 
+                <ul class="reactProjectList">
+
+                    <li>
+                        <a href="https://www.freecodecamp.org/learn/responsive-web-design/responsive-web-design-projects/build-a-technical-documentation-page">Project Requirements</a>
+                    </li>
+                    <li>
+                        <a href="https://codepen.io/mariano-hernandez/pen/mdJOWeX" target="_blank">Code Pen</a>
+                    </li>
+                </ul>  
+                <p>
+                    The page you are reading, as well as the <a href="/view/react-apps">React Apps</a> are decended from the origianl Technical Documentation project. In the original I designed the navigation tool to display as a scollable area at the top of the screen in mobile devices. I never was very satisfied with that design, so for these pages I rebuilt the naviagation as a drawer in smaller viewports. 
                 </p>
                 <p>
-                    As first projects go, the experience was good. I had a bit of work figuring out how to use jQuery to do an async api call. I never did get into promises, which is work for future projects. I also began to stratch the surface with Bootstrap though not to any significant degree.
+                    I have very minimal JS that opens/closes the drawer. The JS The obvious event hook was on the drawer's onclick, but I also added two hooks to the click on the main body and touching a link. 
                 </p>
                 <p>
-                    What follows is the first Mixin I wrote. It's very basic and I find that I don't use it anymore, probably because I've not had any problems with border raidus across browsers yet.
+                    My only gotcha came as a result of managing the left location of the drawer by both CSS (via media queries) and Javascript (via events). Turns out if one sets a style in Javascript CSS considers it to be an inline style and it will always override any styling that might be driven by CSS media queries. To compensate for this I removed any inline styling on resizing events to allow the CSS Media Queries to regain control. 
                 </p>
-                <pre><code>
-@mixin border-radius($x){ 
-  -webkit-border-radius: $x;
-  -moz-border-radius: $x;
-  -ms-border-radius: $x;
-  border-radius: $x;
+
+                
+                <pre><code>window.onresize = function resetStyle(event){
+    let navbar = document.getElementById('navbar')
+    navbar.style = undefined;
 }
+            </code></pre>
+            </section>
 
-</code></pre>
-                <p>
-                    The technology list employed in this project includes:
-                </p>
-                <ul>
+            <section class="main-section" id="Portfolio">
+                <div class="nav-space"></div>
+                <header>
+                    Portfolio
+                </header>
+                <ul class="reactProjectList">
+
                     <li>
-                        HTML5
+                        <a href="https://www.freecodecamp.org/learn/responsive-web-design/responsive-web-design-projects/build-a-personal-portfolio-webpage">Project Requirements</a>
                     </li>
                     <li>
-                        CSS and SCSS
-                    </li>
-                    <li>
-                        ES6
-                    </li>
-                    <li>
-                        React
+                        <a href="https://codepen.io/mariano-hernandez/pen/BaNpBzX" target="_blank">Code Pen</a>
                     </li>
                 </ul>
+                <p>
+                    The Portfolio project serves as the basis for my <a href="/">home</a> page. 
+                </p>
+                
             </section>
-            <section class="main-section" id="Markdown_Editor">
-                <header>
-                    Markdown Editor
-                </header>
-                <p>
-                    This was my second project along the road to Front End Library certification. My understanding of React was expanded greatly in this project and it's where I built my first reusable component with my Windowing capabilities.
-                </p>
-                <p>
-                    Initially I just used the React state management for most of the interactivity, but re-engineered the project to use Redux after the Drum Machine project.
-                </p>
-                <p>
-                    The most interesting parts of the project actually came during the re-engineering effort. It was during this period that I extracted out the expand/shrink fucntions out of CSS and moved it into the Redux state machine cycle. I had the idea that I could dispatch an event on one window that all windows would observe, then pass a state object that either expands the window or hides the window (when maximizing), or puts all the windows back to the orignial state.
-                </p>
-                <pre><code>WindowComponent = connect(
-  function mapStateToProps(state, ownProps){
 
-    let fullSize = state.windows[ownProps.id].fullSize;
-    let styleClass = "";
-
-    if(!state.windows.fullSize){
-      styleClass = "window col-md-" + state.windows[ownProps.id].width
-    }else{
-      if(fullSize){
-        styleClass = "window col-md-12"
-      }else{
-        styleClass = "window windowHide"
-      }
-    }
-
-    let toReturn = {
-      width: state.windows[ownProps.id].width,
-      fullSize: fullSize,
-      styleClass: styleClass
-    }
-    return toReturn
-  },
-  function mapDispatchToProps(dispatch){
-    return{
-      resizeWindow: (id, width) => {
-        dispatch(createResizeAction(id, width))
-      }
-    }
-  }, null,  {forwardRef: true}
-)(WindowComponent)
-
-</code></pre>
-            </section>
-            <section class="main-section" id="Drum_Machine">
-                <header>
-                    Drum Machine
-                </header>
-                <p>
-                    paragraph 1
-                </p>
-                <p>
-                    paragraph 2
-                </p>
-                <code>
-                    code section
-                </code>
-                <ul>
-                    <li>
-                        list element
-                    </li>
-                </ul>
-            </section>
-            <section class="main-section" id="Pomodoro_Clock">
-                <header>
-                    Pomodoro Clock
-                </header>
-                <p>
-                    At this point I still hadn't implented any state managment with Redux. I struggled to understand the API and the information within the course work was so bare bones that it really just pointed in a direction and expected me to go and do further research.
-                </p>
-                <p>
-                    I set about to pick up the pieces I had been ignoring in the previsous projects. It was in this phase when the API finally clicked for me. I think it finally clicked for me when I was reading on Higher Order Compoents (HOC) as it relates to currying and all of a sudden the React.Component.connect method made sense to me. It was the result of this that I was able to use the connect method to create HOCs that I could configure through the state object. Below is an example of one such HOC.
-                </p>
-                <pre><code>
-const TimingButton = (props)=>{
-  let className = "fa-"+props.label+"-circle"
-  return(
-    <button className="button lengthButton " 
-      id={props.name} 
-      disabled={props.timing} 
-      onClick={props.action}>
-      <i className={"fas " + className}></i>
-    </button>
-  )}; 
-
-const SessionDecrementButton = connect(
-  state =>({timing: state.timing, label: "minus"}),
-  dispatch => ({action: () =>  { dispatch({type:DEC_SESSION})}})
-)(TimingButton)
-
-const SessionIncrementButton = connect(
-  state =>({timing: state.timing, label: "plus"}),
-  dispatch => ({action: () =>  { dispatch({type:INC_SESSION})}})
-)(TimingButton)
-
-</code></pre>
-                <p>
-                    As you can see the TimingButton is wrapped by the HOC generated by the connect function which ties a specific dispatch to the clicking of the button.
-                </p>
-                <p>
-                    as well as optimizing the my Component connections to Redux to minimize component updates.
-                </p>
-                <ul>
-                    <li>
-                        list element
-                    </li>
-                </ul>
-            </section>
-            <section class="main-section" id="Calculator">
-                <header>
-                    Calculator
-                </header>
-                <p>
-                    paragraph 1
-                </p>
-                <p>
-                    paragraph 2
-                </p>
-                <code>
-                    code section
-                </code>
-                <ul>
-                    <li>
-                        list element
-                    </li>
-                </ul>
-            </section>
         </main>
     </body>
-    <script>
-        window.onload = () => {
-		document.getElementById("main-doc").scrollTo(1,1);
-	}
-    </script>
+
+   
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js">
         </script>

@@ -99,10 +99,13 @@ h3{
 	flex-direction: column;
 }
 
+#main-doc  a {
+	color: inherit;
+}
+
 #projectsSection > a {
 	text-decoration: none;
 	color: inherit;
-
 }
 
 .project-tile {
@@ -205,8 +208,9 @@ h3{
 		color: rgba(255, 255, 255, .2);
 	}
 
-	#contactLinks > a:hover {
-		color: rgba(255, 255, 255, .8);
+	#main-doc a:hover {
+		text-decoration: none;
+		color: var(    --text_nav);
 	}
 
 }
@@ -295,4 +299,5 @@ h3{
   --shade4: #5385a9;
    --background1: #dedede;
    --background2: #f4f1af;
+   --text_nav: #466b8c;
 }
