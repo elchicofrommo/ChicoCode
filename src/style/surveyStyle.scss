@@ -1,16 +1,7 @@
-:global(html) {
-	height: 100%;
-  margin: 0px;
 
-  font-family: "Raleway", sans-serif;
-  touch-action: manipulation;
-  
-  font-family: 'Open Sans', sans-serif;
 
-}
+:global(body) {
 
-body {
-	height: 100%;
   margin: 0px;
 
   font-family: "Raleway", sans-serif;
@@ -126,5 +117,6 @@ form > div > select {
     --shade3: #dbd55b;
     --shade4: #dedede;
     --textShade: #385a6e;
+    --text_nav: #466b8c;
 }
 

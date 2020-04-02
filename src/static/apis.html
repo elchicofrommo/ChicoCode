@@ -1,280 +1,219 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="tech-doc">
     <head>
-        <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700|Open+Sans|Poiret+One&display=swap" rel="stylesheet">
+
             <link href="/style/tech-doc.css" rel="stylesheet"/>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             </meta>
         </link>
     </head>
-    <body class="themeFive">
+    <body class="themeFive " >
         <nav id="navbar">
 
             <div class="navlinks">
-	            <h2>
-	             	Projects
-	            </h2>
-                <a class="nav-link" href="#Random_Quote_Machine" onclick="closeDrawer()">
-                    Random Quote Machine
+                <a class="nav-link" href="/" onclick="closeDrawer()">
+                    Home
                 </a>
                 <div class="nav-space">
-                </div>
-                <a class="nav-link" href="#Markdown_Editor" onclick="closeDrawer()">
-                    Markdown Editor
-                </a>
-                <div class="nav-space">
-                </div>
-                <a class="nav-link" href="#Drum_Machine" onclick="closeDrawer()">
-                    Drum Machine
-                </a>
-                <div class="nav-space">
-                </div>
-                <a class="nav-link" href="#Pomodoro_Clock" onclick="closeDrawer()">
-                    Pomodoro Clock
-                </a>
-                <div class="nav-space">
-                </div>
-                <a class="nav-link" href="#Calculator" onclick="closeDrawer()">
-                    Calculator
-                </a>
             </div>
-            <div class="navdrawer" id="navdrawer">
-            	 <i class="fas fa-caret-right" id="drawer-button" state="closed" onclick="drawerClick(event);"></i>
+            <div class="navdrawer" id="navdrawer" >
+                 <i class="fas fa-caret-right" id="drawer-button" state="closed" onclick="drawerClick(event);"></i>
             </div>
             <script>
 
-            	function drawerClick (event){
-            		let state = event.target.getAttribute("state")
-            		console.log("drawerClick targetState is " + state);
-            		if(state=='open'){
-            			closeDrawer(event.target)
-            			
-            		}
-            		else{
-            			openDrawer(event.target)
-            			
-            		}
-            	}
+                function drawerClick (event){
+                    let state = event.target.getAttribute("state")
 
-            	/**
-            	* allowed a drawer to be passed in to accomidate click events. 
-            	* save a look up the drawer if the event already has it. 
-            	*/
-            	function openDrawer(drawer){
+                    if(state=='open'){
+                        closeDrawer(event.target)
+                        
+                    }
+                    else{
+                        openDrawer(event.target)
+                        
+                    }
+                }
 
-            		if(!drawer)
-            			drawer = document.getElementById('navdrawer');
+                /**
+                * allowed a drawer to be passed in to accomidate click events. 
+                * save a look up the drawer if the event already has it. 
+                */
+                function openDrawer(drawer){
 
-            		let navbar = document.getElementById('navbar')
-            		let button = document.getElementById('drawer-button')
+                    if(!drawer)
+                        drawer = document.getElementById('navdrawer');
 
-            		console.log("open: navbar width is : " + navbar.offsetWidth);
+                    let navbar = document.getElementById('navbar')
+                    let button = document.getElementById('drawer-button')
 
-            		navbar.style.left =  "0px";
-            		button.style.transform = "rotate(180deg)"
-            		drawer.setAttribute('state', 'open')
-            	}
 
-            	/**
-            	* allowed a drawer to be passed in to accomidate click events. 
-            	* save a look up the drawer if the event already has it. 
-            	*/
-            	function closeDrawer(drawer){
-            		let navdrawer = document.getElementById('navdrawer')
-            		let navbar = document.getElementById('navbar')
-            		let button = document.getElementById('drawer-button')
-					if(!drawer)
-            			drawer = document.getElementById('navdrawer');
+                    navbar.style.left =  "0px";
+                    button.style.transform = "rotate(180deg)"
+                    drawer.setAttribute('state', 'open')
+                }
 
-            		console.log("close: navbar width is : " + navbar.offsetWidth);
-            		console.log("close: dawer width is : " + navdrawer.offsetWidth);
-            		navbar.style.left = -(navbar.offsetWidth - navdrawer.offsetWidth) + "px";
-            		button.style.transform = "rotate(0deg)";
-            		drawer.setAttribute('state', 'close')
-            	}
+                /**
+                * allowed a drawer to be passed in to accomidate click events. 
+                * save a look up the drawer if the event already has it. 
+                */
+                function closeDrawer(drawer){
+
+                    let navbar = document.getElementById('navbar')
+                    let button = document.getElementById('drawer-button')
+                    if(!drawer)
+                        drawer = document.getElementById('navdrawer');
+
+                    // if the drawer is hidden then screen is big and 
+                    // drawer functionality should be off
+                    if(drawer.offsetParent===null)
+                        return
+
+                    navbar.style.left = -(navbar.offsetWidth - navdrawer.offsetWidth) + "px";
+                    button.style.transform = "rotate(0deg)";
+                    drawer.setAttribute('state', 'close')
+                }
+
+                window.onresize = function resetStyle(event){
+
+                    let navbar = document.getElementById('navbar')
+                    navbar.style = undefined;
+                }
+
             </script>
         </nav>
         <main class="outerDiv " id="main-doc" onclick="closeDrawer()">
+
             <h1>
-            	Microservices and APIs
+                API and Microservice Development
             </h1>
-            <section class="main-section" id="Random_Quote_Machine">
+            <section class="main-section" id="General">
+                <p>
+                    The following are details outlying the final projects for the APIs and Microservices <a href="https://www.freecodecamp.org/certification/fcc4893b047-b5d0-472e-b76e-3805d9ed0aba/apis-and-microservices">certification</a> from <a href="http://www.freecodecamp.org">FreeCodeCamp.org</a>
+                </p>
+                <p>
+                    The specific libraries covered in the course work include Node.js, Express, MongoDB and Mongoose. As a parallel effort to this work, I picked up the Jest test framework to write all my validation tests for each end point. Finally, I spent some considerable time building an API Container <a href="https://github.com/elchicofrommo/chicoexpress">boilerplate</a> which provided logging, testing, and transpiling that I used for each of the projects below.
+                </p>
+                <p> 
+                    Of all the certifications I went through on <a href="http://www.freecodecamp.org">FreeCodeCamp.org</a> I feel the most confident in the validity of the certification. Already having extensive experience delivering an API gateway at American Eagle Outfitters with Node.js and Express, I was pleased to see many of the core connects were presented in the course work and that the certification tests do accurately validate a student's ability to apply those topics to an engineering solution.
+                </p>
+                <p>
+                    Another observation I would make is that the requirements definitions for each project are extremely vague. Normally during a story walk though I would never allow a team to accept a story with such low resolution. But in the case of the course work I found that it actually forced me (the student) to think though the consequences of different design choices in trying to "guess" product's intent. 
+                </p>
+                <p>
+                </p>
+                <p>
+                    Please consider contributing to <a href="http://www.freecodecamp.org">FreeCodeCamp.org</a> so it may continue to provide free access to educational material for software development. I really believe in their mission. What's more, they are a 501 3c so your donation is tax deductible.
+                </p>
+            </section>
+            
+            <section class="main-section" id="Tribute_Page">
+                <div class="nav-space"> </div>
                 <header>
-                    Random Quote Machine
+                    Timestamp Service
+                </header>
+
+                <p>
+                    A Single end point that returns the timestamp of the API server
+
+                </p>
+                <ul class="reactProjectList">
+
+                    <li>
+                        <a href="https://www.freecodecamp.org/learn/apis-and-microservices/apis-and-microservices-projects/timestamp-microservice">Project Requirements</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/elchicofrommo/fcc_microservices_timestamp" target="_blank">GitHub Repo</a>
+                    </li>
+                </ul>   
+
+
+            </section>
+   
+            <section class="main-section" id="Survey_Form">
+                <div class="nav-space"></div>
+                <header>
+                    Header Parser
                 </header>
                 <p>
-                    This was the first project for the Front End Libraries certification. The work is pretty simple. I only had to find an API that was accessable over CORS. I elected not to use Redux for any state management.
+                    A Service that returns the some Header details of the API call in the response object.
                 </p>
-                <p>
-                    As first projects go, the experience was good. I had a bit of work figuring out how to use jQuery to do an async api call. I never did get into promises, which is work for future projects. I also began to stratch the surface with Bootstrap though not to any significant degree.
-                </p>
-                <p>
-                    What follows is the first Mixin I wrote. It's very basic and I find that I don't use it anymore, probably because I've not had any problems with border raidus across browsers yet.
-                </p>
-                <pre><code>
-@mixin border-radius($x){ 
-  -webkit-border-radius: $x;
-  -moz-border-radius: $x;
-  -ms-border-radius: $x;
-  border-radius: $x;
-}
+                <ul class="reactProjectList">
 
-</code></pre>
+                    <li>
+                        <a href="https://www.freecodecamp.org/learn/apis-and-microservices/apis-and-microservices-projects/request-header-parser-microservice">Project Requirements</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/elchicofrommo/fcc_microservices_headerparser" target="_blank">GitHub Repo</a>
+                    </li>
+
+                </ul>  
+
+            </section>
+            <section class="main-section" id="Product_Page">
+                <div class="nav-space"></div>
+                <header>
+                    URL Shortener
+                </header>
                 <p>
-                    The technology list employed in this project includes:
+                    A Service to generate a short url. Another endpoint to generate a 302 redirect when that short url is called. 
+                </p>              
+                <ul class="reactProjectList">
+
+                    <li>
+                        <a href="https://www.freecodecamp.org/learn/apis-and-microservices/apis-and-microservices-projects/url-shortener-microservice">Project Requirements</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/elchicofrommo/fcc_microservices_shorturl" target="_blank">GitHub Repo</a>
+                    </li>
+                </ul> 
+
+ 
+            </section>
+  
+            <section class="main-section" id="Technial_Documentation">
+                <div class="nav-space"></div>
+                <header>
+                    Exercise Tracker
+                </header>
+                 <p>
+                    A collection of routes to create a user, add an exercise event to that user, and to see all exercise events for a user. 
                 </p>
-                <ul>
+                <ul class="reactProjectList">
+
                     <li>
-                        HTML5
+                        <a href="https://www.freecodecamp.org/learn/apis-and-microservices/apis-and-microservices-projects/exercise-tracker">Project Requirements</a>
                     </li>
                     <li>
-                        CSS and SCSS
+                        <a href="https://github.com/elchicofrommo/fcc_microservices_fitness" target="_blank">GitHub Repo</a>
+                    </li>
+                </ul>  
+
+            </section>
+
+            <section class="main-section" id="Portfolio">
+                <div class="nav-space"></div>
+                <header>
+                    File Metadata
+                </header>
+                <ul class="reactProjectList">
+
+                    <li>
+                        <a href="https://www.freecodecamp.org/learn/apis-and-microservices/apis-and-microservices-projects/file-metadata-microservice">Project Requirements</a>
                     </li>
                     <li>
-                        ES6
-                    </li>
-                    <li>
-                        React
+                        <a href="https://github.com/elchicofrommo/fcc_microservice_filemetadata" target="_blank">GitHub Repo</a>
                     </li>
                 </ul>
+                <p>
+                    The Portfolio project serves as the basis for my <a href="/">home</a> page. 
+                </p>
+                
             </section>
-            <section class="main-section" id="Markdown_Editor">
-                <header>
-                    Markdown Editor
-                </header>
-                <p>
-                    This was my second project along the road to Front End Library certification. My understanding of React was expanded greatly in this project and it's where I built my first reusable component with my Windowing capabilities.
-                </p>
-                <p>
-                    Initially I just used the React state management for most of the interactivity, but re-engineered the project to use Redux after the Drum Machine project.
-                </p>
-                <p>
-                    The most interesting parts of the project actually came during the re-engineering effort. It was during this period that I extracted out the expand/shrink fucntions out of CSS and moved it into the Redux state machine cycle. I had the idea that I could dispatch an event on one window that all windows would observe, then pass a state object that either expands the window or hides the window (when maximizing), or puts all the windows back to the orignial state.
-                </p>
-                <pre><code>WindowComponent = connect(
-  function mapStateToProps(state, ownProps){
 
-    let fullSize = state.windows[ownProps.id].fullSize;
-    let styleClass = "";
-
-    if(!state.windows.fullSize){
-      styleClass = "window col-md-" + state.windows[ownProps.id].width
-    }else{
-      if(fullSize){
-        styleClass = "window col-md-12"
-      }else{
-        styleClass = "window windowHide"
-      }
-    }
-
-    let toReturn = {
-      width: state.windows[ownProps.id].width,
-      fullSize: fullSize,
-      styleClass: styleClass
-    }
-    return toReturn
-  },
-  function mapDispatchToProps(dispatch){
-    return{
-      resizeWindow: (id, width) => {
-        dispatch(createResizeAction(id, width))
-      }
-    }
-  }, null,  {forwardRef: true}
-)(WindowComponent)
-
-</code></pre>
-            </section>
-            <section class="main-section" id="Drum_Machine">
-                <header>
-                    Drum Machine
-                </header>
-                <p>
-                    paragraph 1
-                </p>
-                <p>
-                    paragraph 2
-                </p>
-                <code>
-                    code section
-                </code>
-                <ul>
-                    <li>
-                        list element
-                    </li>
-                </ul>
-            </section>
-            <section class="main-section" id="Pomodoro_Clock">
-                <header>
-                    Pomodoro Clock
-                </header>
-                <p>
-                    At this point I still hadn't implented any state managment with Redux. I struggled to understand the API and the information within the course work was so bare bones that it really just pointed in a direction and expected me to go and do further research.
-                </p>
-                <p>
-                    I set about to pick up the pieces I had been ignoring in the previsous projects. It was in this phase when the API finally clicked for me. I think it finally clicked for me when I was reading on Higher Order Compoents (HOC) as it relates to currying and all of a sudden the React.Component.connect method made sense to me. It was the result of this that I was able to use the connect method to create HOCs that I could configure through the state object. Below is an example of one such HOC.
-                </p>
-                <pre><code>
-const TimingButton = (props)=>{
-  let className = "fa-"+props.label+"-circle"
-  return(
-    <button className="button lengthButton " 
-      id={props.name} 
-      disabled={props.timing} 
-      onClick={props.action}>
-      <i className={"fas " + className}></i>
-    </button>
-  )}; 
-
-const SessionDecrementButton = connect(
-  state =>({timing: state.timing, label: "minus"}),
-  dispatch => ({action: () =>  { dispatch({type:DEC_SESSION})}})
-)(TimingButton)
-
-const SessionIncrementButton = connect(
-  state =>({timing: state.timing, label: "plus"}),
-  dispatch => ({action: () =>  { dispatch({type:INC_SESSION})}})
-)(TimingButton)
-
-</code></pre>
-                <p>
-                    As you can see the TimingButton is wrapped by the HOC generated by the connect function which ties a specific dispatch to the clicking of the button.
-                </p>
-                <p>
-                    as well as optimizing the my Component connections to Redux to minimize component updates.
-                </p>
-                <ul>
-                    <li>
-                        list element
-                    </li>
-                </ul>
-            </section>
-            <section class="main-section" id="Calculator">
-                <header>
-                    Calculator
-                </header>
-                <p>
-                    paragraph 1
-                </p>
-                <p>
-                    paragraph 2
-                </p>
-                <code>
-                    code section
-                </code>
-                <ul>
-                    <li>
-                        list element
-                    </li>
-                </ul>
-            </section>
         </main>
     </body>
-    <script>
-        window.onload = () => {
-		document.getElementById("main-doc").scrollTo(1,1);
-	}
-    </script>
+
+   
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js">
         </script>

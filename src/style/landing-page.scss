@@ -1,45 +1,17 @@
 :global(html) {
+
+
+}
+
+:global(body){
 	height: 100%;
   margin: 0px;
 
   font-family: "Raleway", sans-serif;
   touch-action: manipulation;
-  
+  background-color: rgba(100, 100, 0 , .3);
   font-family: 'Open Sans', sans-serif;
 
-}
-
-body{
-	height: 100%;
-  margin: 0px;
-
-  font-family: "Raleway", sans-serif;
-  touch-action: manipulation;
-  
-  font-family: 'Open Sans', sans-serif;
-
-}
-
-
-.backgroundImage {
-
-	height: 100%;
-	width: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: -3;
-
-}
-.backgroundOverlay {
-	height: 100%;
-	width: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
-
-	background-color: rgba(100, 100, 0 , .3);
-	z-index: -2;
 }
 
 header {
@@ -111,6 +83,7 @@ iframe {
 .outerDiv {
 	padding-bottom: 20px;
 	margin-top: 100px;
+
 }
 
 #title {
