@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="tech-doc">
     <head>
-
+            <link rel="icon" type="image/svg" href="/assets/favicon.svg" >
             <link href="/style/tech-doc.css" rel="stylesheet"/>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             </meta>
@@ -16,22 +16,22 @@
                 </a>
                 <div class="nav-space">
                 </div>
-                    <a class="nav-link" href="#Tribute_Page" onclick="closeDrawer()">
+                    <a class="nav-link" href="Tribute_Page" onclick="pageNavigation(event)">
                     Tribute Page
                 </a>
                 <div class="nav-space">
                 </div>
-                <a class="nav-link" href="#Survey_Form" onclick="closeDrawer()">
+                <a class="nav-link" href="Survey_Form" onclick="pageNavigation(event)">
                     Survey Form
                 </a>
                 <div class="nav-space">
                 </div>
-                <a class="nav-link" href="#Product_Page" onclick="closeDrawer()">
+                <a class="nav-link" href="Product_Page" onclick="pageNavigation(event)">
                     Product Landing
                 </a>
                 <div class="nav-space">
                 </div>
-                <a class="nav-link" href="#Technial Documentation" onclick="closeDrawer()">
+                <a class="nav-link" href="Technial_Documentation" onclick="pageNavigation(event)">
                     Technical Documentation
                 </a>
                 <div class="nav-space">
@@ -44,6 +44,15 @@
                  <i class="fas fa-caret-right" id="drawer-button" state="closed" onclick="drawerClick(event);"></i>
             </div>
             <script>
+
+                function pageNavigation(event){
+                    event.preventDefault();
+                    let target = event.target.getAttribute("href");
+
+                    document.getElementById(target).scrollIntoView();
+                    closeDrawer();
+                    return false;
+                }
 
                 function drawerClick (event){
                     let state = event.target.getAttribute("state")
@@ -124,9 +133,6 @@
                     As a final note I chose to go back and obtain this certification in the interest of completion. As such many of the projects I completed simply to satisfy the test cases and not to create the best representation of each project. This is particularly noticeable in the Tribute page and the Product Landing page. That said, I more than made up for that by focusing my work in the Portfolio page which serves as the basis of the home page for this site, and the Technical Documentation which serves as the basis for this page and the Front End certification pages on this site.
                 </p>
                 <p>
-                    As a final note I chose to go back and obtain this certificaion in the interest of completion. As such many of the projects I completed simply to satisfy the test cases and not to create the best representation of each project. This is particularly noticable in the Tribute page and the Product Landing page. That said, I more than made up for that by focusing my work in the Portfolio page which serves as the basis of the home page for this site, and the Technial Documentation which serves as the basis for this page and the Front End certification pages on this site. 
-                </p>
-                <p>
                     Please consider contributing to <a href="http://www.freecodecamp.org">FreeCodeCamp.org</a> so it may continue to provide free access to educational material for software development. I really believe in their mission. What's more, they are a 501 3c so your donation is tax deductible.
                 </p>
             </section>
@@ -137,10 +143,10 @@
                     Tribute Page
                 </header>
                 <div class="appContainer static">
-                    <a href="/view/tribute" target="_blank" class>
+                    <a href="/view/tribute.html" target="_blank" class>
                     <i class="fas fa-external-link-alt"></i></a>
                     <div>
-                        <iframe src="/view/tribute" class="staticViewport"></iframe>
+                        <iframe src="/view/tribute.html" class="staticViewport"></iframe>
                     </div>
                 </div>
                 <p>
@@ -166,10 +172,10 @@
                     Survey Form
                 </header>
                 <div class="appContainer static">
-                    <a href="/view/survey" target="_blank" class>
+                    <a href="/view/survey.html" target="_blank" class>
                     <i class="fas fa-external-link-alt"></i></a>
                     <div>
-                        <iframe src="/view/survey" class="staticViewport"></iframe>
+                        <iframe src="/view/survey.html" class="staticViewport"></iframe>
                     </div>
                 </div>
                 <ul class="reactProjectList">
@@ -183,7 +189,7 @@
 
                 </ul>  
                 <p>
-                    This project is a simple form just with the objective of styling most of the standard form components. It doesn't do anything. I spent most of my time on this one tyring to figure out how to put a background image and an overlay on top of it while still allowing the primary form to be slightly opaque to view the image through the background. 
+                    This project is a simple form just with the objective of styling most of the standard form components. It doesn't do anything. I spent most of my time on this one trying to figure out how to put a background image and an overlay on top of it while still allowing the primary form to be slightly opaque to view the image through the background.
                 </p>
             </section>
             <section class="main-section" id="Product_Page">
@@ -193,10 +199,10 @@
                 </header>
 
                 <div class="appContainer static">
-                    <a href="/view/furniture" target="_blank" class>
+                    <a href="/view/furniture.html" target="_blank" class>
                     <i class="fas fa-external-link-alt"></i></a>
                     <div>
-                        <iframe src="/view/furniture" class="staticViewport"></iframe>
+                        <iframe src="/view/furniture.html" class="staticViewport"></iframe>
                     </div>
                 </div>                
                 <ul class="reactProjectList">
@@ -209,7 +215,7 @@
                     </li>
                 </ul> 
                 <p>
-                    The objective for this project was to create a page with an embedded Youtube video that sized itself to the window view. I added some extra features around a header and menu that is layed out for Mobile devices then expands to accomidate larger views. 
+                    The objective for this project was to create a page with an embedded Youtube video that sized itself to the window view. I added some extra features around a header and menu that is laid out for Mobile devices then expands to accommodate larger views.
                 </p>
  
             </section>
@@ -230,7 +236,7 @@
                     </li>
                 </ul>  
                 <p>
-                    The page you are reading, as well as the <a href="/view/react-apps">React Apps</a> are decended from the origianl Technical Documentation project. In the original I designed the navigation tool to display as a scollable area at the top of the screen in mobile devices. I never was very satisfied with that design, so for these pages I rebuilt the naviagation as a drawer in smaller viewports. 
+                    The page you are reading, as well as the <a href="/view/react-apps">React Apps</a> are descended from the original Technical Documentation project. In the original I designed the navigation tool to display as a scrollable area at the top of the screen in mobile devices. I never was very satisfied with that design, so for these pages I rebuilt the navigation as a drawer in smaller viewports.
                 </p>
                 <p>
                     I have very minimal JS that opens/closes the drawer. The JS The obvious event hook was on the drawer's onclick, but I also added two hooks to the click on the main body and touching a link. 
@@ -262,7 +268,7 @@
                     </li>
                 </ul>
                 <p>
-                    The Portfolio project serves as the basis for my <a href="/">home</a> page. 
+                    The Portfolio project serves as the basis for my <a href="/">home</a> page. I tried to keep the UI very clean and used a hero section to give my a big impact to the first impression. Notice that for mobile breakpoints the "sections" are laid out as column items but spill out to three columns in larger breakpoints. 
                 </p>
                 
             </section>

@@ -85,25 +85,25 @@ class DrumPads extends React.Component {
 
 		};
 		this.pads = [[
-			{letter: 'Q', code: 81, id: 'Heater-1', clip: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3'}, 
-			{letter: 'W', code: 87, id: 'Heater-2', clip: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3'}, 
-			{letter: 'E', code: 69, id: 'Heater-3', clip: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3'}, 
-			{letter: 'A', code: 65, id: 'Heater-4', clip: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3'}, 
-			{letter: 'S', code: 83, id: 'Clap', clip: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3'}, 
-			{letter: 'D', code: 68, id: 'Open-HH', clip: 'https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3'}, 
-			{letter: 'Z', code: 90, id: "Kick-n'-Hat", clip: 'https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3'},
-			{letter: 'X', code: 88, id: 'Kick', clip: 'https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3'}, 
-			{letter: 'C', code: 67, id: 'Closed-HH', clip: 'https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3'}],
+			{letter: 'Q', code: 81, id: 'Heater-1', clip: '/sounds/Heater-1.mp3'}, 
+			{letter: 'W', code: 87, id: 'Heater-2', clip: '/sounds/Heater-2.mp3'}, 
+			{letter: 'E', code: 69, id: 'Heater-3', clip: '/sounds/Heater-3.mp3'}, 
+			{letter: 'A', code: 65, id: 'Heater-4', clip: '/sounds/Heater-4_1.mp3'}, 
+			{letter: 'S', code: 83, id: 'Clap', clip: '/sounds/Heater-6.mp3'}, 
+			{letter: 'D', code: 68, id: 'Open-HH', clip: '/sounds/Dsc_Oh.mp3'}, 
+			{letter: 'Z', code: 90, id: "Kick-n'-Hat", clip: '/sounds/Kick_n_Hat.mp3'},
+			{letter: 'X', code: 88, id: 'Kick', clip: '/sounds/RP4_KICK_1.mp3'}, 
+			{letter: 'C', code: 67, id: 'Closed-HH', clip: '/sounds/Cev_H2.mp3'}],
 		[
-			{letter: 'Q', code: 81, id: 'Chord-1', clip: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3'}, 
-			{letter: 'W', code: 87, id: 'Chord-2', clip: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3'}, 
-			{letter: 'E', code: 69, id: 'Chord-3', clip: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3'}, 
-			{letter: 'A', code: 65, id: 'Shaker', clip: 'https://s3.amazonaws.com/freecodecamp/drums/Give_us_a_light.mp3'}, 
-			{letter: 'S', code: 83, id: 'Open-HH', clip: 'https://s3.amazonaws.com/freecodecamp/drums/Dry_Ohh.mp3'}, 
-			{letter: 'D', code: 68, id: 'Closed-HH', clip: 'https://s3.amazonaws.com/freecodecamp/drums/Bld_H1.mp3'}, 
-			{letter: 'Z', code: 90, id: "Punchy-Kick", clip: 'https://s3.amazonaws.com/freecodecamp/drums/punchy_kick_1.mp3'},
-			{letter: 'X', code: 88, id: 'Side-Stick', clip: 'https://s3.amazonaws.com/freecodecamp/drums/side_stick_1.mp3'}, 
-			{letter: 'C', code: 67, id: 'Snare', clip: 'https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3'}
+			{letter: 'Q', code: 81, id: 'Chord-1', clip: '/sounds/Chord_1.mp3'}, 
+			{letter: 'W', code: 87, id: 'Chord-2', clip: '/sounds/Chord_2.mp3'}, 
+			{letter: 'E', code: 69, id: 'Chord-3', clip: '/sounds/Chord_3.mp3'}, 
+			{letter: 'A', code: 65, id: 'Shaker', clip: '/sounds/Give_us_a_light.mp3'}, 
+			{letter: 'S', code: 83, id: 'Open-HH', clip: '/sounds/Dry_Ohh.mp3'}, 
+			{letter: 'D', code: 68, id: 'Closed-HH', clip: '/sounds/Bld_H1.mp3'}, 
+			{letter: 'Z', code: 90, id: "Punchy-Kick", clip: '/sounds/punchy_kick_1.mp3'},
+			{letter: 'X', code: 88, id: 'Side-Stick', clip: '/sounds/side_stick_1.mp3'}, 
+			{letter: 'C', code: 67, id: 'Snare', clip: '/sounds/Brk_Snr.mp3'}
 		]];
 
 		this.generatePads = this.generatePads.bind(this)

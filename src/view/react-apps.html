@@ -2,7 +2,7 @@
 <html lang="en" class="tech-doc">
     <head>
 
-
+            <link rel="icon" type="image/svg" href="/assets/favicon.svg" >
             <link href="/style/tech-doc.css" rel="stylesheet"/>
             
             <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,27 +20,27 @@
 
                 <div class="nav-space">
                 </div>
-                <a class="nav-link" target="Random_Quote_Machine" onclick="pageNavigation(event)">
+                <a class="nav-link" href="Random_Quote_Machine" onclick="pageNavigation(event)">
                     Random Quote Machine
                 </a>
                 <div class="nav-space">
                 </div>
-                <a class="nav-link" target="Markdown_Editor" onclick="pageNavigation(event)">
+                <a class="nav-link" href="Markdown_Editor" onclick="pageNavigation(event)">
                     Markdown Editor
                 </a>
                 <div class="nav-space">
                 </div>
-                <a class="nav-link" target="Drum_Machine" onclick="pageNavigation(event)">
+                <a class="nav-link" href="Drum_Machine" onclick="pageNavigation(event)">
                     Drum Machine
                 </a>
                 <div class="nav-space">
                 </div>
-                <a class="nav-link" target="Pomodoro_Clock" onclick="pageNavigation(event)">
+                <a class="nav-link" href="Pomodoro_Clock" onclick="pageNavigation(event)">
                     Pomodoro Clock
                 </a>
                 <div class="nav-space">
                 </div>
-                <a class="nav-link" target="Calculator" onclick="pageNavigation(event)">
+                <a class="nav-link" href="Calculator" onclick="pageNavigation(event)">
                     Calculator
                 </a>
             </div>
@@ -51,7 +51,7 @@
 
                 function pageNavigation(event){
                     event.preventDefault();
-                    let target = event.target.getAttribute("target");
+                    let target = event.target.getAttribute("href");
 
                     document.getElementById(target).scrollIntoView();
                     closeDrawer();
