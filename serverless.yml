@@ -1,0 +1,28 @@
+service: fcc-microservices
+package:
+  include:
+    - bin/server/functionServer.js
+  exclude:
+    - src/**
+    - node_modules/**
+    - test/**
+  excludeDevDependencies: true
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: dev
+  region: us-west-1
+  memorySize: 128
+functions:
+  app:
+    handler: bin/server/functionServer.handler
+    events: 
+      - http: 
+          path: /
+          method: ANY
+          cors: true
+      - http: 
+          path: /{proxy+}
+          method: ANY
+          cors: true

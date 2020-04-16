@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Poiret+One&display=swap|Open+Sans");
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&family=Open+Sans&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css');
 :global(html) {
 
@@ -50,6 +50,7 @@ nav > a {
 
 main {
 	height: 100%;
+	padding-top: 50px;
 }
 
 
@@ -64,9 +65,10 @@ main {
 
 .projects {
 	background-color: var(--shade3);
+	padding-top: 50px;
 }
 .hero{ 
-	height: 100%;
+	min-height: 100%;
 }
 
 
@@ -203,6 +205,13 @@ h3{
 	margin-left: 2.5px;
 }
 
+
+
+#errorMessage {
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
 @media (hover: hover) {
 	nav > a:hover {
 		color: rgba(255, 255, 255, .2);
@@ -253,6 +262,7 @@ h3{
 	{
 		padding-left: 15%;
 		padding-right: 15%;
+
 	}
 
 }

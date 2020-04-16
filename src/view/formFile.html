@@ -1,0 +1,25 @@
+<html>
+<body>
+	<script>
+		var handleSubmit = (event) =>{
+			var formData = new FormData();
+			event.preventDefault();
+			formData.append("upfile", document.getElementById('upfile').files[0]);
+			fetch('/api/fileanalyse', {
+				method: 'post',
+				body: formData
+			}).then((response)=>{
+				return response.json()
+			}).then((data)=>{
+				alert(JSON.stringify(data))
+			}).catch((err)=>{
+				alert("error is " + err)
+			})
+		}
+	</script>
+	<form action='/api/fileanalyse' method="post" onsubmit="handleSubmit(event)">
+		<input type="file" name="upfile" id="upfile">
+		<button type="submit">Submit</button>
+	</form>
+</body>
+</html>

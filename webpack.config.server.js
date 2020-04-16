@@ -4,11 +4,7 @@ if (result.error) {
   throw result.error;
 }
 const { parsed: envs } = result;
-const clientConfig = require('./webpack.config.js')
-const styleConfig = require('./webpack.config.style.js')
 
-console.log("envs are " + JSON.stringify(envs))
-console.log("clientConfig is : " + JSON.stringify(clientConfig))
 
 var nodeEnv = envs.NODE_ENV;
 const isProduction = nodeEnv !== 'development';
@@ -31,12 +27,12 @@ entryObject.index  = {
 const plugins = [];
 
 if (!isProduction) {
-    plugins.push(new webpack.HotModuleReplacementPlugin())
+ //   plugins.push(new webpack.HotModuleReplacementPlugin())
+   // plugins.push(new webpack.NoEmitOnErrorsPlugin())
 }
 
-console.log("####### " + /\w*test\// + " is undefined")
 
-module.exports = [clientConfig, styleConfig, {
+module.exports = [{
   entry: entryObject,
   name: "server", 
   output: {

@@ -1,6 +1,6 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CopyPlugin = require('copy-webpack-plugin');
+
 const webpack = require('webpack');
 const dotenv = require('dotenv');
 const path = require('path');
@@ -22,8 +22,8 @@ module.exports = {
   name: "styles",
   entry: {
     style: {
-      import: "./src/style/styles.js",
-      filename: 'style/styles.js'
+      import: "./src/build-proxy/style.js",
+      filename: 'build-proxy/style.js'
     }
   },
   optimization: {
@@ -65,6 +65,12 @@ module.exports = {
         ]
       },
       {
+        test: /\.mp3$/,
+        use: [
+          'file-loader?name=[folder]/[name].mp3'
+        ]
+      },
+      {
         test: /\.(png|svg|jpg|gif)$/,
         loader: 'file-loader',
         options:{
@@ -73,11 +79,18 @@ module.exports = {
       },
       {
         test: /\.html$/,
+        exclude: /view/,
+        use: [
+          'file-loader?name=[name].[ext]', 'extract-loader', 'html-loader'
+        ]
+      },
+      {
+        test: /\.html$/,
+        exclude: /root/,
         use: [
           'file-loader?name=[folder]/[name].[ext]', 'extract-loader', 'html-loader'
         ]
       }
-
     ]
   },
   watch: false,

@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:500&family=Kaushan+Script|Source+Code+Pro:600|Abril+Fatface|Audiowide|Comfortaa:700|Kelly+Slab&display=swap');
+
+
+:global(html){
+
+    margin: 0px;
+}
+
+:global(body) {
+  margin: 0px;
+  font-family: 'Raleway', sans-serif;
+
+}
+
+.fullScreen {
+  height: 100vh;
+  padding: 0px;
+}
+
+.outerDiv{
+	background-color: var(--shade1);
+}
+
+#routeInfo{
+	display: flex;
+	flex-direction: column;
+
+	> h1 {
+		text-align: center;
+	}
+
+	> div {
+		display: flex;
+		> label {
+			flex: 1 0 20px;
+			text-align: right;
+			margin-right: 5px;
+		}
+
+		> div{
+			flex: 1 0 60%;
+		}
+	}
+}
+
+#routePicker{
+
+	.menuSection {
+		padding-left: 20px;
+		padding-right: 20px
+	}
+	.apiItem {
+		display: flex;
+		width: 100%;
+
+	}
+
+	.apiName {
+		flex: 1 0 20%;
+		text-align: center;
+		font-weight: bold;
+	}
+	.apiDescription {
+		flex: 1 0 60%;
+		text-align: left;
+		display: none;
+	}
+}
+
+
+
+:global(#apiMenu) {
+	width: 100%; 
+}
+
+:global(.dropdown-menu){
+	width: 100%;
+
+}
+
+.apiPath {
+	background-color: white;
+}
+
+label {
+	font-weight: bold;
+}
+
+.themeOne {
+    --shade1: #f4f1af;
+    --shade2: #e7e283;
+    --shade3: #dbd55b;
+    --shade4: #dedede;
+}
+
+.themeTwo {
+    --shade1: #aadff6;
+    --shade2: #7ec9e9;
+    --shade3: #57b5dd;
+    --shade4: #32a1d0;
+    --grey1: #dedede;
+}
+
+.themeThree {
+  --shade1: #c3cacf;
+  --shade2: #9ab1c2;
+  --shade3: #759bb6;
+  --shade4: #5385a9;
+   --grey1: #dedede;
+}
+
+
+
+@media (min-width: 576px){
+
+#routePicker{
+	
+	.apiDescription {
+		display: inline;
+	}
+
+	.apiName {
+
+		text-align: right;
+		padding-right: 10px;
+	}
+}	
+
+}
+

@@ -2,12 +2,6 @@
 
 import path from 'path';
 import {logger} from './utils/Logger';
-
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpack from 'webpack';
-import webpackConfig from '../../webpack.config.js'
-import styleConfig from '../../webpack.config.style.js'
 import apiRoutes from './api/router.js'
 
 
@@ -18,7 +12,6 @@ if (result.error) {
 }
 const { parsed: envs } = result;
 
-console.log("webpack.config.js envs are " + JSON.stringify(envs))
 
 const nodeEnv = envs.NODE_ENV;
 const isDevelopment = nodeEnv == 'development';
@@ -27,8 +20,7 @@ logger.info(`Starting chico_express in ${nodeEnv} mode... `);
 
 var serverless = require('serverless-http')
 var express = require('express');
-var defaultRoute = express.Router();
-var staticRoutes = express.Router();
+
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 
@@ -42,37 +34,6 @@ function requestLogger(req, resp, next){
 }
 
 app.use(requestLogger)
-
-if(isDevelopment){
-  
-
-  logger.info("starting up a development server, loading webpack details: ");
-
-  webpackConfig.watch = true;
-  const clientCompiler = webpack([webpackConfig,styleConfig]);
-
-  const devServerMiddleware = webpackDevMiddleware(clientCompiler, {publicPath: '/bin/'});
-  const hotReplaceMiddleware = webpackHotMiddleware(clientCompiler);
-
-  app.use(devServerMiddleware);
-  app.use(hotReplaceMiddleware)
-
-}else{
-
-  defaultRoute.get('/', (req, res) => {
-    res.sendFile( path.resolve(__dirname, '../index.html'))
-  });
-
-
-  staticRoutes.get('/*', (req, res)=>{
-    res.sendFile(path.resolve(__dirname, ".." + req.path))
-  })
-
-
-  app.use(defaultRoute);
-  app.use(staticRoutes);
-}
-
 
 logger.info(`Connecting DB to ${process.env.DATABASE_URI}` )
 mongoose.connect(process.env.DATABASE_URI, { 

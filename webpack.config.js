@@ -2,6 +2,8 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
+const {logger} = require('./src/server/utils/Logger')
+
 
 const dotenv = require('dotenv');
 const result = dotenv.config();
@@ -10,35 +12,35 @@ if (result.error) {
 }
 const { parsed: envs } = result;
 
-console.log("webpack.config.js envs are " + JSON.stringify(envs))
+logger.info("webpack.config.js envs are " + JSON.stringify(envs))
 
 const nodeEnv = envs.NODE_ENV;
 const isProduction = nodeEnv !== 'development';
 
-console.log("setting up env for : " + nodeEnv);
+logger.info("setting up env for : " + nodeEnv);
 
 const path = require('path');
 const glob = require('glob');
 const entryArray = glob.sync('src/app/**/index.js');
 const plugins = [];
+
+
 const entryObject = entryArray.reduce((acc, item) => {
 
-
-
   const name =  item.replace("src/", "").replace(".js", "");
-  console.log("adding entry point for " + name)
+  logger.verbose("adding entry point for " + name)
 
   acc[name] = {};
   acc[name].import = [];
   if(!isProduction){
     acc[name].import.push('react-hot-loader/patch');
-    acc[name].import.push('webpack-hot-middleware/client?quiet=true')
+    acc[name].import.push('webpack-hot-middleware/client?quiet=false&timeout=2000')
   }
   acc[name].import.push("./" + item);
   acc[name].filename = name + ".js";
   acc[name].dependOn = "shared";
 
-  console.log(JSON.stringify(acc[name]));
+  logger.verbose(JSON.stringify(acc[name]));
   plugins.push(new HtmlWebPackPlugin({
     template: "./src/template/app-template.html",
     chunks: [name, "shared"],
@@ -53,6 +55,7 @@ entryObject.shared = {
   filename: 'js/shared.js'
 };
 let loaders = [];
+
 
 if (!isProduction) {
     plugins.push(new webpack.HotModuleReplacementPlugin())
@@ -71,7 +74,7 @@ if (!isProduction) {
     */
     loaders.push({loader: 'style-loader'})
 } else{
-    plugins.push(new MiniCssExtractPlugin({
+    /*plugins.push(new MiniCssExtractPlugin({
       filename: '[name].[hash].css',
       chunkFilename: '[name].[hash].css'
     }))
@@ -81,16 +84,17 @@ if (!isProduction) {
         hmr: !isProduction,
       },
     })
+    */
+    loaders.push({loader: 'style-loader'})
 }
 
+
 loaders.push({loader: 'css-loader?modules=true'});
-loaders.push({loader: 'namespace-css-module-loader?combine=true'})
+loaders.push({loader: 'namespace-css-module-loader?combine=true'});
 loaders.push({loader: 'sass-loader'});
 
-            
-
-console.log("entryObject  is " + JSON.stringify(entryObject));
-console.log("htmlPages is " + JSON.stringify(plugins));
+logger.verbose("entryObject  is " + JSON.stringify(entryObject));
+logger.verbose("htmlPages is " + JSON.stringify(plugins));
 module.exports = {
   entry: entryObject,
   output: {
@@ -98,10 +102,11 @@ module.exports = {
     path: path.resolve('bin'),
     publicPath: '/'
   },
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(j|t)sx?$/,
         exclude: /node_modules/,
         use: [
           {loader: "babel-loader"}
@@ -109,13 +114,23 @@ module.exports = {
       },
       {
         test: /\.s(a|c)ss$/,
-        exclude: /node_modules/,
         use: loaders
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader','css-loader' ]
+      },     
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        loader: 'file-loader',
+        options:{
+          name: '[folder]/[name].[ext]'
+        }
       }
     ]
   },
-  externals: {
-    bootstrap: 'bootstrap'
+  node: {
+      global: true
   },
   watch: false,
   watchOptions: {
@@ -123,9 +138,11 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'react-dom': '@hot-loader/react-dom'
+      'react-dom': '@hot-loader/react-dom',
+      "https": "https-browserify" ,
+      "http": "stream-http",
     },
-    extensions: ['.js', '.jsx', '.scss']
+    extensions: ['.js', '.jsx', '.scss', 'css','.tsx', '.ts']
   },
   plugins:plugins,
   mode: nodeEnv
