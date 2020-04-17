@@ -1,0 +1,313 @@
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&family=Open+Sans&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css');
+:global(html) {
+
+margin: 0px;
+  font-family: 'Open Sans', sans-serif;
+  overflow-x: hidden;
+  height: 100%;
+  line-height: 1.5em;
+}
+
+body {
+
+margin: 0px;
+  font-family: 'Open Sans', sans-serif;
+  overflow-x: hidden;
+  height: 100%;
+  line-height: 1.5em;
+}
+
+nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 10;
+	height: 50px;
+	background-color: var(--shade4);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	font-weight: bold;
+	color: white;
+}
+
+nav > a {
+	font-size: 1.5rem;
+	display: flex;
+	align-items: center;
+	padding-left: 20px;
+	padding-right: 20px;
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+	font-family: 'Poiret One', sans-serif;
+}
+
+
+
+main {
+	height: 100%;
+	padding-top: 50px;
+}
+
+
+
+.hero, .projects{
+	background-color: var(--shade2);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	font-size: 1.5rem;
+}
+
+.projects {
+	background-color: var(--shade3);
+	padding-top: 50px;
+}
+.hero{ 
+	min-height: 100%;
+}
+
+
+ h1, h2{
+	font-size: 3.2rem;
+	line-height: 3rem;
+	text-align: center;
+	font-family: 'Poiret One', sans-serif;
+} 
+
+h2{
+	font-size: 2.8rem;
+}
+
+h3{
+	text-align: center;
+}
+ 
+
+#welcomeSection {
+	font-size: .7em;
+	text-align: justify;
+	padding: 10px 20px 10px 20px;
+
+}
+
+#projectsSection{
+	padding: 10px 20px 10px 20px;
+	display: flex;
+	flex-direction: column;
+}
+
+#main-doc  a {
+	color: inherit;
+}
+
+#projectsSection > a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.project-tile {
+	background-color: var(--shade1); 
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 20px;
+	margin-bottom: 15px;
+	text-decoration: none;
+
+}
+
+
+
+.project-tile > h2 {
+	text-align: center;
+	font-size: 2.5rem;
+}
+.project-tile >.tileBody {
+	font-family: 'Open Sans', sans-serif;
+	padding: 0px 5px 10px 10px;
+}
+
+.projectLink {
+	display:block;
+	text-align: center;
+	text-decoration: none;
+	padding-bottom: 5px;
+	font-size: 16pt;
+	font-weight: bold;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.projectLink:hover{
+
+}
+
+.project-logo {
+
+	height: 20rem;
+}
+
+#ReactApp-logo {
+	margin-top: -2rem;
+}
+
+#Gears-logo {
+
+
+}
+
+#Devices-logo {
+	margin-top: -2rem;
+}
+
+
+#contactSection{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: strech;
+	padding: 10px 20px 10px 20px;
+	height: 100%;
+
+}
+
+#contactLinks {
+	display: flex;
+	justify-content: center; 
+
+}
+#contactLinks > a {
+	color: var(--shade4);
+}
+
+#contactLinks > a > i {
+	font-size: 4.6rem;
+}
+
+#contactText {
+	text-align: justify;
+	font-size: 1rem;
+	font-family: 'Open Sans', sans-serif;
+}
+
+#contactText > div {
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+#contactLinks >a {
+	margin-right: 2.5px;
+	margin-left: 2.5px;
+}
+
+
+
+#errorMessage {
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
+@media (hover: hover) {
+	nav > a:hover {
+		color: rgba(255, 255, 255, .2);
+	}
+
+	#main-doc a:hover {
+		text-decoration: none;
+		color: var(    --text_nav);
+	}
+
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  #ReactApp-logo {
+    animation: logo-spin infinite 20s linear;
+  }
+
+  .gear {
+  	animation: logo-spin infinite 20s linear;
+  }
+
+  .bolt {
+  	animation: logo-spin infinite 20s linear;
+  }
+  #Gears-logo{
+  	animation: logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (min-width: 576px){
+
+	nav {
+
+		justify-content: flex-end;
+
+	}
+
+	#contactText 
+	{
+		padding-left: 15%;
+		padding-right: 15%;
+
+	}
+
+}
+
+@media (min-width: 822px){
+	.project-tile {
+		width: 100%;
+		height: 100%;
+	}
+	.project-logo {
+
+		height: 10rem;
+	}
+	.project-tile > h2 {
+		height: 5rem;
+	}
+	#projectsSection {
+
+		flex-direction: row;
+		justify-content: space-between;
+	}
+	#projectsSection > a {
+		display: inline;
+		width: 100%;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+	#Gears-logo {
+
+		margin-top: -30px;
+	}
+}
+
+@media (min-width: 1000px){
+	.project-tile > h2 {
+		height: 2.5rem;
+	}
+}
+
+.themeOne {
+  --shade1: #c3cacf;
+  --shade2: #9ab1c2;
+  --shade3: #759bb6;
+  --shade4: #5385a9;
+   --background1: #dedede;
+   --background2: #f4f1af;
+   --text_nav: #466b8c;
+}

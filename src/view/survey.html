@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<link rel="icon" type="image/svg" href="/assets/favicon.svg" >
+<link href="https://fonts.googleapis.com/css?family=Montserrat|News+Cycle|Poiret+One|Raleway&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style/surveyStyle.css"/>
+
+
+</head>
+ <body class=" surveyStyle">
+
+<div class="backgroundImage surveyStyle"></div>
+<div class="backgroundOverlay surveyStyle"></div>
+<div class="outerDiv themeOne surveyStyle"  id="main">
+
+<div class="innerDiv surveyStyle" >
+	<div class="header surveyStyle" >
+      <h1 id="title" class=" surveyStyle">FCC Assignment Survey</h1>
+      <p id="description" class=" surveyStyle">
+        A breif survey  to show that I can program a form and have it be responsive in nature, responding to the viewport dimensions. Please note, due to the nature of CodePen viewing this page on iOS devices in landscape seems to cause aligntment probelms. As this assingment isn't specifically how to adjust my own CSS to work within the context of CodePen I have not spent any time trying to address this issue. 
+      </p>
+
+    </div>
+
+    <div class="formContainer surveyStyle">
+
+      	<form id="survey-form" class="myForm surveyStyle">
+	        <div class="inputRow surveyStyle">
+		         <label for="name" id="name-label" class="inputLabel surveyStyle">Name</label>
+		         <input type="text" id="name" required placeholder="John Smith" class="inputText surveyStyle"/>
+	        </div>
+	        <div class="inputRow surveyStyle">
+	        	<label for="email" id="email-label" class="inputLabel surveyStyle">Email</label>
+	        	<input type="email" id="email" required placeholder="john@gmail.com" class="inputText surveyStyle"/>
+	        </div>
+	        <div class="inputRow surveyStyle">
+		        <label for="number" id="number-label" class=" surveyStyle">Salary (optional)</label>
+		        <input type="number" id="number" min="0" max="100" placeholder="100000" class=" surveyStyle"/>
+	        </div>
+	        <div class=" surveyStyle">
+	        	<label for="dropdown" class=" surveyStyle">Choose any option as the form doesn't actually do anything. </label>
+		        <select id="dropdown" class=" surveyStyle">
+		          <option value="opt1" class=" surveyStyle">Option 1</option>
+		          <option value="opt2" class=" surveyStyle">Option 2</option>
+		          <option value="opt3" class=" surveyStyle">Option 3</option>
+		        </select>
+	        </div>
+	        <div class=" surveyStyle">
+	        	<div class=" surveyStyle">Please choose a fish category</div>
+	        	<div class="checkboxContainer surveyStyle">
+			        <div class=" surveyStyle">
+			        	<input type="radio" name="surveyRadio" value="1" id="radio1" class=" surveyStyle"/> 
+			        	<label for="radio1" class=" surveyStyle">Blue</label>
+			        </div>
+			        <div class=" surveyStyle">
+			        	<input type="radio" name="surveyRadio" value="2" id="radio2" class=" surveyStyle"/>
+			        	<label for="radio2" class=" surveyStyle">Red</label>
+			        </div>
+			        <div class=" surveyStyle">
+			        	<input type="radio" name="surveyRadio" value="3" id="radio3" class=" surveyStyle"/>
+			      	    <label for="radio3" class=" surveyStyle">One</label>
+			      	</div>
+			        <div class=" surveyStyle">
+			        	<input type="radio" name="surveyRadio" value="4" id="radio4" class=" surveyStyle"/>
+			        	<label for="radio4" class=" surveyStyle">Two</label>
+			        </div>
+		    	</div>
+		    </div>
+	        <div class=" surveyStyle">
+	        	<div class=" surveyStyle">Choose as many foods you like</div>
+		        <div class="checkboxContainer surveyStyle">
+		            <div class=" surveyStyle"><input type="checkbox" value="bool1" id="check1" class=" surveyStyle"/>
+		            <label for="check1" class=" surveyStyle">Sushi</label></div>
+		        	<div class=" surveyStyle"><input type="checkbox" value="bool2" id="check2" class=" surveyStyle"/>
+		        	<label for="check2" class=" surveyStyle">Burgers</label></div>
+		        	<div class=" surveyStyle"><input type="checkbox" value="bool3" id="check3" class=" surveyStyle"/>
+		        	<label for="check3" class=" surveyStyle">Tic Tac</label></div>
+		        	<div class=" surveyStyle"><input type="checkbox" value="bool4" id="check4" class=" surveyStyle"/>
+		        	<label for="check4" class=" surveyStyle">Crow</label></div>
+		        	<div class=" surveyStyle"><input type="checkbox" value="bool5" id="check5" class=" surveyStyle"/>
+		        	<label for="check5" class=" surveyStyle">Salad</label></div>
+		        	<div class=" surveyStyle"><input type="checkbox" value="bool6" id="check6" class=" surveyStyle"/>
+		        	<label for="check6" class=" surveyStyle">Ice Cream</label></div>
+		        </div>
+		    </div>
+	        <div class=" surveyStyle">
+	        	Any final thoughts?
+	        	<textarea  rows="5" style="resize: none" class=" surveyStyle"> </textarea>
+	       	</div>
+      
+	        <div class=" surveyStyle">
+	          <input type="submit" id="submit"  class=" surveyStyle"/>
+	        </div>
+
+    	</form>
+    </div>
+</div>
+</div>
+</body>
+</html>

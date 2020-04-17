@@ -1,4 +1,4 @@
-import chalk from 'chalk'
+var chalk = require('chalk');
 
 var winston = require('winston');
 
@@ -28,85 +28,86 @@ let fmt_verbose = chalk.magenta
 let verbose = false
 let rootDir = 'hit_counter_app/'
 
+const Logger = {};
 
 
-class Logger{
-
-	info(output){
+Logger.info = function(output){
 		
 
-		if(verbose)
-			output = output + this.getCallSource()
+	if(verbose)
+		output = output + this.getCallSource()
 
-		var time = (new Date()).toUTCString();
-		output = `[${time}] ` + output;
-		// now log async so it doesn't hold up thread execution
-		//this.logAsync(fmt_info(output))
-		winstonLogger.info( fmt_info(output))
-		//winstonLogger.info( output)
-	}
-
-	error(output){
-		if(verbose)
-			output = output + this.getCallSource()
-
-		var time = (new Date()).toUTCString();
-		output = `[${time}] ` + output;
-
-		//winstonLogger.error(output )
-		winstonLogger.error(fmt_error(output ))
-		//winston.error(fmt_error(output))
-	}
-	warning(output){
-		if(verbose)
-			output = output + this.getCallSource()
-
-		var time = (new Date()).toUTCString();
-		output = `[${time}] ` + output;
-		//winstonLogger.warn(output)
-		winstonLogger.warn(fmt_warning(output))
-	}
-	verbose(output){
-		if(verbose)
-			output = output + this.getCallSource()
-
-		var time = (new Date()).toUTCString();
-		output = `[${time}] ` + output;
-		//winstonLogger.verbose(output)
-		winstonLogger.verbose(fmt_verbose(output))
-	}
-
-	logAsync(output){
-		 var p = new Promise(function(resolve, reject) {
-	    	// Do async job
-	        console.log(output)
-	        resolve("logged")
-    	})
-
-		
-	}
-
-	getExpressLogger(){
-
-
-		return expressMiddlewareLogger
-	}
-	
-	getCallSource() {
-	  // this does not work on all javascript engines. Its very hacky and
-	  // should never be done on a productoin level ... something like this 
-	  // might work but would need more tightening like tightening the app locaiton
-	  var orig = new Error().stack;
-	  var stack = orig.split('\n');
-	  var fileLocation = stack[3].substring(rootDir)
-	  
-	  return fmt_verbose( fileLocation) 
-
-	}	
+	var time = (new Date()).toUTCString();
+	output = `[${time}] ` + output;
+	// now log async so it doesn't hold up thread execution
+	//this.logAsync(fmt_info(output))
+	winstonLogger.info( fmt_info(output))
+	//winstonLogger.info( output)
 }
-let logger = new Logger()
+
+Logger.error = function(output){
+	if(verbose)
+		output = output + this.getCallSource()
+
+	var time = (new Date()).toUTCString();
+	output = `[${time}] ` + output;
+
+	//winstonLogger.error(output )
+	winstonLogger.error(fmt_error(output ))
+	//winston.error(fmt_error(output))
+}
+
+Logger.warning = function(output){
+	if(verbose)
+		output = output + this.getCallSource()
+
+	var time = (new Date()).toUTCString();
+	output = `[${time}] ` + output;
+	//winstonLogger.warn(output)
+	winstonLogger.warn(fmt_warning(output))
+}
+Logger.verbose = function(output){
+	if(verbose)
+		output = output + this.getCallSource()
+
+	var time = (new Date()).toUTCString();
+	output = `[${time}] ` + output;
+	//winstonLogger.verbose(output)
+	winstonLogger.verbose(fmt_verbose(output))
+}
+
+Logger.logAsync = function(output){
+	 var p = new Promise(function(resolve, reject) {
+    	// Do async job
+        console.log(output)
+        resolve("logged")
+	})
+
+	
+}
+
+Logger.getExpressLogger = function(){
 
 
+	return expressMiddlewareLogger
+}
+	
+Logger.getCallSource = function() {
+  // this does not work on all javascript engines. Its very hacky and
+  // should never be done on a productoin level ... something like this 
+  // might work but would need more tightening like tightening the app locaiton
+  var orig = new Error().stack;
+  var stack = orig.split('\n');
+  var fileLocation = stack[3].substring(rootDir)
+  
+  return fmt_verbose( fileLocation) 
 
-export default logger
+}	
+
+Logger.info("ready to export Logger");
+
+
+module.exports = {
+	logger: Logger
+}
 

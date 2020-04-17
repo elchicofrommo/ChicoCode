@@ -5,15 +5,12 @@ if (result.error) {
 }
 const { parsed: envs } = result;
 
-console.log("webpack.config.js envs are " + JSON.stringify(envs))
 
 var nodeEnv = envs.NODE_ENV;
 const isProduction = nodeEnv !== 'development';
 if(isProduction)
   nodeEnv = 'production';
-
-console.log("setting up env for : " + nodeEnv);
-
+console.log("Setting up env for server build in  " + nodeEnv);
 
 const entryObject = {}
 const path = require('path');
@@ -26,15 +23,18 @@ entryObject.index  = {
   filename: 'server/server.js'
 };
 
-console.log("Setting up env for server build in  " + nodeEnv);
+
 const plugins = [];
 
 if (!isProduction) {
-    plugins.push(new webpack.HotModuleReplacementPlugin())
+ //   plugins.push(new webpack.HotModuleReplacementPlugin())
+   // plugins.push(new webpack.NoEmitOnErrorsPlugin())
 }
 
-module.exports = {
+
+module.exports = [{
   entry: entryObject,
+  name: "server", 
   output: {
     filename: '[name]',
     path: path.resolve(__dirname, 'bin')
@@ -55,8 +55,8 @@ module.exports = {
   	ignored: ['node_modules/*']
   },
   target: "node",
-  externals: [nodeExternals()],
-  plugins:plugins,
+  externals:  nodeExternals(),
+  plugins: plugins,
   node: {
   	__dirname: false,
   	__filename: false,
@@ -64,4 +64,4 @@ module.exports = {
 
   },
   mode: nodeEnv
-};
+}];

@@ -1,0 +1,136 @@
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css');
+
+:global(html){
+
+    margin: 0px;
+}
+
+:global(body) {
+  margin: 0px;
+  font-family: 'Raleway', sans-serif;
+
+}
+
+.fullScreen {
+  height: 100vh;
+  padding: 0px;
+}
+
+@mixin height-calc($percentage, $value) {
+  height: -moz-calc(#{$percentage} - #{$value});
+  /* WebKit */
+  height: -webkit-calc(#{$percentage} - #{$value});
+  /* Opera */
+  height: -o-calc(#{$percentage} - #{$value});
+  /* Standard */
+  height: calc(#{$percentage} - #{$value});
+}
+
+$lavender: #cfafff;
+$yellow: #f4f1af;
+$babyblue: #aadff6;
+$darkerBlue: #2c7ce8;
+$green: #d6f3a1;
+
+.outerDiv {
+
+  background: $babyblue;
+  margin: 0px;
+}
+
+.innerDiv {
+
+  display: flex;
+  height: auto;
+  flex-direction: column;
+
+}
+
+.fullScreen .innerDiv {
+
+}
+.window {
+  
+  flex: 1 1 100%;
+
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+
+}
+.windowHide {
+  display: none;
+}
+
+.windowHeader {
+
+ 
+  border: 1px solid grey;
+  border-radius: 3px 3px 0px 0px;
+  display: flex;
+  justify-content: space-between;
+  background-color: $darkerBlue;
+  margin-right: -2px;
+  padding-left: 2px;
+  padding-right: 2px;
+
+}
+.windowHeader a{
+  display: none;
+}
+.windowDisplay {
+  height: 100%;
+  width: 100%;
+  border: 1px solid grey;
+  background-color: white;
+}
+
+
+#editor {
+
+  width: 100%;
+  height: 100vh;
+  resize: none;
+  padding: 0px;
+  margin: 0px;
+  overflow: scroll;
+  border: none;
+}
+#preview {
+  overflow: scroll;
+}
+
+
+@media (hover: hover) {
+  .quoteButton:hover {
+    -webkit-filter: saturate(2);
+    filter: saturate(2);
+    outline: none;
+  }
+}
+
+@media (min-width: 600px){
+
+  .fullScreen .innerDiv {
+    flex-direction: row;
+    height: 100%;
+  }
+
+  .fullScreen .windowHeader a {
+    display: inline;
+  }
+  .fullScreen .windowDisplay {
+
+    overflow: scroll;
+    height: 100%;
+
+  }
+
+  .fullScreen #editor{
+    height: 100%;
+
+  }
+  
+
+}

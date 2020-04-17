@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" class="portfolio">
+
+<head>
+<link rel="icon" type="image/svg" href="/assets/favicon.svg" >
+
+<link rel="stylesheet" href="/style/portfolio.css"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+ <body class='themeOne'>
+   
+   <nav id="navbar">
+      <a href="welcome" onclick="pageNavigation(event)">About</a>
+      <a href="projects" onclick="pageNavigation(event)" >Projects</a>
+      <a href="contact" onclick="pageNavigation(event)">Contact</a>
+   </nav>
+   <main id='main-doc'>
+      <div class="hero" id="welcome">
+         <div id="welcomeSection">
+            <h1>The Byte and The Boss</h1>
+            <h3>A Site by Mariano Hernandez</h3>
+            <div>Thank you for visiting my personal space in this digital ocean. Initially this site was built to showcase my work in going through a series of certifications from <a href="http://www.freeCodeCamp.org">Free Code Camp</a>. In the future I hope to also share little of my experience on topics of engineering, design, leadership, and my journey as I investigate new languages and technologies. I invite you to explore these pages and hope you will learn something new for yourself. It may be interesting for you to view from multiple devices so you can get a full perspective of the Responsive nature of this site. If anything I've done makes you wonder "how'd he do that?" please do reach out and ask, and again thank you for visiting.
+            </div>
+         </div>
+      </div>
+      
+      <div class="projects" id="projects">
+         <h1>Recent Certifications</h1>
+         <div id="projectsSection">
+
+            <a href="/view/react-apps.html">
+               <div class="project-tile">
+                  <h2>Front End Libraries</h2>
+                  <img src="/assets/react-logo.svg" class="project-logo" id="ReactApp-logo" alt="logo" />
+                 <div class="tileBody">Here are a collection React Apps generated as part of this certification. Coursework covered SASS, jQuery, Bootstrap, React and Redux. Though not covered in the course, I included work in Higher Order Components into project deliverables. </div>
+               </div>
+            </a>
+            <a href="/view/responsive.html">
+               <div class="project-tile">
+                  <h2>Responsive Design</h2>
+                  <img src="/assets/devices.svg" class="project-logo" id="Devices-logo" alt="logo" />
+                  <div class="tileBody">Working from Mobile first design principles I built these these final projects with increasing capabilities as breakpoints increased. Coursework covered Core CSS, HTML/HTML5, Flex Box, Flex Grid, Media Breakpoints. </div>
+               </div>
+            </a>
+            <a href="/app/api">
+               <div class="project-tile">
+                  <h2>Microservice API</h2>
+                  <img src="/assets/gears2.svg" class="project-logo" id="Gears-logo" alt="logo" />
+                  <div class="tileBody">A collection of APIS covering multi-part forms, storage and retrieval into datastore and file uploads. The coursework covered NodeJS, Express and MongoDB. Though not covered in the course, I expanded my scope to include Asynchronous Javascript, Test Automation with Jest, and Developer Tooling by exploring Webpack to create custom application setup with environment specific build targets.</div>
+               </div>
+            </a>
+         </div>
+      </div>
+      <div class="hero" id="contact">
+         <div id="contactSection">
+            <h1>Contact</h1>
+            <h2 style="margin-top: 0px">Mariano Hernandez</h2>
+            <div id="contactLinks">
+               <a href="https://www.linkedin.com/in/mariohernandez1/">  
+                  <i class="fab fa-linkedin"></i></a>
+               <a href="https://twitter.com/ByteAndTheBoss"> 
+                  <i class="fab fa-twitter-square"></i></a>
+               <a href="https://github.com/elchicofrommo"> 
+                  <i class="fab fa-github-square"></i></a>
+               <a href="mailto:mariofiltered9783@gmail.com"> 
+                  <i class="fas fa-envelope-square"></i></a>
+            </div>
+            <div id="contactText">
+               <div>Source code for this site and all projects mentioned within are available on Github. Please do go over and check out my code. Reach out for any questions or suggestions.</div>
+            </div>
+
+         </div>
+
+      </div>
+
+   </main>
+   <script>
+       function pageNavigation(event){
+           event.preventDefault();
+           let target = event.target.getAttribute("href");
+
+           document.getElementById(target).scrollIntoView();
+
+           return false;
+       }
+    </script>
+ </body>
+ </html>

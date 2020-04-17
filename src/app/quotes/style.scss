@@ -1,0 +1,124 @@
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css');
+
+
+@mixin border-radius($x){ 
+  -webkit-border-radius: $x;
+  -moz-border-radius: $x;
+  -ms-border-radius: $x;
+  border-radius: $x;
+}
+
+:global(html){
+	height: 100%;
+  	margin: 0px;
+}
+
+:global(body) {
+	background: var(--color);
+  margin: 0px;
+  font-family: 'Raleway', sans-serif;
+
+}
+
+
+
+.outerDiv {
+  background: var(--color);
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: auto;
+  transition: all .2s ease-in-out;
+}
+
+.fullScreen {
+	height: 100vh;
+	padding: 0px;
+}
+
+.innerDiv {
+  background: white;
+  padding: 20px 10px;
+
+  transition: all .2s ease-in-out;
+  @include border-radius(7px)
+  color: var(--color);
+  
+}
+
+#buttonRow {
+	display: flex;
+	justify-content: space-between;
+}
+.quoteButton{
+  background-color: var(--color);
+  color: white;
+  font-weight: bold;
+  padding: .7rem;
+  border: none;
+  @include border-radius(5px);
+  font-size: 1rem;
+}
+
+
+
+.quoteButton:focus{
+	outline: none;
+}
+
+i {
+	color: var(--color);
+}
+#text {
+  font-size: 2em ;
+}
+#author {
+  text-align: right;
+}
+
+@media (hover: hover) {
+	.quoteButton:hover {
+	  -webkit-filter: saturate(2);
+	  filter: saturate(2);
+	  outline: none;
+	}
+}
+
+@media (min-width: 818px){
+
+	.innerDiv {
+		padding: 40px 20px 40px 20px;
+  		min-width: 400px;
+  		max-width: 600px;
+	}
+
+	.navdrawer {
+		display: none;
+	}
+
+	nav{
+		left: 0px;
+	}
+	header {
+		font-size: 30px;
+	}
+
+}
+
+.themeOne {
+  --color: #f7f182;
+}
+
+.themeTwo {
+  --color: #cfafff;
+}
+.themeThree{
+  --color: #aadff6;
+}
+.themeFour {
+  --color: #c8ec86;
+}

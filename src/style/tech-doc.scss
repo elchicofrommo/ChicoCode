@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poiret+One&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css');
+
+global(html) {
+
+  margin: 0px;
+  height: 100%;
+  touch-action: manipulation;
+
+
+}
+
+body {
+
+  margin: 0px;
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+}
+
+nav {
+	position: fixed;
+	top: 0;
+	left: -225px;
+	width: 250px;
+	display: flex;
+	justify-content: flex-end;
+	z-index: 10;
+	
+	color: var(--text_nav);
+	height: 100%;
+	line-height: 3em;
+	overflow: hidden;
+	transition: left .4s ease-in-out;
+}
+
+.navlinks {
+	background-color: var(--shade1);
+	padding-right: 5px;
+	padding-left: 5px;
+	font-weight: bold;
+	font-size: 16px;
+	width: 100%;
+}
+.navdrawer {
+	width: 30px;
+	margin-top: 5px;
+	line-height: 0px;
+	height: fit-content;
+	padding: 0px;
+	text-align: center;
+	border-top-right-radius: 10px 25px ;
+	border-bottom-right-radius: 10px 25px;
+	background-color: var(--shade1);
+}
+.navdrawer > i{
+	font-size: 35px;
+	padding-left: 3px;
+	transition: transform .6s ease-in-out;
+}
+
+header {
+	font-size: 27px;
+	text-align: center;
+}
+
+.navlinks > a{
+	color: var(--text_nav);
+	text-decoration: none;
+}
+
+.navlinks >  a:hover {
+	color: rgba(255, 255, 255, .3);
+}
+
+.nav-space {
+	height: 2px;
+	width: 100%;
+
+	align-self: center;
+	background-color: var(--text_nav);
+	
+}
+
+.outerDiv {
+	height: 100%;
+	margin: 0px;
+	overflow-x: scroll;
+	padding-left: .5em;
+	padding-right: .5em;
+	background-color: var(--shade2);
+}
+
+#main a {
+	color: black;
+}
+
+
+
+h1 {
+	color: var(--text_h2);
+	font-size: 45px;
+	text-align: center;
+	font-family: 'Poiret One', sans-serif;
+}
+
+.outerDiv p {
+	
+}
+
+.outerDiv code {
+	background-color: var(--background2);
+
+	display: block;
+	padding: 2px 5px 2px 15px;
+	border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.outerDiv li {
+
+}
+
+.reactProjectList{
+	list-style-type: none;
+	margin: 0px;
+	padding: 8px;
+}
+
+.main-section {
+
+	display: flex;
+	flex-direction: column;
+
+}
+.appContainer {
+	display: flex;
+	width: 100%;
+	align-items: flex-end;
+	flex-direction: column;
+	align-self: center;
+	background-color: var(--text_nav);
+
+	padding: 0px 3px 3px 3px;
+	border-radius: 4px;
+	max-height: 700px;
+	overflow: scroll;
+}
+
+
+.appContainer > a {
+	color: white;
+}
+
+.appContainer > a:focus {
+	color: white;
+}
+
+.appContainer > div {
+	overflow: auto;
+	width: 100%;
+}
+.appContainer.static {
+	margin-bottom: 20px;
+}
+
+.citation {
+	background-color: rgba(255, 255, 255, .2);
+	font-family: courier;
+	margin: 0px 20px;
+	padding: 10px 20px ;
+	font-size: .9em;
+}
+
+
+.staticViewport {
+	border: none;
+	background: white;
+	width: 100%;
+	height: 100vh;
+}
+
+
+@media (hover: hover) {
+	.appContainer > a:hover {
+		color: rgba(255, 255, 255, .3);
+	}
+
+	.outerDiv a:hover {
+		color: var(    --text_nav);
+		text-decoration: none;
+	}
+}
+
+@media (min-width: 818px){
+
+	.outerDiv {
+		height: 100%;
+		margin: 0px 0px 0px 250px;
+	}
+
+	.navdrawer {
+		display: none;
+	}
+
+	.appContainer{
+		 max-width: 80%;
+		 width: auto;
+	}
+
+	nav{
+		left: 0px;
+	}
+	header {
+		font-size: 30px;
+	}
+
+	.staticViewport {
+		border: none;
+		background: white;
+	}
+
+	.appContainer.static {
+		width: 60vw;
+		height: calc(60vw * 1.3);
+	}
+
+}
+
+.themeFive {
+	  --text_nav: #466b8c;
+  --text_h2: #8c5f46;
+   --shade1: #c3cacf;
+   --shade2: #9ab1c2;
+  --shade3: #8c8346;
+  --shade4: #79468c;
+   --background1: #dedede;
+   --background2: #f4f1af;
+}
+

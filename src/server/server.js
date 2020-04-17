@@ -1,12 +1,15 @@
 'use strict';
 
 import path from 'path';
-import logger from './utils/Logger';
-import UserModel from './UserModel';
+import {logger} from './utils/Logger';
+
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpack from 'webpack';
 import webpackConfig from '../../webpack.config.js'
+import styleConfig from '../../webpack.config.style.js'
+import apiRoutes from './api/router.js'
+
 
 const dotenv = require('dotenv');
 const result = dotenv.config();
@@ -22,51 +25,54 @@ const isDevelopment = nodeEnv == 'development';
 
 logger.info(`Starting chico_express in ${nodeEnv} mode... `);
 
-
+var serverless = require('serverless-http')
 var express = require('express');
-//var fileRoutes = express.Router();
-//var defaultRoutes = express.Router();
-var defaultRoutes = express.Router();
-var reactRoutes = express.Router();
-
-
+var defaultRoute = express.Router();
+var staticRoutes = express.Router();
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var fileUpload = require("express-fileupload");
-var cors = require('cors');
+
 
 var app = express();
-//defaultRoutes.use(express.json()) // for parsing application/json
-//defaultRoutes.use(bodyParser.urlencoded({ extended: false })) // for parsing application/x-www-form-urlencoded
 
+function requestLogger(req, resp, next){
 
-/*fileRoutes.use(express.json());
-fileRoutes.use(fileUpload({
-  limits: { fileSize: 50 * 1024 * 1024 },
-}));*/
+  logger.verbose(`req.method='${req.method}' req.path='${req.path}' req.ip='${req.ip}'`);
+  next();
+}
+
+app.use(requestLogger)
+
 if(isDevelopment){
   
 
-  //const webpackConfig = require(path.resolve('./webpack.config.js' ))
-  logger.info("configuring with " + JSON.stringify(webpackConfig));
-
-  //import webpackServerConfig from '/webpack.config.server';
-
   logger.info("starting up a development server, loading webpack details: ");
-  logger.info("webpackConfig: " + JSON.stringify(webpackConfig));
+
   webpackConfig.watch = true;
-  //logger.info("webpackServerConfig: " + JSON.stringify(webpackServerConfig));
-  const clientCompiler = webpack(webpackConfig);
-  //const serverCompiler = webpack(webpackServerConfig);
+  const clientCompiler = webpack([webpackConfig,styleConfig]);
 
-  const clientMiddleware = webpackDevMiddleware(clientCompiler, {writeToDisk: true});
-  const serverMiddleware = webpackHotMiddleware(clientCompiler, {writeToDisk: true});
+  const devServerMiddleware = webpackDevMiddleware(clientCompiler, {publicPath: '/bin/'});
+  const hotReplaceMiddleware = webpackHotMiddleware(clientCompiler);
 
-  app.use(clientMiddleware);
-  app.use(serverMiddleware)
+  app.use(devServerMiddleware);
+  app.use(hotReplaceMiddleware)
 
+}else{
+
+  defaultRoute.get('/', (req, res) => {
+    res.sendFile( path.resolve(__dirname, '../index.html'))
+  });
+
+
+  staticRoutes.get('/*', (req, res)=>{
+    res.sendFile(path.resolve(__dirname, ".." + req.path))
+  })
+
+
+  app.use(defaultRoute);
+  app.use(staticRoutes);
 }
+
 
 logger.info(`Connecting DB to ${process.env.DATABASE_URI}` )
 mongoose.connect(process.env.DATABASE_URI, { 
@@ -74,70 +80,7 @@ mongoose.connect(process.env.DATABASE_URI, {
   useUnifiedTopology: true 
 }); 
 
-
-function simpleRequestLogger(req, resp, next){
-
-  logger.verbose(`req.method='${req.method}' req.path='${req.path}' req.ip='${req.ip}'`);
-  logger.verbose(`req.body='${JSON.stringify(req.body)}'`);
-  next();
-}
-
-function simpleFileRequestLogger(req, resp, next){
-
-  logger.verbose(`req.method='${req.method}' req.path='${req.path}' req.ip='${req.ip}'`);
-  let props = Object.getOwnPropertyNames(req.files);
-  logger.verbose(`req.files='${props}'`);
-  next();
-}
-
-//defaultRoutes.use(simpleRequestLogger);
-//fileRoutes.use(simpleFileRequestLogger);
-reactRoutes.use(simpleRequestLogger);
-defaultRoutes.use(simpleRequestLogger)
-
-const publicFolder = process.cwd() + '/bin/public';
-logger.verbose("test change")
-defaultRoutes.get('/', (req, res) => {
-  res.sendFile( path.resolve(__dirname, '../static/index.html'))
-});
-
-defaultRoutes.get('/js/*', (req, res) =>{
-  logger.verbose("saw request for js file");
-  res.sendFile( path.resolve(__dirname, '..' + req.path));
-})
-
-
-
-reactRoutes.get('/app/:appName', (req, res)=>{
-  var urlPath = `../app/${req.params.appName}/index.html`;
-  var calculatorPath = path.resolve(__dirname, urlPath);
-  logger.verbose("path to calculator is " + calculatorPath);
-  res.sendFile(calculatorPath)
-})
-reactRoutes.get('/app/:appName/*', (req, res)=>{
-  logger.verbose("request for supporting app files for " + req.params.appName)
-  res.sendFile( path.resolve(__dirname, '..' + req.path));
-})
-reactRoutes.get('/app/*.json', (req, res)=>{
-  logger.verbose("request for hot update " + req.params.appName)
-  res.sendFile( path.resolve(__dirname, '..' + req.path));
-})
-
-
-/*
-fileRoutes.post("/api/fileanalyse", (req, res)=>{
-  logger.verbose("inside /api/fileanalyse ");
-
-  if(req.files.upfile){
-    res.send({name: req.files.upfile.name, type: req.files.upfile.type, size: req.files.upfile.size})
-  }
-
-}); */
-
-app.use(defaultRoutes);
-// app.use(defaultRoutes);
-//app.use(fileRoutes);
-app.use(reactRoutes);
+app.use(apiRoutes);
 
 // Not found middleware
 app.use((req, res, next) => {
@@ -168,3 +111,5 @@ app.use((err, req, res, next) => {
 const listener = app.listen(process.env.PORT || 3000, () => {
   logger.info('Your app is listening on port ' + listener.address().port)
 })
+
+export const handler = serverless(app);

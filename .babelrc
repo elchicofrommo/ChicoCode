@@ -1,4 +1,19 @@
 {
-  "presets": ["@babel/preset-env", "@babel/preset-react"],
-  "plugins": ['react-hot-loader/babel', "@babel/plugin-transform-runtime", "@babel/plugin-transform-react-jsx"]
+  "presets": 
+  	[
+  		["@babel/preset-env" ],
+  		"@babel/typescript",
+  		"@babel/preset-react"
+  	],
+  "plugins": 
+    [
+ 
+  		"@babel/plugin-transform-runtime", 
+
+
+		"@babel/proposal-object-rest-spread",
+		 ["@babel/plugin-proposal-decorators", { legacy: true }],
+        ["@babel/plugin-proposal-class-properties", { loose: true }],
+	  	'react-hot-loader/babel', 
+  	]
 }

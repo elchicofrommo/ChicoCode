@@ -1,0 +1,286 @@
+
+@import url('https://fonts.googleapis.com/css?family=Quicksand:500|Sarpanch:700|Kaushan+Script|Source+Code+Pro:600|Abril+Fatface|Audiowide|Comfortaa:700|Kelly+Slab&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css');
+
+:global(html){
+
+    margin: 0px;
+}
+
+:global(body) {
+  margin: 0px;
+  font-family: 'Raleway', sans-serif;
+
+}
+
+.fullScreen {
+  height: 100vh;
+  padding: 0px;
+  background-color: var(--background);
+  margin-bottom: 0px;
+  overflow: hidden;
+}
+
+.themeOne {
+    --shade1: #f4f1af;
+    --shade2: #e7e283;
+    --shade3: #dbd55b;
+    --shade4: #dedede;
+}
+
+.themeTwo {
+    --shade1: #aadff6;
+    --shade2: #7ec9e9;
+    --shade3: #57b5dd;
+    --shade4: #32a1d0;
+    --grey1: #dedede;
+}
+
+.themeThree {
+  --shade1: #c3cacf;
+  --shade2: #9ab1c2;
+  --shade3: #e88f00;
+  --shade3-font: #120b00;
+  --shade4: #5385a9;
+   --grey1: #dedede;
+  --background: #121212;
+  --foreground: #d4bfa6;
+}
+
+.themeFour {
+  --shade1: #e6e6e6;
+  --shade2: #dedede;
+  --shade3: #d1d1d1;
+  --shade4: #c7c7c7;
+   --grey1: #dedede;
+}
+
+.themeFive {
+  --shade1: #466b8c;
+  --shade2: #8c5f46;
+  --shade3: #8c8346;
+  --shade4: #79468c;
+   --grey1: #dedede;
+ }
+@mixin border-radius($a, $b, $c, $d) {
+    -webkit-border-radius: $a $b $c $d;
+    -moz-border-radius: $a $b $c $d;
+    -ms-border-radius: $a $b $c $d;
+    border-radius: $a $b $c $d;
+}
+@mixin height-calc($percentage, $value) {
+    height: -moz-calc(#{$percentage} - #{$value});
+    /* WebKit */
+    height: -webkit-calc(#{$percentage} - #{$value});
+    /* Opera */
+    height: -o-calc(#{$percentage} - #{$value});
+    /* Standard */
+    height: calc(#{$percentage} - #{$value});
+}
+.outerDiv {
+    margin: 0px;
+    padding: 0px;
+    transition: all .3s ease-in-out;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+
+.innerDiv {
+    background: var(--background);
+}
+
+.header {
+  background-color: var(--shade3);
+  text-align: center;
+  transition: all .3s ease-in-out;
+}
+
+.title {
+  font-size: 35px;
+  font-family: 'Kaushan Script', cursive;
+  color: var(--shade3-font);
+}
+
+.clockBody {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.clockBody .label {
+  flex: 1 1 100%;
+  text-align: center;
+  padding-top: 5px;
+}
+.clockBody .clockCount {
+  flex: 1 1 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clockBody .buttonContainer {
+  flex: 1 1 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#startContainer {
+  justify-content: flex-start;
+}
+
+#reset {
+  margin-right: 7px;
+}
+#start_stop {
+  margin-left: 7px;
+}
+#resetContainer{
+  justify-content: flex-end;
+
+}
+
+.label {
+  color: var(--foreground);
+  font-size: 1.3em;
+
+}
+
+
+
+.lengthButton {
+  border: 0px;
+  background: none;
+  font-size: 40px;
+  color: var(--shade3);
+  padding: 0px;
+}
+
+.clockButton {
+  border: 0px;
+  border-radius: 50%;
+  background: var(--shade3);
+  font-size: 3.5em;
+  padding: 0px;
+  height: 1.6em;
+  width: 1.6em;
+  color: var(--background);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.fa-play {
+  margin-left: .2em;
+}
+
+.button {
+
+
+}
+
+
+.button:focus {
+  outline: none;
+}
+
+.button:hover{
+  cursor: default; 
+  filter:brightness(1.25);
+}
+
+.lengthContainer {
+  text-transform: capitalize;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  padding-top: 20px;
+}
+
+.lengthContainer .label {
+  flex: 1 1 100%;
+  text-align: center;
+}
+
+.lengthContainer .lengthField {
+  font-size: 5em;
+
+}
+
+.textField {
+  text-align: right;
+  font-size: 5em;
+  font-family: 'Sarpanch', sans-serif;
+  color: var(--shade3);
+  filter: hue-rotate(280deg);
+  line-height: .81em;
+  padding-bottom: 7px;
+
+}
+
+
+
+.decrementButton {
+
+}
+
+
+
+@media (min-width: 576px){
+  .clockBody .clockCount {
+    flex: 1 1 20%;
+    order: 2;
+  }
+
+  .clockBody .buttonContainer {
+    flex: 1 1 20%;
+  }  
+
+  #resetContainer {
+    order: 1;
+  }
+  #startContainer {
+    order: 3;
+  }
+  .clockBody{
+    border-left: 1px solid var(--shade3);
+    border-right: 1px solid var(--shade3);
+  }
+  .lengthBody{
+    border-left: 1px solid var(--shade3);
+    border-right: 1px solid var(--shade3);
+    border-bottom: 1px solid var(--shade3);
+  }
+  .innerDiv{
+    font-size: 18px;
+    max-width: 550px;
+  }
+  .lengthBody{
+    display: flex;
+    justify-content: center;
+  }
+
+  .clockButton {
+
+    font-size: 2.7em;
+
+    height: 1.6em;
+    width: 1.6em;
+
+  }
+
+  .outerDiv {
+    align-items: center;
+  }
+
+}
+
+
+
+
+
+

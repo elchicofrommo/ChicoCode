@@ -1,0 +1,285 @@
+
+
+@import url('https://fonts.googleapis.com/css?family=Quicksand:500|Kaushan+Script|Source+Code+Pro:600|Abril+Fatface|Audiowide|Comfortaa:700|Kelly+Slab&display=swap');
+
+$lavender: #cfafff;
+$yellow: #f4f1af;
+$babyBlue: #aadff6;
+$darkerBlue: #2c7ce8;
+$green: #d6f3a1;
+$khaki: #dad67b;
+$gogreen: #70dd34;
+$disabled: #b6bfc9;
+$yellow1: #f4f1af;
+$yellow2: #e7e283;
+$yellow3: #dbd55b;
+$yellow4: #cec637;
+
+
+:global(html){
+
+    margin: 0px;
+}
+
+:global(body) {
+  margin: 0px;
+  font-family: 'Raleway', sans-serif;
+
+}
+
+.fullScreen {
+  height: 100vh;
+  padding: 0px;
+}
+
+.yellowMode {
+	--shade1: #f4f1af;
+    --shade2: #e7e283;
+    --shade3: #dbd55b;
+    --shade4: #cec637;
+}
+
+.blueMode {
+	--shade1: #aadff6;
+    --shade2: #7ec9e9;
+    --shade3: #57b5dd;
+    --shade4: #32a1d0;
+}
+@mixin border-radius($a, $b, $c, $d) {
+    -webkit-border-radius: $a $b $c $d;
+    -moz-border-radius: $a $b $c $d;
+    -ms-border-radius: $a $b $c $d;
+    border-radius: $a $b $c $d;
+}
+@mixin height-calc($percentage, $value) {
+    height: -moz-calc(#{$percentage} - #{$value});
+    /* WebKit */
+    height: -webkit-calc(#{$percentage} - #{$value});
+    /* Opera */
+    height: -o-calc(#{$percentage} - #{$value});
+    /* Standard */
+    height: calc(#{$percentage} - #{$value});
+}
+
+
+:export { gogreen: $gogreen;  darkerBlue: $darkerBlue; babyBlue: $babyBlue; yellow: $yellow;}
+
+.outerDiv {
+	margin: 0px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+    background-color: var(--shade1);
+    transition: all .3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+.innerDiv {
+
+   	display: flex;
+   	flex-direction: column;
+   	width: 260px;
+}
+
+.header {
+	@include border-radius(7px, 7px, 0px, 0px)
+	display: flex;
+	justify-content: space-between;
+	background-color: var(--shade4);
+	transition: all .3s ease-in-out;
+	padding-right: 5px;
+}
+
+.title {
+
+	padding-left: 10px;
+	font-size: 1.7em;
+	font-family: 'Kaushan Script', cursive;
+	color: var(--shade1)
+}
+
+.padContainer {
+	background-color: white;
+	
+}
+
+.detailContainer {
+	
+	background-color: white;
+	padding-bottom: 5px;
+	@include border-radius(0px, 0px, 7px, 7px)
+}
+
+.padRow {
+
+	margin-left: 0px;
+	margin-right: 0px;
+
+}
+
+.detailContainer .label {
+	width: 4.2rem;
+	padding-right: .1em;
+	text-align: right;
+}
+
+.detailContainer .content {
+	width: 100%;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+._row {
+	display: flex;
+	padding-top: 5px;
+	padding-left: 5px;
+	align-items: center;
+} 
+
+.drum-pad {
+	min-width: 3em;
+	min-height: 3em;
+	color: grey;
+	margin: 7px;
+	background-color: var(--shade2);
+	@include border-radius(15px, 15px, 15px, 15px);
+	font-family: 'Anton', sans-serif;
+	font: 1.5em bold;
+	transition: all 0.3s ease-in-out;
+}
+
+.drum-pad:disabled {
+	background-color: $disabled;
+	color: lightgrey;
+	box-shadow: inset 0px 0px 5px 5px ;
+	transition: all 0.3s ease-in-out;
+}
+
+.drum-pad:disabled:hover {
+	box-shadow: inset 0px 0px 5px 5px ;
+	transition: all 0.3s ease-in-out;
+
+}
+
+.drum-pad:hover {
+
+  box-shadow: inset 0 0 2em rgba(255, 255, 255, .4);
+  transition: all 0.3s ease-in-out;
+
+}
+
+.toggleContainer {
+
+	display: flex;
+	align-items: center;
+	height: 100%;
+
+}
+.toggle {
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+.toggleBackground {
+	width: 40px;
+	height: 25px;
+	background-color:  $gogreen;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	@include border-radius(3px, 3px, 3px, 3px)
+	font-family: 'Quicksand', sans-serif;
+	font-weight: bold;
+	font-size: 8pt;
+	color: white;
+}
+/** slider left position */
+.toggleBackground::after {
+	content: '';
+	position: absolute;
+	top: 1px;
+	left:  1px;
+	width: 15px;
+	height: 23px;
+	background-color: var(--slider-leftpos, #fff);
+	box-shadow: inset 0px 0px 3px 3px rgba(0, 0, 0, 0.1);
+	@include border-radius(3px, 3px, 3px, 3px);
+
+	transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, ;
+}
+
+.leftText {
+	padding-left: 4px;
+	visibility: hidden;
+}
+.rightText {
+	padding-right: 4px;
+	visibility: visible;
+}
+
+.toggle:checked + .toggleBackground::after {
+
+	background-color: var(--slider-rightpos, #fff);
+	transform: translateX(23px);
+}
+
+.toggle:checked + .toggleBackground {
+
+	background-color: var(--bg-rightpos, $gogreen);
+	box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
+}
+
+
+.toggle:checked + .toggleBackground>.leftText{
+	visibility: visible;
+}
+.toggle:checked + .toggleBackground>.rightText{
+	visibility: hidden;
+}
+
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  width: 99%; /* Full-width */
+  height: 5px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+
+}
+.slider::-webkit-slider-thumb {
+-webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 15px; /* Set a specific slider handle width */
+  height: 15px; /* Slider handle height */
+  background: var(--shade2);
+  @include border-radius(7px, 7px, 7px, 7px);
+  border: 1px solid var(--shade3);
+
+}
+
+.slider::-moz-range-thumb {
+  width: 15px; /* Set a specific slider handle width */
+  height: 15px; /* Slider handle height */
+  background: var(--shade2);
+  @include border-radius(7px, 7px, 7px, 7px);
+  border: 1px solid var(--shade3);
+}
+
+
+.sampleText {
+	box-shadow: inset 0px 0px 3px 3px rgba(0, 0, 0, 0.1);
+
+	height: 1.7em;
+	@include border-radius(3px, 3px, 3px, 3px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+  	content: "";
+  	transition: all .3s ease-in-out;
+}
+
+
+
