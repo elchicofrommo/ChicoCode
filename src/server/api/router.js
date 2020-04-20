@@ -2,13 +2,15 @@ import Timestamp from './timestamp'
 import ShortUrl from './shorturl-dao'
 import Header from './header'
 import Fitness from './fitness'
-import {logger} from '../utils/Logger';
+import {Logger as logger}from '../utils/Logger';
 
 var bodyParser = require('body-parser');
 var express = require('express');
 var apiRoutes = express.Router();
 var fileUpload = require("express-fileupload");
+var cors = require('cors');
 
+apiRoutes.use(cors())
 apiRoutes.use(express.json()) // for parsing application/json
 apiRoutes.use(bodyParser.urlencoded({ extended: false })) // for parsing application/x-www-form-urlencoded
 apiRoutes.use(fileUpload({
@@ -35,39 +37,39 @@ apiRoutes.get("/api/timestamp/:timestamp", function(req, res) {
 
 apiRoutes.post("/api/shorturl/new", function(req, res){
 
-	if(!req.body && !req.body.url){
-		res.send({error: "invalid URL"})
-		return;
-	}
+  if(!req.body && !req.body.url){
+    res.send({error: "invalid URL"})
+    return;
+  }
 
-	ShortUrl.getShortUrl(req.body.url).then((result)=>{
-		setTimeout(()=>{res.send(result)}, 3000);
-	})
+  ShortUrl.getShortUrl(req.body.url).then((result)=>{
+    setTimeout(()=>{res.send(result)}, 3000);
+  })
 
 })
 
 apiRoutes.get("/api/shorturl/:short_url", function(req, res){
-	let short_url = req.params.short_url;
+  let short_url = req.params.short_url;
 
-	ShortUrl.findOriginalUrl(short_url).then( (result) => {
+  ShortUrl.findOriginalUrl(short_url).then( (result) => {
 
-		logger.verbose("result is : " + JSON.stringify(result));
-		if(result.original_url){
-			logger.verbose("found original url: " + result)
-			res.redirect(302, result.original_url);
-		}
-		else{
-			logger.verbose("could not find original_url property " + result);
-			res.send(result);
-		}
-		
-	})
+    logger.verbose("result is : " + JSON.stringify(result));
+    if(result.original_url){
+      logger.verbose("found original url: " + result)
+      res.redirect(302, result.original_url);
+    }
+    else{
+      logger.verbose("could not find original_url property " + result);
+      res.send(result);
+    }
+    
+  })
 })
 
 apiRoutes.get("/api/whoami", function (req, res){
-	let parsedHeader = Header.parseHeader(req);
-	logger.verbose(`The parsed header is ${JSON.stringify(parsedHeader)}`);
-	res.send(parsedHeader);
+  let parsedHeader = Header.parseHeader(req);
+  logger.verbose(`The parsed header is ${JSON.stringify(parsedHeader)}`);
+  res.send(parsedHeader);
 });
 
 

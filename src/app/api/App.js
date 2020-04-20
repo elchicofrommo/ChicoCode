@@ -1,48 +1,49 @@
-"use strict"
-
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {render} from 'react-dom';
 import {} from './globals';
 import {style} from './style';
-import api from './openapi.json';
+
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import {bootstrap} from 'bootstrap/dist/css/bootstrap.min.css';
 import {ApiRouteComponent} from './OpenApiRouteComponent';
 import marked from 'marked';
+import AnimateHeight from 'react-animate-height';
+import ReactTooltip from 'react-tooltip'
+import $ from 'jquery';
+import FormBuilder from 'openapi-form-generator';
+
 marked.setOptions({breaks: true})
+import $RefParser from "@apidevtools/json-schema-ref-parser";
 
-
-const routes = require('./OpenApiRouteBuilder').generateRoutes(api);
-const routeMeta = require('./OpenApiRouteBuilder').generateRouteMeta(api);
 
 const InfoSection = (props) =>{
     return(
       <div id="routeInfo" className={[style].join(" ") }>
-        <h1 className={[style].join(" ")  }>
-          {routeMeta.info.title}
+        <h1 >
+          {props.routeMeta.info.title}
         </h1>
-        <div className={[style].join(" ")  }>
-          <label htmlFor="description" className={[style].join(" ")  }>
+        <div >
+          <label htmlFor="description" >
             Description
           </label>
-          <div id="description" className={[style].join(" ")  } dangerouslySetInnerHTML={{__html: marked(routeMeta.info.description||"")}}>
+          <div id="description"  dangerouslySetInnerHTML={{__html: marked(props.routeMeta.info.description||"")}}>
           </div>
         </div>
-        <div className={[style].join(" ")  }>
-          <label htmlFor="version" className={[style].join(" ")  }>
+        <div>
+          <label htmlFor="version" >
             Version
           </label>
-          <div id="version" className={[style].join(" ")  }>
-            {routeMeta.info.version}
+          <div id="version" >
+            {props.routeMeta.info.version}
           </div>
         </div>
-        <div className={[style].join(" ")  }>
-          <label htmlFor="contact" className={[style].join(" ")  }>
+        <div >
+          <label htmlFor="contact" >
             Contact
           </label>
-          <div id="contact" className={[style].join(" ")  }>
-            {routeMeta.info.contact.email}
+          <div id="contact">
+            {props.routeMeta.info.contact.email}
           </div>
         </div>
       </div>
@@ -53,18 +54,18 @@ const InfoSection = (props) =>{
 const RouteGroupPicker = (props) => {
 
   let options = []
-  console.log("props is " + JSON.stringify(props))
+  //console.log("props is " + JSON.stringify(props))
   props.tags.forEach((entry)=>{
     options.push(
-      <Dropdown.Item key={entry.name} as="button" className={style + " apiItem"} onClick={(e)=>{props.callback(entry.name, e)}} >
-        <div className={style + " apiName"}>{entry.name}</div>
-        <div className={style + " apiDescription"} dangerouslySetInnerHTML={{__html: marked(entry.description||"")}}></div>
+      <Dropdown.Item key={entry.name} as="button" className={ " apiItem"} onClick={(e)=>{props.callback(entry.name, e)}} >
+        <div className={" apiName"}>{entry.name}</div>
+        <div className={" apiDescription"} dangerouslySetInnerHTML={{__html: marked(entry.description||"")}}></div>
       </Dropdown.Item>
     )
   })
   return (
-    <div className={style + " menuSection"} id="routePicker">
-      <DropdownButton className={style + " "} id="apiMenu"  title="Select an API">
+    <div className={ " menuSection"} id="routePicker">
+      <DropdownButton id="apiMenu"  title="Select an API">
         {options}
       </DropdownButton>
     </div>
@@ -72,57 +73,97 @@ const RouteGroupPicker = (props) => {
   )
 }
 
+function PathComponent(params){
+  const [open, setOpen] = useState(false);
+
+  const methods = renderMethods(params.path, params.details)
+
+  const drawer = open ? " open " : " closed ";
+  const height = open ? "auto" : "0";
+  const closeableDiv = useRef(null);
+
+  function renderMethods(path, details){
+    let formHandlers = [];
+    for(const method in details){
+      formHandlers.push(
+        <ApiRouteComponent method={method} operation={details[method].operation} key={details[method].id}/>
+      )
+    }
+
+    return formHandlers;
+  }
+  function  toggleDrawer(){
+    const el = closeableDiv.current;
+    setOpen(!open)
+    if(open){
+      $(el).slideUp(300)
+    }else{
+      $(el).slideDown(300)
+    }
+    
+  }
+  ReactTooltip.rebuild();
+
+  return(
+      <div  className={ " routeDetail"} key={params.path}>
+        <div className={ " closeableDivHeader"} onClick={toggleDrawer}>
+          <i className={ drawer + " fas fa-caret-down"} ></i>
+          <div >{params.path}</div>
+          
+        </div>
+          <div duration={500} ref={closeableDiv} height={height} className={ drawer + " closeableDiv"}>
+            {methods}
+          </div>
+      </div>
+  )
+}
 
 
 class RouteInterrogators extends React.Component {
   constructor(props){
     super(props);
     console.log("constructing apinavigator " );
-
-    this.renderMethods = this.renderMethods.bind(this);
-  }
-
-  renderMethods(path, details){
-    let formHandlers = [];
-    for(const method in details){
-      formHandlers.push(
-        <div className={style + " method"} key={method} >
-            <ApiRouteComponent  operation={details[method].operation}/>
-        </div>
-      )
+    this.state = {
+      open: true
     }
-
-    return formHandlers;
   }
 
   render() {
-
-    const toRender = [];
+    
+    
+    const routes = [];
     if(!this.props.active)
-      return <div className={style} id="routeInterrogators"><div  className={style} >Select API</div></div>
+      return <div id="routeInterrogators"><div  className={style} >Select API</div></div>
 
-    for(const path in routes[this.props.active]){
-      let methods = this.renderMethods(path, routes[this.props.active][path])
-      toRender.push(
-        <div  className={style} key={path}>
-          <div className={style + " apiPath"}>
-            {path}
-          </div>
+    for(const path in this.props.routes[this.props.active]){
 
-            {methods} 
-        </div>
+      routes.push(
+        <PathComponent path={path} details={this.props.routes[this.props.active][path]}/>
       );
     }
-
+    const externalDocs = this.props.routeMeta.tags[this.props.active].externalDocs;
+    let externalDescription = undefined;
+    let externalUrl = undefined
+    if(externalDocs){
+      if(externalDocs.description){
+        externalDescription = <div  dangerouslySetInnerHTML={{__html: marked(externalDocs.description)}}></div>
+      }
+      
+      if(externalDocs.url){
+        externalUrl = <div><a href={externalDocs.url}  className={style}>
+            {externalDocs.url}</a></div>
+      }
+    }
     return(
-        <div className={style} id="routeInterrogators">
-          <div className={style}>{this.props.active}</div>
-          <div className={style} dangerouslySetInnerHTML={{__html: marked(routeMeta.tags[this.props.active].description||"")}}></div>
-          <div className={style}>External References</div>
-          <div className={style} dangerouslySetInnerHTML={{__html: marked(routeMeta.tags[this.props.active].externalDocs.description||"")}}></div>
-          <div className={style}><a href={routeMeta.tags[this.props.active].externalDocs.url}  className={style}>
-            {routeMeta.tags[this.props.active].externalDocs.url}</a></div>
-          {toRender}
+        <div id="routeInterrogators">
+          <h2 >{this.props.active}</h2>
+          <div className={ " tagMeta"}>
+            <div dangerouslySetInnerHTML={{__html: marked(this.props.routeMeta.tags[this.props.active].description||"")}}></div>
+            {externalDescription || ""}
+            {externalUrl || ""}
+            
+          </div>
+          {routes}
         </div>
     )
   }
@@ -133,7 +174,8 @@ class App extends React.Component{
     super(props)
     this.state ={
       fullScreen: props.fullScreen ? "fullScreen" : "",
-      active: undefined
+      active: undefined,
+      loading: true
     }
     console.log("Constructed Calculator created by Mariano Hernandez 2020. Enjoy")
     this.handlePicker = this.handlePicker.bind(this)
@@ -144,15 +186,49 @@ class App extends React.Component{
     this.setState({active: active})
   }
 
-  render(){ 
+  componentDidMount(){
 
-    return (
-      <div className={[style, "bootstrap themeOne outerDiv"].join(" ")  }>
-        <InfoSection />
-        <RouteGroupPicker tags={api.tags} callback={this.handlePicker}/>
-        <RouteInterrogators active={this.state.active}/>
-      </div>
-    )
+    console.log("mounted");
+    $RefParser.dereference(this.props.source).then((result)=>{
+        const routes = require('./OpenApiRouteBuilder').generateRoutes(result);
+        const routeMeta = require('./OpenApiRouteBuilder').generateRouteMeta(result );
+        this.setState({loading: false, routes: routes, routeMeta: routeMeta})
+    }).catch((err)=>{
+      this.setState({loading: false, error: err})
+    })
+  }
+  render(){ 
+    if(this.state.loading){
+      return (
+        <div className={[style, "themeOne outerDiv"].join(" ")  }>
+          Loading file ...
+        </div>
+      )
+    }
+    if(this.state.error){
+      console.log(this.state.error.stack)
+      return (
+        <div className={[style, "themeOne outerDiv"].join(" ")  }>
+          Could not process OPEN API file. Error follows
+          <div className={[style, "themeOne outerDiv error"].join(" ")  }>
+            <code><pre>{this.state.error.stack}</pre></code>
+          </div>
+        </div>
+      )
+    }else{
+
+      return (
+        <div className={[style, "bootstrap themeOne outerDiv"].join(" ")  }>
+          <div className={"background"} ></div>
+          <InfoSection routeMeta={this.state.routeMeta} />
+          <RouteGroupPicker routeMeta={this.state.routeMeta} tags={this.props.source.tags} callback={this.handlePicker}/>
+          <RouteInterrogators routes={this.state.routes} routeMeta={this.state.routeMeta} active={this.state.active}/>
+           <ReactTooltip multiline={true} html={true} className={ " tooltip"} />
+
+
+        </div>
+      )
+    }
   }
 }
 

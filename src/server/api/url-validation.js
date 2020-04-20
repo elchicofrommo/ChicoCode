@@ -1,9 +1,9 @@
-
+import {Logger as logger} from '../utils/Logger';
 
 const dns = require('dns');
 
 
-function validateURL(url, done){
+export function validateURL(url, done){
 
 	let myUrl;
 	if(url && typeof url == "string"){
@@ -21,24 +21,22 @@ function validateURL(url, done){
 		return;
 	}
 	try{
-		console.log("step 1 " + myUrl);
+		logger.verbose("step 1 " + myUrl);
 		dns.lookup(myUrl, (err, address, family)=> {
-			console.log("step 2");
+			logger.verbose("step 2");
 
 
 			let bReturn = true;
 			if(err){
 				bReturn = false;
-				console.log("found a problem with the url " + err);
+				logger.verbose("found a problem with the url " + err);
 			}
 			done(err, bReturn);
 
 		})
-		console.log("step 3");
+		logger.verbose("step 3");
 	}catch(err){
-		console.log("caught exceptoin in url validation " + err);
+		logger.verbose("caught exceptoin in url validation " + err);
 		done(err, false)
 	}
 }
-
-exports.validateURL = validateURL;

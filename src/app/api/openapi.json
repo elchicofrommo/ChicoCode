@@ -13,7 +13,7 @@
 			"url": "http://www.apache.org/licenses/LICENSE-2.0.html"
 		}
 	},
-	"host": "https://api.bit-word.com",
+	"host": "api.bit-word.com",
 	"basePath": "/api",
 	"tags": [{
 		"name": "timestamp",
@@ -46,7 +46,7 @@
 			"description": "- [Project Requirements](https://www.freecodecamp.org/learn/apis-and-microservices/apis-and-microservices-projects/file-metadata-microservice)\n- [GitHub Repo](fcc_microservice_filemetadata)"
 		}
 	}],
-	"schemes": ["http"],
+	"schemes": ["https"],
 	"paths": {
 		"/timestamp/{timestamp}": {
 			"get": {
@@ -76,18 +76,15 @@
 					"name": "body",
 					"description": "URL to map to short url key",
 					"required": true,
-					"content": {
-						"application/x-www-form-urlencoded": {
-							"schema": {
-								"type": "object",
-								"properties": [{
-									"url": {
-										"type": "string"
-									}
-								}]
+					"schema": {
+						"type": "object",
+						"properties": {
+							"url": {
+								"type": "string"
 							}
 						}
 					}
+
 				}]
 
 			}
@@ -128,18 +125,15 @@
 					"name": "body",
 					"description": "The username to create",
 					"required": true,
-					"content": {
-						"application/x-www-form-urlencoded": {
-							"schema": {
-								"type": "object",
-								"properties": [{
-									"userId": {
-										"type": "string"
-									}
-								}]
+					"schema": {
+						"type": "object",
+						"properties": {
+							"userId": {
+								"type": "string"
 							}
 						}
 					}
+
 				}]
 
 			}
@@ -157,34 +151,26 @@
 					"type": "string",
 					"description": "User to add an exercise event to",
 					"required": true,
-					"content": {
-						"application/x-www-form-urlencoded": {
-							"schema": {
+					"schema": {
 								"type": "object",
-								"properties": [{
-										"userId": {
-											"type": "string"
-										}
+								"properties": {
+									"userId": {
+										"type": "string"
 									},
-									{
-										"date": {
-											"type": "string"
-										}
+
+									"date": {
+										"type": "string"
 									},
-									{
-										"description": {
-											"type": "string"
-										}
+									"description": {
+										"type": "string"
 									},
-									{
-										"duration": {
-											"type": "string"
-										}
+									"duration": {
+										"type": "string"
 									}
-								]
+								}
+								
 							}
-						}
-					}
+
 				}]
 			}
 		},

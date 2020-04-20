@@ -28,7 +28,7 @@ let fmt_verbose = chalk.magenta
 let verbose = false
 let rootDir = 'hit_counter_app/'
 
-const Logger = {};
+export const Logger = {};
 
 
 Logger.info = function(output){
@@ -107,7 +107,5 @@ Logger.getCallSource = function() {
 Logger.info("ready to export Logger");
 
 
-module.exports = {
-	logger: Logger
-}
+
 

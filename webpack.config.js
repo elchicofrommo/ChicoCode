@@ -2,7 +2,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
-const {logger} = require('./src/server/utils/Logger')
+const {Logger: logger} = require('./src/server/utils/Logger')
 
 
 const dotenv = require('dotenv');

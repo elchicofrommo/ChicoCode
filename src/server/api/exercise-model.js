@@ -1,9 +1,19 @@
-import {logger} from '../utils/Logger';
+import {Logger as logger} from '../utils/Logger';
 import UserModel from './user-model';
 
 var sfy = JSON.stringify;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
+
+const DATABASE_URI="mongodb+srv://elchicofrommo:N3wst@rt@cluster0-yci70.mongodb.net/fcc_work_2?retryWrites=true&w=majority"
+
+logger.info(`Connecting DB to ${DATABASE_URI}` )
+mongoose.connect(DATABASE_URI, { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true ,
+  useCreateIndex: true
+}); 
+
 var Schema = mongoose.Schema;
 var ObjectId = require('mongoose').Types.ObjectId;
 

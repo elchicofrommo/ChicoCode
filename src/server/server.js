@@ -1,7 +1,7 @@
 'use strict';
 
 import path from 'path';
-import {logger} from './utils/Logger';
+import {Logger as logger} from './utils/Logger';
 
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
@@ -10,7 +10,7 @@ import webpackConfig from '../../webpack.config.js'
 import styleConfig from '../../webpack.config.style.js'
 import apiRoutes from './api/router.js'
 
-
+var cors = require('cors');
 const dotenv = require('dotenv');
 const result = dotenv.config();
 if (result.error) {
@@ -34,6 +34,7 @@ var mongoose = require('mongoose');
 
 
 var app = express();
+app.use(cors())
 
 function requestLogger(req, resp, next){
 

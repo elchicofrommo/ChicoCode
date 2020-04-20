@@ -1,7 +1,18 @@
+import {Logger as logger} from '../utils/Logger';
+import {validateURL} from './url-validation'
 var sfy = JSON.stringify;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-const validateURL = require("./url-validation.js").validateURL;
+
+const DATABASE_URI="mongodb+srv://elchicofrommo:N3wst@rt@cluster0-yci70.mongodb.net/fcc_work_2?retryWrites=true&w=majority"
+
+logger.info(`Connecting DB to ${DATABASE_URI}` )
+mongoose.connect(DATABASE_URI, { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true ,
+  useCreateIndex: true
+}); 
+
 
 const ShortUrlDao =  {};
 
@@ -62,11 +73,11 @@ ShortUrlDao.findShortUrl = async function(url){
 	let toReturn = undefined;
 	try{
 		toReturn = await ShortURL.findOne({original_url: url}).select('original_url short_url -_id');
-		console.log("found: " + toReturn);
+		logger.verbose("found: " + toReturn);
 	}catch(err){
-		console.log('failed to find short url for ' + url + " due to " + err);
+		logger.verbose('failed to find short url for ' + url + " due to " + err);
 	}
-	console.log("findShortUrl returning " + toReturn);
+	logger.verbose("findShortUrl returning " + toReturn);
 	return  toReturn
 }
 
@@ -77,7 +88,7 @@ ShortUrlDao.findOriginalUrl = async function(short_url){
 			toReturn = {"error":"No short url found for given input"};
 		return toReturn;
 	}catch(err){
-		console.log('failed to find original url for short_url ' + short_url);
+		logger.verbose('failed to find original url for short_url ' + short_url);
 		return {"error":"No short url found for given input"};
 	}
 }
@@ -89,7 +100,7 @@ ShortUrlDao.getShortUrl = async function(url){
 	var short = await ShortUrlDao.findShortUrl(url);
 
 	if(short){
-		console.log("found something for shor url " + url + " value is " + short);
+		logger.verbose("found something for shor url " + url + " value is " + short);
 		return short;
 	}
 
@@ -107,13 +118,13 @@ ShortUrlDao.getShortUrl = async function(url){
 
 	}catch(err){
 		valid = false;
-		console.log("url is invalid : " + err);
+		logger.verbose("url is invalid : " + err);
 	}
 
 
 	let result;
 	if(valid){
-		console.log(url + " is valid, now creating short url")
+		logger.verbose(url + " is valid, now creating short url")
 		try{
 			result = await ShortUrlDao.createShortUrl(url);
 		}catch(err){

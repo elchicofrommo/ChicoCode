@@ -63,5 +63,6 @@ module.exports = [{
     global: true
 
   },
+  devtool: "source-map",
   mode: nodeEnv
 }];

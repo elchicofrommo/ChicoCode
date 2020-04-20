@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Quicksand:500&family=Kaushan+Script|Source+Code+Pro:600|Abril+Fatface|Audiowide|Comfortaa:700|Kelly+Slab&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&family=Open+Sans&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css');
 
 :global(html){
 
@@ -8,106 +8,234 @@
 
 :global(body) {
   margin: 0px;
-  font-family: 'Raleway', sans-serif;
 
+  background-color: var(--shade2);
+  height: auto;
 }
+
+
 
 .fullScreen {
   height: 100vh;
   padding: 0px;
 }
 
-.outerDiv{
-	background-color: var(--shade1);
-}
 
-#routeInfo{
+h3{
+	font-size: 1.3em;
+}
+.outerDiv{
+	background-color: var(--shade2);
+	padding-left: 20px;
+	padding-right: 20px;
 	display: flex;
 	flex-direction: column;
 
-	> h1 {
-		text-align: center;
+	.background{
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -10;
+		height: 100vh;
+		width: 100vw;
+		background-color: inherit;
+		margin: 0px;
+
 	}
 
-	> div {
+	#routeInfo{
 		display: flex;
-		> label {
-			flex: 1 0 20px;
-			text-align: right;
-			margin-right: 5px;
+		flex-direction: column;
+		padding-top: 30px;
+		background-color: var(--shade2);
+
+		> h1 {
+			text-align: center;
 		}
 
-		> div{
+		> div {
+			display: flex;
+			> label {
+				flex: 1 0 20px;
+				text-align: right;
+				margin-right: 5px;
+			}
+
+			> div{
+				flex: 1 0 60%;
+			}
+		}
+	}
+
+	#routePicker{
+		background-color: var(--shade2);
+
+		.menuSection {
+			padding-left: 20px;
+			padding-right: 20px
+		}
+		.apiItem {
+			display: flex;
+			width: 100%;
+
+		}
+
+		.apiName {
+			flex: 1 0 20%;
+			text-align: center;
+			font-weight: bold;
+		}
+		.apiDescription {
 			flex: 1 0 60%;
+			text-align: left;
+			display: none;
 		}
 	}
-}
 
-#routePicker{
-
-	.menuSection {
-		padding-left: 20px;
-		padding-right: 20px
+	.tooltip{
+		.required{
+			color: green;
+		}
+		.type {
+			color: orange;
+		}
 	}
-	.apiItem {
+
+	.closeableDivHeader{
+		padding: 2px 7px ;
 		display: flex;
+		align-items: center;
+
+		h3{
+
+			margin-bottom: 2px;
+		}
+
+		i{
+			font-size: 1.7em;
+			transition: all .1s ease-in-out;
+			margin-right: 5px;
+
+		}
+		i.closed {
+			transform: rotate(-90deg);
+			transition: all .1s ease-in-out;
+		}
+
+		.summary{
+			padding-left: 5px;
+		}
+		.fa-question-circle{
+			font-size: 1em;
+			padding-left: 3px;
+		}
+	}
+
+	.closeableDiv{
+		
+		overflow: hidden;	
+	}
+
+	.closeableDiv.closed{
+		display: none;
+	}			
+
+	#routeInterrogators{
+		background-color: var(--shade2);
+
+		.tagMeta {
+			display: flex;
+		}
+		.label{
+			font-weight: bold;
+		}
+		.routeDetail {
+			padding : 3px;
+			background-color: white;
+			margin-top: 10px;
+			margin-bottom: 10px;
+
+			position: relative;
+			height: auto;
+			
+
+
+			.method {
+
+				background-color: var(--shade1);
+				margin-bottom: 3px;
+
+			}
+
+			.paramLocation{
+				border: 1px solid black;
+				display: flex;
+				flex-direction: column;
+				margin-bottom: 7px;
+
+				> h3{
+					padding-left: 5px;
+				}
+				> div {
+					display: flex;
+					flex-wrap: wrap;
+				}
+
+				.formField {
+					flex-basis: 50%;
+					flex-shrink: 0; 
+					display: flex;
+					flex-direction: column;
+					padding: 5px;
+					label{
+
+					}
+					input{
+
+					}
+				}
+			}
+
+			button {
+				margin-bottom: 7px;
+				margin-left: 3px;
+			}
+		}
+
+	}
+
+
+
+	:global(#apiMenu) {
+		width: 100%; 
+	}
+
+	:global(.dropdown-menu){
 		width: 100%;
 
 	}
 
-	.apiName {
-		flex: 1 0 20%;
-		text-align: center;
+	.apiPath {
+		background-color: white;
+	}
+
+	label {
 		font-weight: bold;
 	}
-	.apiDescription {
-		flex: 1 0 60%;
-		text-align: left;
-		display: none;
-	}
 }
 
-
-
-:global(#apiMenu) {
-	width: 100%; 
-}
-
-:global(.dropdown-menu){
-	width: 100%;
-
-}
-
-.apiPath {
-	background-color: white;
-}
-
-label {
-	font-weight: bold;
-}
 
 .themeOne {
-    --shade1: #f4f1af;
-    --shade2: #e7e283;
-    --shade3: #dbd55b;
-    --shade4: #dedede;
-}
-
-.themeTwo {
-    --shade1: #aadff6;
-    --shade2: #7ec9e9;
-    --shade3: #57b5dd;
-    --shade4: #32a1d0;
-    --grey1: #dedede;
-}
-
-.themeThree {
   --shade1: #c3cacf;
   --shade2: #9ab1c2;
   --shade3: #759bb6;
   --shade4: #5385a9;
-   --grey1: #dedede;
+   --background1: #dedede;
+   --background2: #f4f1af;
+   --text_nav: #466b8c;
 }
+
+
 
 
 

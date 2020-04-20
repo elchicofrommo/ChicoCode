@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import App from './App';
+import App from '../api/App';
 import api from './openapi.json';
 
 let script = document.getElementById("calculatorScript");
@@ -26,7 +26,7 @@ const renderApp = ()=> {
   
   render(
     <AppContainer>
-      <App fullScreen={fullScreen} source={api}/>
+      <App fullScreen={fullScreen} source={api} />
     </AppContainer>
   , document.getElementById(targetId));
 };
@@ -34,7 +34,7 @@ const renderApp = ()=> {
 renderApp();
 
 if(module.hot){
-  module.hot.accept('./App', () => {
+  module.hot.accept('../api/App', () => {
    renderApp()
   })
 }
